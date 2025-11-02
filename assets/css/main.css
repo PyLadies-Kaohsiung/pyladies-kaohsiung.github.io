@@ -398,6 +398,13 @@ section,
   object-position: center;
 }
 
+.hero-text{
+  display: flex;
+  align-items: right;
+  text-align: right;
+  justify-content: right;
+}
+
 .hero p {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin: 5px 0 30px 0;
