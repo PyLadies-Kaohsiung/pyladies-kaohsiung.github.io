@@ -1,0 +1,33 @@
+# Pre-commit hooks for the PyLadies Kaohsiung site.
+#
+# Setup once on a fresh checkout:
+#     uv tool install pre-commit
+#     pre-commit install
+#
+# After this, every `git commit` runs the validator and re-builds the
+# aggregates (data/events.json, data/speakers.json) when needed. If the
+# rebuild changes the aggregates, commit again with the regenerated files.
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-json
+      - id: end-of-file-fixer
+        files: ^data/.*\.json$
+      - id: trailing-whitespace
+        files: ^(data|schemas|scripts)/
+
+  - repo: local
+    hooks:
+      - id: validate-and-build
+        name: validate JSON data and rebuild aggregates
+        description: |
+          Runs scripts/build.py to validate every event/speaker/topic/location
+          file against its schema, check cross-references, and regenerate
+          data/events.json and data/speakers.json. Aggregates that change are
+          re-staged so the commit includes them.
+        entry: uv run scripts/build.py
+        language: system
+        pass_filenames: false
+        files: ^(data/(events|speakers)/.*\.json|data/(topics|locations)\.json|schemas/.*\.json|scripts/build\.py)$

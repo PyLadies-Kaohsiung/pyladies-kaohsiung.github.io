@@ -1,0 +1,11 @@
+[project]
+name = "pyladies-kaohsiung-site"
+version = "0"
+description = "Build & validation tooling for the PyLadies Kaohsiung website."
+requires-python = ">=3.10"
+dependencies = [
+    "jsonschema>=4.0",
+]
+
+[tool.uv]
+package = false

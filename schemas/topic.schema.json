@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pyladies-kaohsiung.github.io/schemas/topic.schema.json",
+  "title": "Topics master list",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "name"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$",
+        "description": "Stable lowercase-hyphen id, referenced by event.topic_id."
+      },
+      "name": { "type": "string", "minLength": 1 },
+      "description": { "type": "string" }
+    }
+  }
+}

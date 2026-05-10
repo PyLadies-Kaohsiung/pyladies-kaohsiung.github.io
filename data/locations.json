@@ -1,0 +1,43 @@
+[
+  {
+    "id": "online",
+    "name": "線上活動",
+    "is_online": true
+  },
+  {
+    "id": "kaohsiung-tbd",
+    "name": "高雄市（地點待定）",
+    "is_online": false
+  },
+  {
+    "id": "kaohsiung-development-center",
+    "name": "高雄資訊開發中心",
+    "address": "高雄市前鎮區復興四路2號6樓之1 (高雄軟體園區 B 棟)",
+    "is_online": false
+  },
+  {
+    "id": "kaohsiung-hsuanpo",
+    "name": "軒博讀書會館",
+    "address": "高雄市新興區中正二路182號16樓之5",
+    "is_online": false
+  },
+  {
+    "id": "kaohsiung-ait-data-center",
+    "name": "高雄美國資料中心－河堤分館(高雄市立圖書館河堤分館)",
+    "address": "高雄市三民區裕誠路1號3樓-多功能教室",
+    "is_online": false
+  },
+  {
+    "id": "taipei-appier",
+    "name": "Appier",
+    "address": "臺北市信義區松仁路123號6樓 (華銀總行大樓6樓)",
+    "is_online": false
+  },
+  {
+    "id": "taipei-aic",
+    "name": "美國創新中心 (AIC)",
+    "address": "臺北市信義區光復南路133號2F (松菸創作者工廠)",
+    "map_url": "https://www.ait.org.tw/zhtw/american-innovation-center-aic-zh/",
+    "is_online": false
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "handle": "Amice",
+    "name": "林庭羽 (Amice Lin)",
+    "intro": "現職資料科學家，於產業中從事AI與資料相關實務工作，專注於 Python、SQL、GenAI 與機器學習應用以及AI safety議題，也在PyLadies社群擔任志工協助入門工作坊和其他活動。具心理學與認知神經科學背景，對 AI、模型與人類大腦的運作皆抱持高度興趣。相信人生不是線性前進，探索本身就是一種成長與理解的過程。希望透過社群分享與交流，讓大家都能找到自己適合的位置。",
+    "social_links": {
+      "linkedin": "https://www.linkedin.com/in/tylin-amice/"
+    },
+    "photo": ""
+  },
+  {
+    "handle": "GT",
+    "name": "GT Chang",
+    "intro": "現職為社群產業數據分析師（Data Analyst）。身為商科兼外文科系背景，卻被數據與程式的世界深深吸引，希望能藉由自己的故事與經歷，鼓勵更多學弟妹們走出自己的路。曾任職於電商、遊戲與輿情產業。目前兼任 PyLadies 入門工作坊講師、1111 平台 Python 家教老師，並在「商業分析師的隨筆記」部落格中記錄著自己一路遇到的職涯大小事。",
+    "social_links": {
+      "personal": "https://www.bianalyst-gt.com/"
+    },
+    "photo": ""
+  },
+  {
+    "handle": "LisaLai",
+    "name": "Lisa",
+    "intro": "曾在新創團隊擔任後端工程師，負責 SaaS 訂閱制平台的架構設計與金流整合。主要使用 Python 與 Django，開發 Web 服務與 RESTful API、熟悉資料庫設計，擁有超過四年的後端開發經驗。近期持續投入技術專案與自動化工具開發，關注如何以程式優化工作流程、把技術應用在解決實際問題上。背景橫跨軟體開發與音樂領域，從工程師到吉他彈唱、再到海鷗K阿卡貝拉樂團女高音。此次將在 PyLadies 入門工作坊擔任講師，帶領學員以實作方式輕鬆認識 Python，體驗程式設計的樂趣。",
+    "social_links": {
+      "ig": "@lizzal.yun"
+    },
+    "photo": ""
+  },
+  {
+    "handle": "MarsW",
+    "name": "Mars Weng (MarsW)",
+    "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+    "social_links": {
+      "linkedin": "",
+      "email": ""
+    },
+    "photo": ""
+  },
+  {
+    "handle": "Nancy",
+    "name": "Nancy",
+    "intro": "過去曾在廣告行銷、金融與電商產業擔任資料分析師，主要使用 SQL、Hive、Python、Tableau...... 等多種資料庫語言與資料視覺化工具，提供分析與產業決策。",
+    "social_links": {},
+    "photo": ""
+  },
+  {
+    "handle": "Robin",
+    "name": "Robin",
+    "intro": "喜歡研究自然處理相關問題的應用工程師。主要技能是 Python 的文字處理和觀察語言中句型 pattern 並設計語言模型。對於教學很有熱忱。在自學程式時克服許多學習程式的困難，希望可以在工作坊中可以和大家分享我自己的經驗，讓大家可以更快速的學習 Python。",
+    "social_links": {},
+    "photo": ""
+  },
+  {
+    "handle": "RubyChuang",
+    "name": "Ruby Chuang",
+    "intro": "現任銀行的商業分析師，具國內大型銀行及新創軟體公司多年經驗，領域涵蓋詐欺偵測及數位客群分析。熱愛數據，致力透過數據、以顧問精神解決商業問題。過去曾任 PyLadies Host、數據分析工作坊講者，亦在公司內部透過讀書會及分享，推廣數據思維及技術。",
+    "social_links": {},
+    "photo": ""
+  },
+  {
+    "handle": "sample-speaker",
+    "name": "（範例）測試講者",
+    "intro": "範例講者：請替換為實際講者介紹。",
+    "social_links": {
+      "personal": "",
+      "linkedin": "",
+      "fb": "",
+      "threads": "",
+      "ig": "",
+      "email": ""
+    },
+    "photo": ""
+  }
+]

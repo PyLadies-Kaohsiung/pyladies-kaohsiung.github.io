@@ -1,0 +1,43 @@
+{
+  "event_id": "2",
+  "en_abbr": "pyladieskh202512",
+  "title": "Python 入門工作坊 (台北特別場)",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2025-12-06 10:15:00",
+      "datetime_end": "2025-12-06 13:30:00"
+    },
+    {
+      "timeslot": 2,
+      "datetime_start": "2025-12-06 14:30:00",
+      "datetime_end": "2025-12-06 18:30:00"
+    },
+    {
+      "timeslot": 3,
+      "datetime_start": "2025-12-07 10:15:00",
+      "datetime_end": "2025-12-07 13:30:00"
+    },
+    {
+      "timeslot": 4,
+      "datetime_start": "2025-12-07 14:30:00",
+      "datetime_end": "2025-12-07 18:00:00"
+    }
+  ],
+  "locations": ["taipei-appier"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "GT" },
+    { "timeslot": 2, "speaker": "Robin" },
+    { "timeslot": 3, "speaker": "LisaLai" },
+    { "timeslot": 4, "speaker": "MarsW" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202512"
+  ],
+  "recap_links": [
+    { "type": "fb", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid0qPbErGTMZ5ZggZifqfAVp2qqUtQnpyQYDsGWt19Dxyqj3hXe51bmtUjmZ9U3mC7kl", "label": "活動回顧貼文" },
+    { "type": "slides", "url": "https://python-tutorial-workshop.github.io/#curriculum", "label": "工作坊講義" }
+  ],
+  "topic_id": "python-tutorial-workshop",
+  "target_audiences": ["零經驗", "初學者"]
+}

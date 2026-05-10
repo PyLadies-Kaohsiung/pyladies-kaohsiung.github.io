@@ -1,0 +1,29 @@
+{
+  "event_id": "4",
+  "en_abbr": "pyladies-journey-202602",
+  "title": "走進資料領域：資料科學家與分析師的工作日常與職涯選擇",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2026-02-12 19:00:00",
+      "datetime_end": "2026-02-12 21:00:00"
+    }
+  ],
+  "locations": ["online"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "GT" },
+    { "timeslot": 1, "speaker": "Amice" },
+    { "timeslot": 1, "speaker": "RubyChuang" },
+    { "timeslot": 1, "speaker": "Nancy" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladies-journey-202602"
+  ],
+  "recap_links": [
+    { "type": "fb", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid022kEiYZG8Yvd6W4AJyUYFqNRMzGAbhhpxqpgBjmZswo9Emd3NobXaDFrBxReRytYSl", "label": "活動回顧貼文" },
+    { "type": "slides", "timeslot": 1, "speaker": "GT", "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-GT.pdf" },
+    { "type": "slides", "timeslot": 1, "speaker": "Nancy", "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-Nancy.pdf" }
+  ],
+  "topic_id": "career",
+  "target_audiences": ["有實務經驗者"]
+}

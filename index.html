@@ -39,7 +39,7 @@
         <div class="row">
           <div class="col-lg-12 intro-action">
             <div class="d-flex flex-column flex-md-row">
-              <a href="#activity" class="intro-cta">參加活動<i class="bi bi-arrow-right"></i></a>
+              <a href="#upcoming" class="intro-cta">參加活動<i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -271,19 +271,36 @@ PyLadies Kaohsiung 正在建立更完善的制度，領導者也會主動分享�
 
     </section>
 
-    <section id="activity">
+    <section id="upcoming">
       <div class="container block-heading" data-aos="fade-up">
-        <h2>Activities</h2>
-        <p>最新活動</p>
+        <h2>Upcoming</h2>
+        <p>即將舉辦</p>
       </div>
       <div class="container">
-        <div class="row gy-4">
-          <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" preloader-text="Loading" data-fw-param="175878/"></script>
+        <ul class="event-list" id="upcoming-list"></ul>
+      </div>
+    </section>
+
+    <section id="past">
+      <div class="container block-heading" data-aos="fade-up">
+        <h2>Past</h2>
+        <p>過往活動</p>
+      </div>
+      <div class="container">
+        <div class="event-controls">
+          <input type="search" id="past-search" class="event-search" placeholder="搜尋活動標題、講者、主題" aria-label="搜尋過往活動">
+          <div class="event-year-filter" id="past-year-filter" role="tablist" aria-label="依年份篩選"></div>
         </div>
+        <ul class="event-list" id="past-list"></ul>
       </div>
     </section>
 
   </main>
+
+  <dialog id="event-dialog" class="event-dialog" aria-labelledby="event-dialog-title">
+    <button type="button" class="event-dialog-close" data-event-dialog-close aria-label="關閉"><i class="bi bi-x-lg"></i></button>
+    <div class="event-dialog-body" id="event-dialog-body"></div>
+  </dialog>
 
   <footer class="site-footer">
     <div class="container site-footer-bottom text-center mt-4">
@@ -299,6 +316,7 @@ PyLadies Kaohsiung 正在建立更完善的制度，領導者也會主動分享�
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/events.js"></script>
 
 </body>
 

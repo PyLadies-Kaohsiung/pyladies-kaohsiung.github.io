@@ -1,0 +1,25 @@
+{
+  "event_id": "6",
+  "en_abbr": "pyladieskh202604",
+  "title": "Python 金融數據工作坊 - 資料管理",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2026-04-25 14:00:00",
+      "datetime_end": "2026-04-25 17:00:00"
+    }
+  ],
+  "locations": ["kaohsiung-ait-data-center", "online"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "MarsW" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202604"
+  ],
+  "recap_links": [
+    { "type": "fb", "label": "活動回顧貼文", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02iF8wdvLUxgnfMMgCoMwbmjqjsUyeRX6YenPGgEfu2xraheJaVy2FMtjsDLUC8Rasl"},
+    { "type": "slides", "label": "工作坊講義" , "url": "https://python-practical-workshop.github.io/sql_flask/"}
+  ],
+  "topic_id": "data-workshop",
+  "target_audiences": ["初學者"]
+}

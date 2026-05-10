@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pyladies-kaohsiung.github.io/schemas/event.schema.json",
+  "title": "Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "en_abbr",
+    "title",
+    "datetimes",
+    "locations",
+    "speakers",
+    "topic_id",
+    "target_audiences"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$",
+      "description": "Sequential numeric id, must equal filename (without .json)."
+    },
+    "en_abbr": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "Short URL-friendly slug. Lowercase letters, digits, hyphens. Must be unique across all events."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "datetimes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["timeslot", "datetime_start", "datetime_end"],
+        "properties": {
+          "timeslot": { "type": "integer", "minimum": 1 },
+          "datetime_start": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$"
+          },
+          "datetime_end": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$"
+          }
+        }
+      }
+    },
+    "locations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Array of location ids (must exist in data/locations.json)."
+    },
+    "speakers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["timeslot", "speaker"],
+        "properties": {
+          "timeslot": { "type": "integer", "minimum": 1 },
+          "speaker": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Speaker handle (must match data/speakers/{handle}.json)."
+          }
+        }
+      }
+    },
+    "register_links": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "recap_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "url"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["fb", "slides", "video", "blog", "other"]
+          },
+          "timeslot": { "type": "integer", "minimum": 1 },
+          "speaker": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "url": { "type": "string", "format": "uri" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "topic_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Topic id (must exist in data/topics.json)."
+    },
+    "target_audiences": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["零經驗", "初學者", "進階者", "有實務經驗者"]
+      }
+    }
+  }
+}

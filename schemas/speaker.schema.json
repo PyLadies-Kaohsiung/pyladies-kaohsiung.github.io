@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pyladies-kaohsiung.github.io/schemas/speaker.schema.json",
+  "title": "Speaker",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "intro"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name."
+    },
+    "intro": {
+      "type": "string",
+      "description": "Speaker bio. Plain text or simple Markdown."
+    },
+    "social_links": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "personal": { "type": "string", "format": "uri" },
+        "linkedin": { "type": "string", "format": "uri" },
+        "fb":       { "type": "string", "format": "uri" },
+        "threads":  { "type": "string", "format": "uri" },
+        "ig":       { "type": "string", "format": "uri" },
+        "email":    { "type": "string", "format": "email" }
+      }
+    },
+    "photo": {
+      "type": "string",
+      "description": "Path or URL to speaker photo. Empty string means no photo."
+    }
+  }
+}

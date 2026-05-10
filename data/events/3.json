@@ -1,0 +1,22 @@
+{
+  "event_id": "3",
+  "en_abbr": "pyladies-chat-202512",
+  "title": "PyLadies Kaohsiung 網站與社群媒體的零成本 AI 工具實務分享",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2025-12-18 19:00:00",
+      "datetime_end": "2025-12-18 21:00:00"
+    }
+  ],
+  "locations": ["kaohsiung-hsuanpo", "online"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "MarsW" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladies-chat-202512"
+  ],
+  "recap_links": [],
+  "topic_id": "tech",
+  "target_audiences": ["有實務經驗者"]
+}

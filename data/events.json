@@ -1,0 +1,597 @@
+[
+  {
+    "event_id": "7",
+    "en_abbr": "pyladieskh202605",
+    "title": "Python 入門工作坊 (高雄主場)",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-05-23 09:30:00",
+        "datetime_end": "2026-05-23 12:45:00"
+      },
+      {
+        "timeslot": 2,
+        "datetime_start": "2026-05-23 13:30:00",
+        "datetime_end": "2026-05-23 17:30:00"
+      },
+      {
+        "timeslot": 3,
+        "datetime_start": "2026-05-24 09:30:00",
+        "datetime_end": "2026-05-24 12:45:00"
+      },
+      {
+        "timeslot": 4,
+        "datetime_start": "2026-05-24 13:30:00",
+        "datetime_end": "2026-05-24 16:30:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-ait-data-center",
+        "name": "高雄美國資料中心－河堤分館(高雄市立圖書館河堤分館)",
+        "address": "高雄市三民區裕誠路1號3樓-多功能教室",
+        "is_online": false
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "GT",
+        "info": {
+          "name": "GT Chang",
+          "intro": "現職為社群產業數據分析師（Data Analyst）。身為商科兼外文科系背景，卻被數據與程式的世界深深吸引，希望能藉由自己的故事與經歷，鼓勵更多學弟妹們走出自己的路。曾任職於電商、遊戲與輿情產業。目前兼任 PyLadies 入門工作坊講師、1111 平台 Python 家教老師，並在「商業分析師的隨筆記」部落格中記錄著自己一路遇到的職涯大小事。",
+          "social_links": {
+            "personal": "https://www.bianalyst-gt.com/"
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 2,
+        "speaker": "Robin",
+        "info": {
+          "name": "Robin",
+          "intro": "喜歡研究自然處理相關問題的應用工程師。主要技能是 Python 的文字處理和觀察語言中句型 pattern 並設計語言模型。對於教學很有熱忱。在自學程式時克服許多學習程式的困難，希望可以在工作坊中可以和大家分享我自己的經驗，讓大家可以更快速的學習 Python。",
+          "social_links": {},
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 3,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 4,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202605"
+    ],
+    "recap_links": [
+      {
+        "type": "slides",
+        "url": "https://python-tutorial-workshop.github.io/#curriculum",
+        "label": "工作坊講義"
+      }
+    ],
+    "topic": {
+      "id": "python-tutorial-workshop",
+      "name": "Python 入門工作坊",
+      "description": "利用一個週末建立 Python 基礎"
+    },
+    "target_audiences": [
+      "零經驗",
+      "初學者"
+    ]
+  },
+  {
+    "event_id": "6",
+    "en_abbr": "pyladieskh202604",
+    "title": "Python 金融數據工作坊 - 資料管理",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-04-25 14:00:00",
+        "datetime_end": "2026-04-25 17:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-ait-data-center",
+        "name": "高雄美國資料中心－河堤分館(高雄市立圖書館河堤分館)",
+        "address": "高雄市三民區裕誠路1號3樓-多功能教室",
+        "is_online": false
+      },
+      {
+        "id": "online",
+        "name": "線上活動",
+        "is_online": true
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202604"
+    ],
+    "recap_links": [
+      {
+        "type": "fb",
+        "label": "活動回顧貼文",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02iF8wdvLUxgnfMMgCoMwbmjqjsUyeRX6YenPGgEfu2xraheJaVy2FMtjsDLUC8Rasl"
+      },
+      {
+        "type": "slides",
+        "label": "工作坊講義",
+        "url": "https://python-practical-workshop.github.io/sql_flask/"
+      }
+    ],
+    "topic": {
+      "id": "data-workshop",
+      "name": "數據應用工作坊",
+      "description": "爬蟲、資料清理、視覺化、資料分析等。"
+    },
+    "target_audiences": [
+      "初學者"
+    ]
+  },
+  {
+    "event_id": "5",
+    "en_abbr": "pyladieskh202603",
+    "title": "Python 金融數據工作坊 - 網路爬蟲",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-03-21 14:00:00",
+        "datetime_end": "2026-03-21 17:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-ait-data-center",
+        "name": "高雄美國資料中心－河堤分館(高雄市立圖書館河堤分館)",
+        "address": "高雄市三民區裕誠路1號3樓-多功能教室",
+        "is_online": false
+      },
+      {
+        "id": "online",
+        "name": "線上活動",
+        "is_online": true
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202603"
+    ],
+    "recap_links": [
+      {
+        "type": "fb",
+        "label": "活動回顧貼文",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid0r7RETtX37sjSUXjbJbtGRfFrag8iUMgMeAy4bZxvuuwULYzUi4q2CbuJGTD6Sv25l"
+      },
+      {
+        "type": "slides",
+        "label": "工作坊講義",
+        "url": "https://python-practical-workshop.github.io/crawler/"
+      }
+    ],
+    "topic": {
+      "id": "data-workshop",
+      "name": "數據應用工作坊",
+      "description": "爬蟲、資料清理、視覺化、資料分析等。"
+    },
+    "target_audiences": [
+      "初學者"
+    ]
+  },
+  {
+    "event_id": "4",
+    "en_abbr": "pyladies-journey-202602",
+    "title": "走進資料領域：資料科學家與分析師的工作日常與職涯選擇",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-02-12 19:00:00",
+        "datetime_end": "2026-02-12 21:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "online",
+        "name": "線上活動",
+        "is_online": true
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "GT",
+        "info": {
+          "name": "GT Chang",
+          "intro": "現職為社群產業數據分析師（Data Analyst）。身為商科兼外文科系背景，卻被數據與程式的世界深深吸引，希望能藉由自己的故事與經歷，鼓勵更多學弟妹們走出自己的路。曾任職於電商、遊戲與輿情產業。目前兼任 PyLadies 入門工作坊講師、1111 平台 Python 家教老師，並在「商業分析師的隨筆記」部落格中記錄著自己一路遇到的職涯大小事。",
+          "social_links": {
+            "personal": "https://www.bianalyst-gt.com/"
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 1,
+        "speaker": "Amice",
+        "info": {
+          "name": "林庭羽 (Amice Lin)",
+          "intro": "現職資料科學家，於產業中從事AI與資料相關實務工作，專注於 Python、SQL、GenAI 與機器學習應用以及AI safety議題，也在PyLadies社群擔任志工協助入門工作坊和其他活動。具心理學與認知神經科學背景，對 AI、模型與人類大腦的運作皆抱持高度興趣。相信人生不是線性前進，探索本身就是一種成長與理解的過程。希望透過社群分享與交流，讓大家都能找到自己適合的位置。",
+          "social_links": {
+            "linkedin": "https://www.linkedin.com/in/tylin-amice/"
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 1,
+        "speaker": "RubyChuang",
+        "info": {
+          "name": "Ruby Chuang",
+          "intro": "現任銀行的商業分析師，具國內大型銀行及新創軟體公司多年經驗，領域涵蓋詐欺偵測及數位客群分析。熱愛數據，致力透過數據、以顧問精神解決商業問題。過去曾任 PyLadies Host、數據分析工作坊講者，亦在公司內部透過讀書會及分享，推廣數據思維及技術。",
+          "social_links": {},
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 1,
+        "speaker": "Nancy",
+        "info": {
+          "name": "Nancy",
+          "intro": "過去曾在廣告行銷、金融與電商產業擔任資料分析師，主要使用 SQL、Hive、Python、Tableau...... 等多種資料庫語言與資料視覺化工具，提供分析與產業決策。",
+          "social_links": {},
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladies-journey-202602"
+    ],
+    "recap_links": [
+      {
+        "type": "fb",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid022kEiYZG8Yvd6W4AJyUYFqNRMzGAbhhpxqpgBjmZswo9Emd3NobXaDFrBxReRytYSl",
+        "label": "活動回顧貼文"
+      },
+      {
+        "type": "slides",
+        "timeslot": 1,
+        "speaker": "GT",
+        "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-GT.pdf"
+      },
+      {
+        "type": "slides",
+        "timeslot": 1,
+        "speaker": "Nancy",
+        "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-Nancy.pdf"
+      }
+    ],
+    "topic": {
+      "id": "career",
+      "name": "職涯經驗分享",
+      "description": "職涯、轉職、面試、跨領域經驗分享。"
+    },
+    "target_audiences": [
+      "有實務經驗者"
+    ]
+  },
+  {
+    "event_id": "3",
+    "en_abbr": "pyladies-chat-202512",
+    "title": "PyLadies Kaohsiung 網站與社群媒體的零成本 AI 工具實務分享",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2025-12-18 19:00:00",
+        "datetime_end": "2025-12-18 21:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-hsuanpo",
+        "name": "軒博讀書會館",
+        "address": "高雄市新興區中正二路182號16樓之5",
+        "is_online": false
+      },
+      {
+        "id": "online",
+        "name": "線上活動",
+        "is_online": true
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladies-chat-202512"
+    ],
+    "recap_links": [],
+    "topic": {
+      "id": "tech",
+      "name": "技術經驗分享"
+    },
+    "target_audiences": [
+      "有實務經驗者"
+    ]
+  },
+  {
+    "event_id": "2",
+    "en_abbr": "pyladieskh202512",
+    "title": "Python 入門工作坊 (台北特別場)",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2025-12-06 10:15:00",
+        "datetime_end": "2025-12-06 13:30:00"
+      },
+      {
+        "timeslot": 2,
+        "datetime_start": "2025-12-06 14:30:00",
+        "datetime_end": "2025-12-06 18:30:00"
+      },
+      {
+        "timeslot": 3,
+        "datetime_start": "2025-12-07 10:15:00",
+        "datetime_end": "2025-12-07 13:30:00"
+      },
+      {
+        "timeslot": 4,
+        "datetime_start": "2025-12-07 14:30:00",
+        "datetime_end": "2025-12-07 18:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "taipei-appier",
+        "name": "Appier",
+        "address": "臺北市信義區松仁路123號6樓 (華銀總行大樓6樓)",
+        "is_online": false
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "GT",
+        "info": {
+          "name": "GT Chang",
+          "intro": "現職為社群產業數據分析師（Data Analyst）。身為商科兼外文科系背景，卻被數據與程式的世界深深吸引，希望能藉由自己的故事與經歷，鼓勵更多學弟妹們走出自己的路。曾任職於電商、遊戲與輿情產業。目前兼任 PyLadies 入門工作坊講師、1111 平台 Python 家教老師，並在「商業分析師的隨筆記」部落格中記錄著自己一路遇到的職涯大小事。",
+          "social_links": {
+            "personal": "https://www.bianalyst-gt.com/"
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 2,
+        "speaker": "Robin",
+        "info": {
+          "name": "Robin",
+          "intro": "喜歡研究自然處理相關問題的應用工程師。主要技能是 Python 的文字處理和觀察語言中句型 pattern 並設計語言模型。對於教學很有熱忱。在自學程式時克服許多學習程式的困難，希望可以在工作坊中可以和大家分享我自己的經驗，讓大家可以更快速的學習 Python。",
+          "social_links": {},
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 3,
+        "speaker": "LisaLai",
+        "info": {
+          "name": "Lisa",
+          "intro": "曾在新創團隊擔任後端工程師，負責 SaaS 訂閱制平台的架構設計與金流整合。主要使用 Python 與 Django，開發 Web 服務與 RESTful API、熟悉資料庫設計，擁有超過四年的後端開發經驗。近期持續投入技術專案與自動化工具開發，關注如何以程式優化工作流程、把技術應用在解決實際問題上。背景橫跨軟體開發與音樂領域，從工程師到吉他彈唱、再到海鷗K阿卡貝拉樂團女高音。此次將在 PyLadies 入門工作坊擔任講師，帶領學員以實作方式輕鬆認識 Python，體驗程式設計的樂趣。",
+          "social_links": {
+            "ig": "@lizzal.yun"
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 4,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202512"
+    ],
+    "recap_links": [
+      {
+        "type": "fb",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid0qPbErGTMZ5ZggZifqfAVp2qqUtQnpyQYDsGWt19Dxyqj3hXe51bmtUjmZ9U3mC7kl",
+        "label": "活動回顧貼文"
+      },
+      {
+        "type": "slides",
+        "url": "https://python-tutorial-workshop.github.io/#curriculum",
+        "label": "工作坊講義"
+      }
+    ],
+    "topic": {
+      "id": "python-tutorial-workshop",
+      "name": "Python 入門工作坊",
+      "description": "利用一個週末建立 Python 基礎"
+    },
+    "target_audiences": [
+      "零經驗",
+      "初學者"
+    ]
+  },
+  {
+    "event_id": "1",
+    "en_abbr": "pyladieskh202511",
+    "title": "Python 入門工作坊 (高雄主場)",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2025-11-29 09:45:00",
+        "datetime_end": "2025-11-29 13:00:00"
+      },
+      {
+        "timeslot": 2,
+        "datetime_start": "2025-11-29 14:00:00",
+        "datetime_end": "2025-11-29 18:00:00"
+      },
+      {
+        "timeslot": 3,
+        "datetime_start": "2025-11-30 09:45:00",
+        "datetime_end": "2025-11-30 13:00:00"
+      },
+      {
+        "timeslot": 4,
+        "datetime_start": "2025-11-30 14:00:00",
+        "datetime_end": "2025-11-30 17:30:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-development-center",
+        "name": "高雄資訊開發中心",
+        "address": "高雄市前鎮區復興四路2號6樓之1 (高雄軟體園區 B 棟)",
+        "is_online": false
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "GT",
+        "info": {
+          "name": "GT Chang",
+          "intro": "現職為社群產業數據分析師（Data Analyst）。身為商科兼外文科系背景，卻被數據與程式的世界深深吸引，希望能藉由自己的故事與經歷，鼓勵更多學弟妹們走出自己的路。曾任職於電商、遊戲與輿情產業。目前兼任 PyLadies 入門工作坊講師、1111 平台 Python 家教老師，並在「商業分析師的隨筆記」部落格中記錄著自己一路遇到的職涯大小事。",
+          "social_links": {
+            "personal": "https://www.bianalyst-gt.com/"
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 2,
+        "speaker": "GT",
+        "info": {
+          "name": "GT Chang",
+          "intro": "現職為社群產業數據分析師（Data Analyst）。身為商科兼外文科系背景，卻被數據與程式的世界深深吸引，希望能藉由自己的故事與經歷，鼓勵更多學弟妹們走出自己的路。曾任職於電商、遊戲與輿情產業。目前兼任 PyLadies 入門工作坊講師、1111 平台 Python 家教老師，並在「商業分析師的隨筆記」部落格中記錄著自己一路遇到的職涯大小事。",
+          "social_links": {
+            "personal": "https://www.bianalyst-gt.com/"
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 3,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 4,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202511"
+    ],
+    "recap_links": [
+      {
+        "type": "fb",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02NzTtTeAvP3Vwtih9HGsKD5eZUtvnm636WBENjnRdDtJqKtWBNy9gr18gf9x7VKr5l",
+        "label": "活動回顧貼文"
+      },
+      {
+        "type": "slides",
+        "url": "https://python-tutorial-workshop.github.io/#curriculum",
+        "label": "工作坊講義"
+      }
+    ],
+    "topic": {
+      "id": "python-tutorial-workshop",
+      "name": "Python 入門工作坊",
+      "description": "利用一個週末建立 Python 基礎"
+    },
+    "target_audiences": [
+      "零經驗",
+      "初學者"
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "event_id": "7",
+  "en_abbr": "pyladieskh202605",
+  "title": "Python 入門工作坊 (高雄主場)",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2026-05-23 09:30:00",
+      "datetime_end": "2026-05-23 12:45:00"
+    },
+    {
+      "timeslot": 2,
+      "datetime_start": "2026-05-23 13:30:00",
+      "datetime_end": "2026-05-23 17:30:00"
+    },
+    {
+      "timeslot": 3,
+      "datetime_start": "2026-05-24 09:30:00",
+      "datetime_end": "2026-05-24 12:45:00"
+    },
+    {
+      "timeslot": 4,
+      "datetime_start": "2026-05-24 13:30:00",
+      "datetime_end": "2026-05-24 16:30:00"
+    }
+  ],
+  "locations": ["kaohsiung-ait-data-center"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "GT" },
+    { "timeslot": 2, "speaker": "Robin" },
+    { "timeslot": 3, "speaker": "MarsW" },
+    { "timeslot": 4, "speaker": "MarsW" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202605"
+  ],
+  "recap_links": [
+    { "type": "slides", "url": "https://python-tutorial-workshop.github.io/#curriculum", "label": "工作坊講義" }
+  ],
+  "topic_id": "python-tutorial-workshop",
+  "target_audiences": ["零經驗", "初學者"]
+}

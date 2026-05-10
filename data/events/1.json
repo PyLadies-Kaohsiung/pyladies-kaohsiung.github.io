@@ -1,0 +1,43 @@
+{
+  "event_id": "1",
+  "en_abbr": "pyladieskh202511",
+  "title": "Python 入門工作坊 (高雄主場)",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2025-11-29 09:45:00",
+      "datetime_end": "2025-11-29 13:00:00"
+    },
+    {
+      "timeslot": 2,
+      "datetime_start": "2025-11-29 14:00:00",
+      "datetime_end": "2025-11-29 18:00:00"
+    },
+    {
+      "timeslot": 3,
+      "datetime_start": "2025-11-30 09:45:00",
+      "datetime_end": "2025-11-30 13:00:00"
+    },
+    {
+      "timeslot": 4,
+      "datetime_start": "2025-11-30 14:00:00",
+      "datetime_end": "2025-11-30 17:30:00"
+    }
+  ],
+  "locations": ["kaohsiung-development-center"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "GT" },
+    { "timeslot": 2, "speaker": "GT" },
+    { "timeslot": 3, "speaker": "MarsW" },
+    { "timeslot": 4, "speaker": "MarsW" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202511"
+  ],
+  "recap_links": [
+    { "type": "fb", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02NzTtTeAvP3Vwtih9HGsKD5eZUtvnm636WBENjnRdDtJqKtWBNy9gr18gf9x7VKr5l", "label": "活動回顧貼文" },
+    { "type": "slides", "url": "https://python-tutorial-workshop.github.io/#curriculum", "label": "工作坊講義" }
+  ],
+  "topic_id": "python-tutorial-workshop",
+  "target_audiences": ["零經驗", "初學者"]
+}

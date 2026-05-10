@@ -1,0 +1,26 @@
+[
+  {
+    "id": "python-tutorial-workshop",
+    "name": "Python 入門工作坊",
+    "description": "利用一個週末建立 Python 基礎"
+  },
+  {
+    "id": "data-workshop",
+    "name": "數據應用工作坊",
+    "description": "爬蟲、資料清理、視覺化、資料分析等。"
+  },
+  {
+    "id": "career",
+    "name": "職涯經驗分享",
+    "description": "職涯、轉職、面試、跨領域經驗分享。"
+  },
+  {
+    "id": "tech",
+    "name": "技術經驗分享"
+  },
+  {
+    "id": "community",
+    "name": "社群活動",
+    "description": "社群聚會、共學、讀書會、議題討論等。"
+  }
+]
