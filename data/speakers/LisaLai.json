@@ -2,7 +2,7 @@
   "name": "Lisa",
   "intro": "曾在新創團隊擔任後端工程師，負責 SaaS 訂閱制平台的架構設計與金流整合。主要使用 Python 與 Django，開發 Web 服務與 RESTful API、熟悉資料庫設計，擁有超過四年的後端開發經驗。近期持續投入技術專案與自動化工具開發，關注如何以程式優化工作流程、把技術應用在解決實際問題上。背景橫跨軟體開發與音樂領域，從工程師到吉他彈唱、再到海鷗K阿卡貝拉樂團女高音。此次將在 PyLadies 入門工作坊擔任講師，帶領學員以實作方式輕鬆認識 Python，體驗程式設計的樂趣。",
   "social_links": {
-    "ig": "@lizzal.yun"
+    "ig": "https://www.instagram.com/lizzal.yun/"
   },
   "photo": ""
 }
