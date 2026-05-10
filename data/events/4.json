@@ -21,8 +21,8 @@
   ],
   "recap_links": [
     { "type": "fb", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid022kEiYZG8Yvd6W4AJyUYFqNRMzGAbhhpxqpgBjmZswo9Emd3NobXaDFrBxReRytYSl", "label": "活動回顧貼文" },
-    { "type": "slides", "timeslot": 1, "speaker": "GT", "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-GT.pdf" },
-    { "type": "slides", "timeslot": 1, "speaker": "Nancy", "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-Nancy.pdf" }
+    { "type": "slides", "label": "講者分享內容-GT", "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-GT.pdf" },
+    { "type": "slides", "label": "講者分享內容-Nancy", "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-Nancy.pdf" }
   ],
   "topic_id": "career",
   "target_audiences": ["有實務經驗者"]

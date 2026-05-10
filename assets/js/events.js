@@ -64,7 +64,9 @@
   function upcomingItem(e) {
     const dateStr = formatDateRange(e.datetimes);
     const locationStr = e.locations.map((l) => l.name).join("、");
-    const speakerStr = e.speakers.map((s) => s.info.name).join("、");
+    const speakerStr = uniqueSpeakers(e.speakers)
+      .map((s) => s.info.name)
+      .join("、");
 
     const tags = e.target_audiences
       .map((t) => `<li>${escapeHtml(t)}</li>`)
@@ -109,7 +111,9 @@
   function listItem(e) {
     const dateStr = formatDateRange(e.datetimes);
     const locationStr = e.locations.map((l) => l.name).join("、");
-    const speakerStr = e.speakers.map((s) => s.info.name).join("、");
+    const speakerStr = uniqueSpeakers(e.speakers)
+      .map((s) => s.info.name)
+      .join("、");
     const year = eventYear(e);
     const tags = (e.target_audiences || [])
       .map((t) => `<li>${escapeHtml(t)}</li>`)
@@ -285,7 +289,7 @@
       .map((l) => `<li>${escapeHtml(l.name)}</li>`)
       .join("");
 
-    const speakerItems = e.speakers
+    const speakerItems = uniqueSpeakers(e.speakers)
       .map((s) => speakerBlock(s))
       .join("");
 
@@ -439,6 +443,16 @@
       }[rl.type] || "連結";
     if (rl.speaker) return `${base} (${rl.speaker})`;
     return base;
+  }
+
+  function uniqueSpeakers(speakers) {
+    const seen = new Set();
+    return speakers.filter((s) => {
+      const key = s.speaker;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }
 
   function parseLocalDateTime(s) {

@@ -304,14 +304,12 @@
       },
       {
         "type": "slides",
-        "timeslot": 1,
-        "speaker": "GT",
+        "label": "講者分享內容-GT",
         "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-GT.pdf"
       },
       {
         "type": "slides",
-        "timeslot": 1,
-        "speaker": "Nancy",
+        "label": "講者分享內容-Nancy",
         "url": "https://kaohsiung.pyladies.com/slides/pyladies-journey-202602-Nancy.pdf"
       }
     ],
