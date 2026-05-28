@@ -1,0 +1,22 @@
+{
+  "event_id": "8",
+  "en_abbr": "pyladieskh202606",
+  "title": "Python 金融數據工作坊 - 資料統計與視覺化",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2026-06-27 14:00:00",
+      "datetime_end": "2026-06-27 17:00:00"
+    }
+  ],
+  "locations": ["kaohsiung-ait-data-center", "taipei-aic", "online"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "MarsW" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606", "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606-taipei"
+  ],
+  "recap_links": [],
+  "topic_id": "data-workshop",
+  "target_audiences": ["初學者"]
+}

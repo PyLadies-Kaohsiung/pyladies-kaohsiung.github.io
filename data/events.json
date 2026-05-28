@@ -1,5 +1,65 @@
 [
   {
+    "event_id": "8",
+    "en_abbr": "pyladieskh202606",
+    "title": "Python 金融數據工作坊 - 資料統計與視覺化",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-06-27 14:00:00",
+        "datetime_end": "2026-06-27 17:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-ait-data-center",
+        "name": "高雄美國資料中心－河堤分館(高雄市立圖書館河堤分館)",
+        "address": "高雄市三民區裕誠路1號3樓-多功能教室",
+        "is_online": false
+      },
+      {
+        "id": "taipei-aic",
+        "name": "美國創新中心 (AIC)",
+        "address": "臺北市信義區光復南路133號2F (松菸創作者工廠)",
+        "map_url": "https://www.ait.org.tw/zhtw/american-innovation-center-aic-zh/",
+        "is_online": false
+      },
+      {
+        "id": "online",
+        "name": "線上活動",
+        "is_online": true
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606",
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606-taipei"
+    ],
+    "recap_links": [],
+    "topic": {
+      "id": "data-workshop",
+      "name": "數據應用工作坊",
+      "description": "爬蟲、資料清理、視覺化、資料分析等。"
+    },
+    "target_audiences": [
+      "初學者"
+    ]
+  },
+  {
     "event_id": "7",
     "en_abbr": "pyladieskh202605",
     "title": "Python 入門工作坊 (高雄主場)",
