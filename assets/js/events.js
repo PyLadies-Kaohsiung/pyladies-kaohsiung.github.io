@@ -42,7 +42,7 @@
     document.getElementById("upcoming-list").innerHTML = upcoming.length
       ? upcoming.map(upcomingItem).join("")
       : `<li class="event-empty">${escapeHtml(
-          "目前沒有即將舉辦的活動，歡迎追蹤粉絲專頁獲得最新消息"
+          "目前沒有即將舉辦的活動，歡迎追蹤<a href='https://www.facebook.com/pyladies.kaohsiung' target='_blank'>粉絲專頁</a>獲得最新消息"
         )}</li>`;
 
     const years = Array.from(new Set(past.map(eventYear))).sort((a, b) => b - a);

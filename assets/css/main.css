@@ -184,6 +184,45 @@ section {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
 
+/* Support (donation CTA card) */
+.support-card {
+  padding: 40px;
+  border-radius: 16px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
+  text-align: center;
+}
+
+.support-card p {
+  margin: 0 0 24px;
+  line-height: 1.8;
+}
+
+.support-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  transition: background 0.5s, color 0.3s;
+}
+
+.support-cta i {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.support-cta:hover {
+  color: var(--contrast-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
 /* Q&A accordion */
 .qa-row {
   position: relative;
