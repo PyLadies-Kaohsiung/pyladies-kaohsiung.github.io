@@ -1,0 +1,22 @@
+{
+  "event_id": "10",
+  "en_abbr": "pyladieskh202608",
+  "title": "Discord Bot 工作坊",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2026-08-22 09:00:00",
+      "datetime_end": "2026-08-22 18:00:00"
+    }
+  ],
+  "locations": ["kaohsiung-cgark"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "MarsW" }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202608"
+  ],
+  "recap_links": [],
+  "topic_id": "python-workshop",
+  "target_audiences": ["初學者", "進階者", "有實務經驗者"]
+}

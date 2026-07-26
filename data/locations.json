@@ -37,7 +37,14 @@
     "id": "taipei-aic",
     "name": "美國創新中心 (AIC)",
     "address": "臺北市信義區光復南路133號2F (松菸創作者工廠)",
-    "map_url": "https://www.ait.org.tw/zhtw/american-innovation-center-aic-zh/",
+    "map_url": "https://docs.google.com/presentation/d/1RWCyUTClWq0auq6OBqFbgldfMP9bRyDhwQPd5t0btug/edit?usp=sharing",
+    "is_online": false
+  },
+  {
+    "id": "kaohsiung-cgark",
+    "name": "夢想方舟",
+    "address": "高雄市前鎮區復興四路12號 (高雄軟體科技園區A棟)",
+    "map_url": "https://docs.google.com/presentation/d/1a2uAkVAg_n5zVMy3wG20ZCV-u2SV3COyGku-eA7Lg0E/edit?usp=sharing",
     "is_online": false
   }
 ]

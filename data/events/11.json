@@ -1,0 +1,18 @@
+{
+  "event_id": "11",
+  "en_abbr": "pyladieskh202609",
+  "title": "職涯交流：軟體工程師的工作日常與職涯選擇",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2026-09-30 19:00:00",
+      "datetime_end": "2026-09-30 21:00:00"
+    }
+  ],
+  "locations": ["taipei-appier", "online"],
+  "speakers": [],
+  "register_links": [],
+  "recap_links": [],
+  "topic_id": "career",
+  "target_audiences": ["有實務經驗者"]
+}

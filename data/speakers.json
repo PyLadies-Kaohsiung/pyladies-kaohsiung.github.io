@@ -29,7 +29,7 @@
   {
     "handle": "MarsW",
     "name": "Mars Weng (MarsW)",
-    "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+    "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
     "social_links": {
       "linkedin": "",
       "email": ""

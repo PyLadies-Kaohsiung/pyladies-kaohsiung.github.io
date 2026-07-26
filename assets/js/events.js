@@ -41,9 +41,7 @@
 
     document.getElementById("upcoming-list").innerHTML = upcoming.length
       ? upcoming.map(upcomingItem).join("")
-      : `<li class="event-empty">${escapeHtml(
-          "目前沒有即將舉辦的活動，歡迎追蹤<a href='https://www.facebook.com/pyladies.kaohsiung' target='_blank'>粉絲專頁</a>獲得最新消息"
-        )}</li>`;
+      : `<li class="event-empty">目前沒有即將舉辦的活動，歡迎追蹤<a href='https://www.facebook.com/pyladies.kaohsiung' target='_blank'>粉絲專頁</a>獲得最新消息</li>`;
 
     const years = Array.from(new Set(past.map(eventYear))).sort((a, b) => b - a);
     if (years.length > 0) currentYear = String(years[0]);
@@ -51,6 +49,106 @@
     renderYearFilter();
     renderPastList();
     bindDelegatedEvents();
+    injectEventJsonLd(events);
+  }
+
+  function injectEventJsonLd(events) {
+    const SITE_URL = "https://kaohsiung.pyladies.com/";
+    const ORGANIZER = {
+      "@type": "Organization",
+      name: "PyLadies Kaohsiung",
+      url: SITE_URL,
+    };
+
+    const items = events
+      .map((e) => buildEventSchema(e, SITE_URL, ORGANIZER))
+      .filter(Boolean);
+    if (items.length === 0) return;
+
+    const payload = items.length === 1 ? items[0] : items;
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.setAttribute("data-event-jsonld", "");
+    script.textContent = JSON.stringify(payload);
+    document.head.appendChild(script);
+  }
+
+  function buildEventSchema(e, SITE_URL, ORGANIZER) {
+    if (!e.datetimes || e.datetimes.length === 0) return null;
+    const sorted = e.datetimes.slice().sort((a, b) => {
+      return (
+        parseLocalDateTime(a.datetime_start) -
+        parseLocalDateTime(b.datetime_start)
+      );
+    });
+    const startDate = toIsoLocal(sorted[0].datetime_start);
+    const endDate = toIsoLocal(sorted[sorted.length - 1].datetime_end);
+
+    const locations = (e.locations || []).map((l) => {
+      if (l.is_online) {
+        return {
+          "@type": "VirtualLocation",
+          url: (e.register_links && e.register_links[0]) || SITE_URL,
+          name: l.name,
+        };
+      }
+      const place = { "@type": "Place", name: l.name };
+      if (l.address) {
+        place.address = {
+          "@type": "PostalAddress",
+          streetAddress: l.address,
+          addressCountry: "TW",
+        };
+      }
+      return place;
+    });
+
+    const hasOnline = (e.locations || []).some((l) => l.is_online);
+    const hasOffline = (e.locations || []).some((l) => !l.is_online);
+    let attendanceMode = "https://schema.org/OfflineEventAttendanceMode";
+    if (hasOnline && hasOffline)
+      attendanceMode = "https://schema.org/MixedEventAttendanceMode";
+    else if (hasOnline)
+      attendanceMode = "https://schema.org/OnlineEventAttendanceMode";
+
+    const performers = uniqueSpeakers(e.speakers || []).map((s) => ({
+      "@type": "Person",
+      name: s.info.name,
+    }));
+
+    const offers = (e.register_links || []).map((url) => ({
+      "@type": "Offer",
+      url,
+      price: "0",
+      priceCurrency: "TWD",
+      availability: "https://schema.org/InStock",
+      validFrom: startDate,
+    }));
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: e.title,
+      startDate,
+      endDate,
+      eventAttendanceMode: attendanceMode,
+      eventStatus: "https://schema.org/EventScheduled",
+      location: locations.length === 1 ? locations[0] : locations,
+      organizer: ORGANIZER,
+      url: SITE_URL,
+    };
+    if (e.topic && e.topic.description) {
+      schema.description = `${e.title} — ${e.topic.description}`;
+    } else if (e.topic && e.topic.name) {
+      schema.description = `${e.title}（${e.topic.name}）`;
+    }
+    if (performers.length > 0) schema.performer = performers;
+    if (offers.length > 0) schema.offers = offers;
+    return schema;
+  }
+
+  function toIsoLocal(dateTimeStr) {
+    return dateTimeStr.replace(" ", "T") + "+08:00";
   }
 
   function firstStart(e) {

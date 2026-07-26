@@ -16,7 +16,10 @@
   "register_links": [
     "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606", "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606-taipei"
   ],
-  "recap_links": [],
+  "recap_links": [
+    { "type": "fb", "label": "活動回顧貼文", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02phZ4GyfwFSR8ZutqbzkyJA2kBfZp3KMfXQz8aw4sUc7c2FvcvdR4wxjZP9AG7Q85l"},
+    { "type": "slides", "label": "工作坊講義" , "url": "https://python-practical-workshop.github.io/statistics_vis/"}
+  ],
   "topic_id": "data-workshop",
   "target_audiences": ["初學者"]
 }

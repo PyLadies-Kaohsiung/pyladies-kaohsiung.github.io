@@ -1,0 +1,40 @@
+{
+  "event_id": "12",
+  "en_abbr": "pyladieskh202611",
+  "title": "Python 入門工作坊",
+  "datetimes": [
+    {
+      "timeslot": 1,
+      "datetime_start": "2026-11-21 09:30:00",
+      "datetime_end": "2026-11-21 12:45:00"
+    },
+    {
+      "timeslot": 2,
+      "datetime_start": "2026-11-21 13:30:00",
+      "datetime_end": "2026-11-21 17:30:00"
+    },
+    {
+      "timeslot": 3,
+      "datetime_start": "2026-11-22 09:30:00",
+      "datetime_end": "2026-11-22 12:45:00"
+    },
+    {
+      "timeslot": 4,
+      "datetime_start": "2026-11-22 13:30:00",
+      "datetime_end": "2026-11-22 16:30:00"
+    }
+  ],
+  "locations": ["kaohsiung-ait-data-center"],
+  "speakers": [
+    { "timeslot": 1, "speaker": "Robin" },
+    { "timeslot": 2, "speaker": "Robin" },
+    { "timeslot": 3, "speaker": "MarsW" },
+    { "timeslot": 4, "speaker": "MarsW" }
+  ],
+  "register_links": [],
+  "recap_links": [
+    { "type": "slides", "url": "https://python-tutorial-workshop.github.io/#curriculum", "label": "工作坊講義" }
+  ],
+  "topic_id": "python-tutorial-workshop",
+  "target_audiences": ["零經驗", "初學者"]
+}

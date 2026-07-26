@@ -1,7 +1,7 @@
 {
   "event_id": "7",
   "en_abbr": "pyladieskh202605",
-  "title": "Python 入門工作坊 (高雄主場)",
+  "title": "Python 入門工作坊",
   "datetimes": [
     {
       "timeslot": 1,
@@ -35,6 +35,7 @@
     "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202605"
   ],
   "recap_links": [
+    { "type": "fb", "label": "活動回顧貼文", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02LhpNjiGnFWU3tNK2wfsNBi5g1iUB2xmtU1kLUccw4mgvnX5zD63r5m3E71hwHpNUl"},
     { "type": "slides", "url": "https://python-tutorial-workshop.github.io/#curriculum", "label": "工作坊講義" }
   ],
   "topic_id": "python-tutorial-workshop",

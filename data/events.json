@@ -1,5 +1,261 @@
 [
   {
+    "event_id": "12",
+    "en_abbr": "pyladieskh202611",
+    "title": "Python 入門工作坊",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-11-21 09:30:00",
+        "datetime_end": "2026-11-21 12:45:00"
+      },
+      {
+        "timeslot": 2,
+        "datetime_start": "2026-11-21 13:30:00",
+        "datetime_end": "2026-11-21 17:30:00"
+      },
+      {
+        "timeslot": 3,
+        "datetime_start": "2026-11-22 09:30:00",
+        "datetime_end": "2026-11-22 12:45:00"
+      },
+      {
+        "timeslot": 4,
+        "datetime_start": "2026-11-22 13:30:00",
+        "datetime_end": "2026-11-22 16:30:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-ait-data-center",
+        "name": "高雄美國資料中心－河堤分館(高雄市立圖書館河堤分館)",
+        "address": "高雄市三民區裕誠路1號3樓-多功能教室",
+        "is_online": false
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "Robin",
+        "info": {
+          "name": "Robin",
+          "intro": "喜歡研究自然處理相關問題的應用工程師。主要技能是 Python 的文字處理和觀察語言中句型 pattern 並設計語言模型。對於教學很有熱忱。在自學程式時克服許多學習程式的困難，希望可以在工作坊中可以和大家分享我自己的經驗，讓大家可以更快速的學習 Python。",
+          "social_links": {},
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 2,
+        "speaker": "Robin",
+        "info": {
+          "name": "Robin",
+          "intro": "喜歡研究自然處理相關問題的應用工程師。主要技能是 Python 的文字處理和觀察語言中句型 pattern 並設計語言模型。對於教學很有熱忱。在自學程式時克服許多學習程式的困難，希望可以在工作坊中可以和大家分享我自己的經驗，讓大家可以更快速的學習 Python。",
+          "social_links": {},
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 3,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 4,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [],
+    "recap_links": [
+      {
+        "type": "slides",
+        "url": "https://python-tutorial-workshop.github.io/#curriculum",
+        "label": "工作坊講義"
+      }
+    ],
+    "topic": {
+      "id": "python-tutorial-workshop",
+      "name": "Python 入門工作坊",
+      "description": "利用一個週末建立 Python 基礎"
+    },
+    "target_audiences": [
+      "零經驗",
+      "初學者"
+    ]
+  },
+  {
+    "event_id": "11",
+    "en_abbr": "pyladieskh202609",
+    "title": "職涯交流：軟體工程師的工作日常與職涯選擇",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-09-30 19:00:00",
+        "datetime_end": "2026-09-30 21:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "taipei-appier",
+        "name": "Appier",
+        "address": "臺北市信義區松仁路123號6樓 (華銀總行大樓6樓)",
+        "is_online": false
+      },
+      {
+        "id": "online",
+        "name": "線上活動",
+        "is_online": true
+      }
+    ],
+    "speakers": [],
+    "register_links": [],
+    "recap_links": [],
+    "topic": {
+      "id": "career",
+      "name": "職涯經驗分享",
+      "description": "職涯、轉職、面試、跨領域經驗分享。"
+    },
+    "target_audiences": [
+      "有實務經驗者"
+    ]
+  },
+  {
+    "event_id": "10",
+    "en_abbr": "pyladieskh202608",
+    "title": "Discord Bot 工作坊",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-08-22 09:00:00",
+        "datetime_end": "2026-08-22 18:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-cgark",
+        "name": "夢想方舟",
+        "address": "高雄市前鎮區復興四路12號 (高雄軟體科技園區A棟)",
+        "map_url": "https://docs.google.com/presentation/d/1a2uAkVAg_n5zVMy3wG20ZCV-u2SV3COyGku-eA7Lg0E/edit?usp=sharing",
+        "is_online": false
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202608"
+    ],
+    "recap_links": [],
+    "topic": {
+      "id": "python-workshop",
+      "name": "Python 實務工作坊"
+    },
+    "target_audiences": [
+      "初學者",
+      "進階者",
+      "有實務經驗者"
+    ]
+  },
+  {
+    "event_id": "9",
+    "en_abbr": "pyladieskh202607",
+    "title": "Python 金融數據工作坊 - 機器學習",
+    "datetimes": [
+      {
+        "timeslot": 1,
+        "datetime_start": "2026-07-25 14:00:00",
+        "datetime_end": "2026-07-25 17:00:00"
+      }
+    ],
+    "locations": [
+      {
+        "id": "kaohsiung-ait-data-center",
+        "name": "高雄美國資料中心－河堤分館(高雄市立圖書館河堤分館)",
+        "address": "高雄市三民區裕誠路1號3樓-多功能教室",
+        "is_online": false
+      },
+      {
+        "id": "taipei-aic",
+        "name": "美國創新中心 (AIC)",
+        "address": "臺北市信義區光復南路133號2F (松菸創作者工廠)",
+        "map_url": "https://docs.google.com/presentation/d/1RWCyUTClWq0auq6OBqFbgldfMP9bRyDhwQPd5t0btug/edit?usp=sharing",
+        "is_online": false
+      },
+      {
+        "id": "online",
+        "name": "線上活動",
+        "is_online": true
+      }
+    ],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202607",
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202607-taipei"
+    ],
+    "recap_links": [
+      {
+        "type": "fb",
+        "label": "活動回顧貼文",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid01F2HYAEQ41RUnaq6LXAtZ5JJZvRBfkxTWLkuhZ9x7EfZnvbYEd9S2iGAsf1Cn5fsl"
+      },
+      {
+        "type": "slides",
+        "label": "工作坊講義",
+        "url": "https://python-practical-workshop.github.io/machine_learning/"
+      }
+    ],
+    "topic": {
+      "id": "data-workshop",
+      "name": "數據應用工作坊",
+      "description": "爬蟲、資料清理、視覺化、資料分析等。"
+    },
+    "target_audiences": [
+      "初學者"
+    ]
+  },
+  {
     "event_id": "8",
     "en_abbr": "pyladieskh202606",
     "title": "Python 金融數據工作坊 - 資料統計與視覺化",
@@ -21,7 +277,7 @@
         "id": "taipei-aic",
         "name": "美國創新中心 (AIC)",
         "address": "臺北市信義區光復南路133號2F (松菸創作者工廠)",
-        "map_url": "https://www.ait.org.tw/zhtw/american-innovation-center-aic-zh/",
+        "map_url": "https://docs.google.com/presentation/d/1RWCyUTClWq0auq6OBqFbgldfMP9bRyDhwQPd5t0btug/edit?usp=sharing",
         "is_online": false
       },
       {
@@ -36,7 +292,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -49,7 +305,18 @@
       "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606",
       "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202606-taipei"
     ],
-    "recap_links": [],
+    "recap_links": [
+      {
+        "type": "fb",
+        "label": "活動回顧貼文",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02phZ4GyfwFSR8ZutqbzkyJA2kBfZp3KMfXQz8aw4sUc7c2FvcvdR4wxjZP9AG7Q85l"
+      },
+      {
+        "type": "slides",
+        "label": "工作坊講義",
+        "url": "https://python-practical-workshop.github.io/statistics_vis/"
+      }
+    ],
     "topic": {
       "id": "data-workshop",
       "name": "數據應用工作坊",
@@ -62,7 +329,7 @@
   {
     "event_id": "7",
     "en_abbr": "pyladieskh202605",
-    "title": "Python 入門工作坊 (高雄主場)",
+    "title": "Python 入門工作坊",
     "datetimes": [
       {
         "timeslot": 1,
@@ -121,7 +388,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -134,7 +401,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -147,6 +414,11 @@
       "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202605"
     ],
     "recap_links": [
+      {
+        "type": "fb",
+        "label": "活動回顧貼文",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02LhpNjiGnFWU3tNK2wfsNBi5g1iUB2xmtU1kLUccw4mgvnX5zD63r5m3E71hwHpNUl"
+      },
       {
         "type": "slides",
         "url": "https://python-tutorial-workshop.github.io/#curriculum",
@@ -193,7 +465,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -256,7 +528,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -412,7 +684,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -507,7 +779,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -544,7 +816,7 @@
   {
     "event_id": "1",
     "en_abbr": "pyladieskh202511",
-    "title": "Python 入門工作坊 (高雄主場)",
+    "title": "Python 入門工作坊",
     "datetimes": [
       {
         "timeslot": 1,
@@ -605,7 +877,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""
@@ -618,7 +890,7 @@
         "speaker": "MarsW",
         "info": {
           "name": "Mars Weng (MarsW)",
-          "intro": "在電商領域多年的資料工程師，技能主要圍繞在：Data Pipeline(PySpark, Airflow, Crawling)、Data Infrastructure designing，也有帶領團隊的經驗。解決問題是 Mars 的核心精神，不只寫程式可以達到這個目的，培養夥伴學習程式也是一個很好的解答，對於教育、培訓領域有很大的興趣。在 PyLadies 曾任 Host 、講師組組長，更長期擔任講師，負責 Python 入門工作坊的內容編制，也帶領想了解網路爬蟲、資料工程領域的人更容易理解相關知識。",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
           "social_links": {
             "linkedin": "",
             "email": ""

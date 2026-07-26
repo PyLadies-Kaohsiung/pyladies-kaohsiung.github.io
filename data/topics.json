@@ -10,6 +10,10 @@
     "description": "爬蟲、資料清理、視覺化、資料分析等。"
   },
   {
+    "id": "python-workshop",
+    "name": "Python 實務工作坊"
+  },
+  {
     "id": "career",
     "name": "職涯經驗分享",
     "description": "職涯、轉職、面試、跨領域經驗分享。"
