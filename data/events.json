@@ -123,8 +123,41 @@
         "is_online": true
       }
     ],
-    "speakers": [],
-    "register_links": [],
+    "speakers": [
+      {
+        "timeslot": 1,
+        "speaker": "MaoMao",
+        "info": {
+          "name": "毛毛",
+          "intro": "在軟體與雲端領域走過 10 年歷程，曾任職於資安大廠、科技新創與知名外商雲端顧問團隊，並擔任過 PyLadies 共同主辦人（Co-organizer）五年，一直很喜歡社群裡互相交流與支持的氛圍。",
+          "social_links": {},
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 1,
+        "speaker": "ZihZih",
+        "info": {
+          "name": "ZihZih",
+          "intro": "從後端工程師出發，但不習慣用職能替問題畫界線。比起「這是不是工程師該做的」，更在意怎麼做最有機會把事情做好，也因此一路接觸目標制定、專案規劃與團隊管理。相信好的工程不只是把技術做好，還要理解商業需求與現實限制，在不同考量之間做出合適的取捨。目前同時帶領 Backend 與 App 團隊，重視工程師不只是把需求做完，也會去思考為什麼要做、有沒有更好的做法。",
+          "social_links": {},
+          "photo": ""
+        }
+      },
+      {
+        "timeslot": 1,
+        "speaker": "GueiJan",
+        "info": {
+          "name": "龜珍",
+          "intro": "現職為非營利組織的網站管理員，負責維護與開發網頁、監控網頁穩定度與流量表現。同時具有內政部防災士與衛服部 AED 管理員資格。求學時期是個純文組人，為了滿足自己的懶惰需求而踏進資訊圈，認為科技不是信仰或者唯一解答，只是其中一種解決問題的工具。",
+          "social_links": {},
+          "photo": ""
+        }
+      }
+    ],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202609"
+    ],
     "recap_links": [],
     "topic": {
       "id": "career",

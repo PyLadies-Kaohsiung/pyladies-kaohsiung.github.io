@@ -9,10 +9,30 @@
       "datetime_end": "2026-09-30 21:00:00"
     }
   ],
-  "locations": ["taipei-appier", "online"],
-  "speakers": [],
-  "register_links": [],
+  "locations": [
+    "taipei-appier",
+    "online"
+  ],
+  "speakers": [
+    {
+      "timeslot": 1,
+      "speaker": "MaoMao"
+    },
+    {
+      "timeslot": 1,
+      "speaker": "ZihZih"
+    },
+    {
+      "timeslot": 1,
+      "speaker": "GueiJan"
+    }
+  ],
+  "register_links": [
+    "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202609"
+  ],
   "recap_links": [],
   "topic_id": "career",
-  "target_audiences": ["有實務經驗者"]
+  "target_audiences": [
+    "有實務經驗者"
+  ]
 }
