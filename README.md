@@ -22,22 +22,47 @@ PAGE=events.html ./scripts/serve.sh     # 預先開特定頁
 
 ## 活動 / 講者資料管理
 
-每場活動、每位講者各自一個 JSON 檔，由 `scripts/build.py` 驗證並產出 denormalized 的 `data/events.json` / `data/speakers.json` 給前端 fetch。
+每場活動、每位講者各自一個 JSON 檔，由 `scripts/build.py` 驗證並產出：
+
+- denormalized 的 `data/events.json` / `data/speakers.json` 給前端 fetch
+- 每場活動一頁的靜態頁 `events/{en_abbr}/index.html`
+- `sitemap.xml`
 
 ### 資料夾結構
 
 ```
 data/
 ├── events/{1,2,3,...}.json   一場活動一檔，檔名 = event_id（流水號）
-├── speakers/{handle}.json     一位講者一檔，檔名 = speaker handle
+├── speakers/{handle}.json     一位講者一檔，檔名 = speaker handle（限英數、- 和 _）
 ├── topics.json                主題總表（人為維護）
 ├── locations.json             地點總表（人為維護）
 ├── events.json                自動產出，不要手動改
 └── speakers.json              自動產出，不要手動改
 
+events/{en_abbr}/index.html    自動產出，不要手動改
+sitemap.xml                    自動產出，不要手動改
+
 schemas/
 └── *.schema.json              JSON Schema，定義各檔案欄位規則
+
+scripts/
+├── build.py                   驗證 + 產出（進入點）
+└── render_pages.py            靜態頁與 sitemap 的 HTML 樣板
 ```
+
+### 活動靜態頁
+
+每場活動都有自己的網址 `https://kaohsiung.pyladies.com/events/{en_abbr}/`，帶各自的
+`<title>`、description、OG / Twitter meta 與 schema.org Event 結構化資料 —— 這是把連結貼到
+Facebook / LINE 時能跑出正確預覽卡片的關鍵（首頁的 `#event-{id}` 錨點做不到，因為 `#`
+後面的內容不會送到伺服器）。
+
+首頁的活動卡片維持原本「點了在同一頁開彈窗」的行為，不會跳頁；彈窗裡的「複製連結」
+複製的才是上面這個靜態頁網址。搜尋引擎則透過 `sitemap.xml`（`robots.txt` 有指向）
+收錄這些頁面。
+
+`en_abbr` 就是網址，所以**改 `en_abbr` 等同換網址**，舊連結會失效。改名後跑一次 build，
+舊資料夾會自動被刪掉。
 
 ### 新增一場活動
 
@@ -74,6 +99,6 @@ pre-commit install
 
 裝好後，每次 `git commit` 會自動：
 - 驗證所有 `data/**.json` 符合 schema 與跨檔規則
-- 重建 `data/events.json` / `data/speakers.json` 並 stage 進這次 commit
+- 重建 `data/events.json`、`data/speakers.json`、`events/{en_abbr}/index.html` 與 `sitemap.xml`，並 stage 進這次 commit
 
 CI 也會在 PR 時跑 `uv run scripts/build.py --check` 把關。

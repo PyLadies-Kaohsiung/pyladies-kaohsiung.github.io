@@ -517,6 +517,17 @@ section {
   background: var(--accent-color);
 }
 
+button.event-card-action {
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+button.event-card-action:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
 .event-card-action.is-primary {
   color: var(--contrast-color);
   background: var(--accent-color);
@@ -892,6 +903,61 @@ section {
 
 .event-dialog-actions {
   margin-top: 20px;
+}
+
+/* Generated per-event pages (events/{en_abbr}/index.html) */
+
+.event-page-header {
+  padding: 24px 0;
+}
+
+.event-page-logo img {
+  height: 56px;
+  width: auto;
+}
+
+.event-page {
+  padding: 8px 0 64px;
+}
+
+.event-page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--accent-color);
+}
+
+.event-page-back:hover {
+  text-decoration: underline;
+}
+
+.event-page-card {
+  max-width: 720px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.event-page-card .event-dialog-title {
+  font-size: 26px;
+}
+
+.event-page-card .event-card-actions {
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .event-page-card {
+    padding: 24px 20px;
+  }
+
+  .event-page-card .event-dialog-title {
+    font-size: 21px;
+  }
 }
 
 @media (max-width: 600px) {

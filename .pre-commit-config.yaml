@@ -21,13 +21,14 @@ repos:
   - repo: local
     hooks:
       - id: validate-and-build
-        name: validate JSON data and rebuild aggregates
+        name: validate JSON data and rebuild generated files
         description: |
           Runs scripts/build.py to validate every event/speaker/topic/location
           file against its schema, check cross-references, and regenerate
-          data/events.json and data/speakers.json. Aggregates that change are
-          re-staged so the commit includes them.
+          data/events.json, data/speakers.json, the per-event static pages
+          under events/{en_abbr}/ and sitemap.xml. Generated files that change
+          are re-staged so the commit includes them.
         entry: uv run scripts/build.py
         language: system
         pass_filenames: false
-        files: ^(data/(events|speakers)/.*\.json|data/(topics|locations)\.json|schemas/.*\.json|scripts/build\.py)$
+        files: ^(data/(events|speakers)/.*\.json|data/(topics|locations)\.json|schemas/.*\.json|scripts/.*\.py)$

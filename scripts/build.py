@@ -26,8 +26,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from render_pages import build_pages  # noqa: E402
 
 try:
     from jsonschema import Draft202012Validator
@@ -52,6 +57,10 @@ LOCATIONS_FILE = DATA / "locations.json"
 
 OUT_EVENTS = DATA / "events.json"
 OUT_SPEAKERS = DATA / "speakers.json"
+
+# Generated per-event pages live here; the whole directory is owned by this
+# script, so anything in it that no event claims gets removed.
+PAGES_DIR = ROOT / "events"
 
 
 def load_json(path: Path):
@@ -216,32 +225,61 @@ def main() -> int:
     # Build denormalized output
     aggregates = build_aggregates(events, speakers, topics, locations)
 
+    # Static pages are rendered from the enriched events, so a page can never
+    # drift from data/events.json.
+    pages = {ROOT / rel: text for rel, text in build_pages(aggregates[OUT_EVENTS]).items()}
+    stale = stale_page_dirs(aggregates[OUT_EVENTS])
+
     if args.check:
         diffs = []
         for path, expected in aggregates.items():
             actual = load_json(path) if path.exists() else None
             if actual != expected:
                 diffs.append(str(path.relative_to(ROOT)))
+        for path, expected in pages.items():
+            actual = path.read_text(encoding="utf-8") if path.exists() else None
+            if actual != expected:
+                diffs.append(str(path.relative_to(ROOT)))
+        diffs += [f"{d.relative_to(ROOT)} (stale, should be removed)" for d in stale]
         if diffs:
             sys.stderr.write(
-                "\nAggregates are out of date. Run:\n"
+                "\nGenerated files are out of date. Run:\n"
                 "    uv run scripts/build.py\n"
                 "and commit the result. Out-of-date files:\n"
             )
             for d in diffs:
                 sys.stderr.write(f"  - {d}\n")
             return 1
-        print("OK: validation passed; aggregates match committed files.")
+        print("OK: validation passed; generated files match committed files.")
         return 0
 
     for path, content in aggregates.items():
         write_json(path, content)
         print(f"wrote {path.relative_to(ROOT)}")
+
+    for path in stale:
+        shutil.rmtree(path)
+        print(f"removed {path.relative_to(ROOT)}")
+
+    for path, text in sorted(pages.items()):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+        print(f"wrote {path.relative_to(ROOT)}")
+
     print(
         f"OK: {len(events)} event(s), {len(speakers)} speaker(s), "
-        f"{len(topics)} topic(s), {len(locations)} location(s)."
+        f"{len(topics)} topic(s), {len(locations)} location(s), "
+        f"{len(pages)} generated page(s)."
     )
     return 0
+
+
+def stale_page_dirs(enriched_events) -> list[Path]:
+    """Event page directories left behind by a renamed or deleted en_abbr."""
+    if not PAGES_DIR.is_dir():
+        return []
+    current = {ev["en_abbr"] for ev in enriched_events}
+    return sorted(d for d in PAGES_DIR.iterdir() if d.is_dir() and d.name not in current)
 
 
 def build_aggregates(events, speakers, topics, locations):

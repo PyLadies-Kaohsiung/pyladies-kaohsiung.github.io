@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  const EVENT_HASH_PREFIX = "#event-";
+
   const dialogEl = document.getElementById("event-dialog");
   const dialogBodyEl = document.getElementById("event-dialog-body");
   let allEvents = [];
@@ -50,6 +52,9 @@
     renderPastList();
     bindDelegatedEvents();
     injectEventJsonLd(events);
+
+    // Landed on a shared #event-N link — open that event straight away.
+    syncDialogToHash();
   }
 
   function injectEventJsonLd(events) {
@@ -135,7 +140,7 @@
       eventStatus: "https://schema.org/EventScheduled",
       location: locations.length === 1 ? locations[0] : locations,
       organizer: ORGANIZER,
-      url: SITE_URL,
+      url: SITE_URL.replace(/\/$/, "") + eventPagePath(e),
     };
     if (e.topic && e.topic.description) {
       schema.description = `${e.title} — ${e.topic.description}`;
@@ -328,15 +333,31 @@
         openDialog(trigger.dataset.eventDetail);
         return;
       }
+      const shareBtn = ev.target.closest("[data-event-share]");
+      if (shareBtn) {
+        copyEventLink(shareBtn);
+        return;
+      }
       if (ev.target.closest("[data-event-dialog-close]")) {
-        dialogEl.close();
+        closeDialog();
         return;
       }
     });
 
     dialogEl.addEventListener("click", (ev) => {
-      if (ev.target === dialogEl) dialogEl.close();
+      if (ev.target === dialogEl) closeDialog();
     });
+
+    // Esc dismisses a modal dialog natively; catch it so the hash is cleared
+    // too. Paired with the "close" listener below for engines that do fire it.
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape" && dialogEl.open) closeDialog();
+    });
+    dialogEl.addEventListener("close", onDialogClosed);
+
+    // Back/forward, and hand-edited hashes, drive the dialog too.
+    window.addEventListener("popstate", syncDialogToHash);
+    window.addEventListener("hashchange", syncDialogToHash);
 
     document.body.addEventListener("keydown", (ev) => {
       if (ev.key !== "Enter" && ev.key !== " ") return;
@@ -348,15 +369,166 @@
     });
   }
 
-  function openDialog(eventId) {
+  // The event's own static page, built by scripts/render_pages.py.
+  // Cards deliberately stay in-page; this URL is what gets shared and indexed.
+  function eventPagePath(e) {
+    return "/events/" + e.en_abbr + "/";
+  }
+
+  function openDialog(eventId, options) {
     const e = allEvents.find((x) => String(x.event_id) === String(eventId));
     if (!e) return;
+    const pushHash = !options || options.pushHash !== false;
+
     dialogBodyEl.innerHTML = dialogContent(e);
-    if (typeof dialogEl.showModal === "function") {
-      dialogEl.showModal();
-    } else {
-      dialogEl.setAttribute("open", "");
+    dialogEl.dataset.eventId = String(e.event_id);
+
+    if (pushHash) {
+      const hash = EVENT_HASH_PREFIX + e.event_id;
+      if (window.location.hash !== hash) {
+        history.pushState(null, "", hash);
+      }
     }
+
+    if (!dialogEl.open) {
+      if (typeof dialogEl.showModal === "function") {
+        dialogEl.showModal();
+      } else {
+        dialogEl.setAttribute("open", "");
+      }
+    }
+  }
+
+  function closeDialog() {
+    if (typeof dialogEl.close === "function") {
+      if (dialogEl.open) dialogEl.close();
+    } else {
+      dialogEl.removeAttribute("open");
+    }
+    // Not every engine dispatches the dialog "close" event, so do the cleanup
+    // here as well — onDialogClosed() is safe to run twice.
+    onDialogClosed();
+  }
+
+  function onDialogClosed() {
+    delete dialogEl.dataset.eventId;
+    // Drop #event-N so the address bar matches what is on screen. replaceState
+    // (not pushState) keeps Back pointing at wherever the visitor came from.
+    if (eventIdFromHash()) {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+  }
+
+  // Share the event's own page, not the #event-N hash: only a real URL gets a
+  // proper preview card on Facebook / LINE / Threads.
+  function eventLinkFor(eventId) {
+    const e = allEvents.find((x) => String(x.event_id) === String(eventId));
+    if (!e) return window.location.href;
+    return window.location.origin + eventPagePath(e);
+  }
+
+  function copyEventLink(btn) {
+    const url = eventLinkFor(btn.dataset.eventShare);
+    writeToClipboard(url).then((ok) => {
+      const original = btn.innerHTML;
+      btn.innerHTML = ok
+        ? '<i class="bi bi-check-lg"></i>已複製連結'
+        : '<i class="bi bi-exclamation-circle"></i>複製失敗';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.disabled = false;
+      }, 2000);
+    });
+  }
+
+  function writeToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard
+        .writeText(text)
+        .then(() => true)
+        .catch(() => legacyCopy(text));
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  // execCommand fallback for browsers or origins without the async clipboard.
+  function legacyCopy(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (err) {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function eventIdFromHash() {
+    const m = /^#event-([1-9][0-9]*)$/.exec(window.location.hash);
+    return m ? m[1] : null;
+  }
+
+  // Single source of truth: whatever the hash says, the dialog follows.
+  function syncDialogToHash() {
+    const eventId = eventIdFromHash();
+    if (!eventId) {
+      if (dialogEl.open) closeDialog();
+      return;
+    }
+    // Mistyped or retired id: fall back to the plain page instead of leaving
+    // whatever was on screen behind an address that no longer describes it.
+    if (!allEvents.some((x) => String(x.event_id) === eventId)) {
+      if (dialogEl.open) closeDialog();
+      else onDialogClosed();
+      return;
+    }
+    if (dialogEl.dataset.eventId === eventId) return;
+    revealEventCard(eventId);
+    openDialog(eventId, { pushHash: false });
+  }
+
+  // A shared link may point at an event the current filters hide, so widen
+  // them until its card is on the page, then bring it into view.
+  function revealEventCard(eventId) {
+    const e = allEvents.find((x) => String(x.event_id) === String(eventId));
+    if (!e) return;
+
+    const isPast = pastEvents.some(
+      (p) => String(p.event_id) === String(eventId)
+    );
+    if (isPast) {
+      let needsRerender = false;
+      if (currentSearch && !matchesSearch(e)) {
+        currentSearch = "";
+        const searchEl = document.getElementById("past-search");
+        if (searchEl) searchEl.value = "";
+        needsRerender = true;
+      }
+      const year = String(eventYear(e));
+      if (currentYear !== "all" && currentYear !== year) {
+        currentYear = year;
+        renderYearFilter();
+        needsRerender = true;
+      }
+      if (needsRerender) renderPastList();
+    }
+
+    const card = document.querySelector(
+      '[data-event-detail="' + String(eventId).replace(/"/g, '\\"') + '"]'
+    );
+    if (card) card.scrollIntoView({ block: "center" });
   }
 
   function dialogContent(e) {
@@ -409,6 +581,11 @@
     (e.recap_links || []).forEach((rl) => {
       actions.push(actionLink(rl.url, recapIcon(rl.type), recapLabel(rl)));
     });
+    actions.push(
+      `<button type="button" class="event-card-action" data-event-share="${escapeHtml(
+        e.event_id
+      )}"><i class="bi bi-link-45deg"></i>複製連結</button>`
+    );
 
     return `
       <header class="event-dialog-header">
