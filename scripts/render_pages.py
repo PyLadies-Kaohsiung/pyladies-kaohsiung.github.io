@@ -27,9 +27,10 @@ GA_MEASUREMENT_ID = "G-NBDVQK5QPE"
 
 WEEKDAYS = ["一", "二", "三", "四", "五", "六", "日"]
 
-# Homepage sections, kept in the sitemap alongside the generated event pages.
+# Static pages and homepage sections, kept in the sitemap alongside generated event pages.
 STATIC_SITEMAP_ENTRIES = [
     ("/", "weekly", "1.0"),
+    ("/volunteer/", "monthly", "0.8"),
     ("/#about", "monthly", "0.8"),
     ("/#values", "monthly", "0.6"),
     ("/#growth", "monthly", "0.6"),
