@@ -804,18 +804,6 @@ section {
   color: color-mix(in srgb, var(--default-color), transparent 15%);
 }
 
-.volunteer-role-note {
-  margin: 28px 0 0;
-  text-align: center;
-  font-size: 15px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-}
-
-.volunteer-role-note i {
-  margin-right: 6px;
-  color: var(--accent-color);
-}
-
 /* Explore your way: one list card, each path as a row (head | body) */
 .volunteer-possibilities {
   background: color-mix(in srgb, var(--accent-color), transparent 96%);
