@@ -158,7 +158,28 @@
     "register_links": [
       "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202609"
     ],
-    "recap_links": [],
+    "recap_links": [
+      {
+        "type": "fb",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid028suaVvMQikia39J76Pz3R67bDA5ZViWssP6DVZXfNzWHDwM1rKWLxQhcyd561Leul",
+        "label": "活動回顧貼文"
+      },
+      {
+        "type": "slides",
+        "label": "講者分享內容-毛毛",
+        "url": "https://kaohsiung.pyladies.com/data/slides/pyladies-journey-202609-MaoMao.pdf"
+      },
+      {
+        "type": "slides",
+        "label": "講者分享內容-ZihZih",
+        "url": "https://kaohsiung.pyladies.com/data/slides/pyladies-journey-202609-ZihZih.pdf"
+      },
+      {
+        "type": "slides",
+        "label": "講者分享內容-龜珍",
+        "url": "https://kaohsiung.pyladies.com/data/slides/pyladies-journey-202609-GueiJan.pdf"
+      }
+    ],
     "topic": {
       "id": "career",
       "name": "職涯經驗分享",
@@ -206,7 +227,18 @@
     "register_links": [
       "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202608"
     ],
-    "recap_links": [],
+    "recap_links": [
+      {
+        "type": "fb",
+        "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02iGe3A2peRgMqs1Mv78SKCQyVna5kDXtu38V84spBGgUg9uH3g3t1z7o3uHjPePodl",
+        "label": "活動回顧貼文"
+      },
+      {
+        "type": "slides",
+        "label": "工作坊講義",
+        "url": "https://python-practical-workshop.github.io/discord_bot/"
+      }
+    ],
     "topic": {
       "id": "python-workshop",
       "name": "Python 實務工作坊"

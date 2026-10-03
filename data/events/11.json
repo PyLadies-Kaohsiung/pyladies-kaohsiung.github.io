@@ -30,7 +30,12 @@
   "register_links": [
     "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202609"
   ],
-  "recap_links": [],
+  "recap_links": [
+    { "type": "fb", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid028suaVvMQikia39J76Pz3R67bDA5ZViWssP6DVZXfNzWHDwM1rKWLxQhcyd561Leul", "label": "活動回顧貼文" },
+    { "type": "slides", "label": "講者分享內容-毛毛", "url": "https://kaohsiung.pyladies.com/data/slides/pyladies-journey-202609-MaoMao.pdf" },
+    { "type": "slides", "label": "講者分享內容-ZihZih", "url": "https://kaohsiung.pyladies.com/data/slides/pyladies-journey-202609-ZihZih.pdf"},
+    { "type": "slides", "label": "講者分享內容-龜珍", "url": "https://kaohsiung.pyladies.com/data/slides/pyladies-journey-202609-GueiJan.pdf" }
+  ],
   "topic_id": "career",
   "target_audiences": [
     "有實務經驗者"
