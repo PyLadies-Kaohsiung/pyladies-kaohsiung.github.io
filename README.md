@@ -84,6 +84,29 @@ uv run scripts/build.py
 
 ---
 
+## Logo 猜謎遊戲（`/game/`）
+
+PyCon TW 攤位用的「Guess the PyLadies Chapter」，獨立於上面的 build 流程：
+
+```
+game/
+├── index.html / game.css / game.js
+├── badges.js          徽章進度（存在 localStorage）
+├── chapters.json      題庫：英文 / 中文顯示名稱、國家、大洲、經緯度
+└── logos/{id}.webp    由 scripts/game_logos.py 產生，不要手動改
+```
+
+Logo 原圖取自 [pyladies/pyladies](https://github.com/pyladies/pyladies) 的
+`www/_assets/images/`，檔名為 chapter 名稱（例如 `Kaohsiung, Taiwan.png`）。
+新增或替換原圖後重新產生：
+
+```bash
+uv run scripts/game_logos.py 原圖資料夾                       # 全部
+uv run scripts/game_logos.py 原圖資料夾 --only manila-philippines  # 單一 chapter
+```
+
+---
+
 ## 開發環境設定（一次性）
 
 依賴用 [uv](https://docs.astral.sh/uv/) 管理，自動驗證用 [pre-commit](https://pre-commit.com/)：

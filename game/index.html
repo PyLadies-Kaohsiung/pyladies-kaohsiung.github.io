@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-ui="zh">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBDVQK5QPE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NBDVQK5QPE');
+  </script>
+  <script>
+    // Pick the UI language before first paint: saved choice, else browser language.
+    (function () {
+      var lang;
+      try { lang = localStorage.getItem('pyladies-game:lang'); } catch (e) {}
+      if (lang !== 'zh' && lang !== 'en') lang = /^zh/i.test(navigator.language || '') ? 'zh' : 'en';
+      document.documentElement.dataset.ui = lang;
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+    })();
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Guess the PyLadies Chapter｜PyLadies Kaohsiung 高雄</title>
+  <meta name="description" content="看 Logo，猜 Chapter！認識世界各地的 PyLadies 社群。">
+  <link rel="canonical" href="https://kaohsiung.pyladies.com/game/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PyLadies Kaohsiung">
+  <meta property="og:title" content="Guess the PyLadies Chapter">
+  <meta property="og:description" content="看 Logo，猜 Chapter！認識世界各地的 PyLadies 社群。">
+  <meta property="og:url" content="https://kaohsiung.pyladies.com/game/">
+  <meta property="og:image" content="https://kaohsiung.pyladies.com/assets/img/logo_horizontal.png">
+  <meta property="og:locale" content="zh_TW">
+
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="game.css?v=20261004a" rel="stylesheet">
+  <script type="module" src="game.js?v=20261004a"></script>
+</head>
+
+<body data-active="start">
+  <header class="game-nav">
+    <a class="nav-logo" href="../" aria-label="PyLadies Kaohsiung">
+      <img src="pyladies-kaohsiung.png" alt="PyLadies Kaohsiung 高雄">
+    </a>
+    <div class="lang-toggle" role="group" aria-label="Language 語言">
+      <button type="button" data-set-lang="zh">中</button>
+      <button type="button" data-set-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="game">
+    <!-- Start -->
+    <section data-screen="start" class="screen start">
+      <div class="start-intro">
+        <a class="hero-logo" href="../" aria-label="PyLadies Kaohsiung">
+          <img src="pyladies-kaohsiung.png" alt="PyLadies Kaohsiung 高雄">
+        </a>
+        <div class="about">
+          <p data-lang="zh"><strong>PyLadies</strong> 是國際性的社群，希望幫助更多女性成為 Python 開源社群的參與者與領導者。</p>
+          <p data-lang="en"><strong>PyLadies</strong> is an international community helping more women become active participants and leaders in the Python open-source community.</p>
+          <p data-lang="zh">全世界已經有超過 <strong>145 個 Chapter</strong>，有些以城市命名，有些以國家命名。每個 Chapter 都由當地夥伴獨立運作，各自舉辦活動、發展自己的特色，連 Logo 都長得不一樣！</p>
+          <p data-lang="en">There are more than <strong>145 chapters</strong> around the world — some named after cities, some after countries. Each one is run independently by local organizers, with its own events, its own style, and even its own logo!</p>
+          <div class="about-links">
+            <a href="https://pyladies.com/locations/" target="_blank" rel="noopener">
+              <span data-lang="zh">看看全世界的 PyLadies Chapters ↗</span><span data-lang="en">Explore PyLadies chapters worldwide ↗</span>
+            </a>
+            <a href="../">
+              <span data-lang="zh">認識 PyLadies Kaohsiung →</span><span data-lang="en">Meet PyLadies Kaohsiung →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="start-play">
+        <p class="eyebrow"><span data-lang="zh">Ready? 來猜猜看！</span><span data-lang="en">Ready? Let's play!</span></p>
+        <h1>Guess the<br>PyLadies Chapter</h1>
+        <p class="lead"><span data-lang="zh">看 Logo，猜 Chapter！</span><span data-lang="en">Can you name the chapter from its logo?</span></p>
+        <div class="start-card">
+          <ul class="rules">
+            <li><span>✅</span><span data-lang="zh">答對 5 題就能到 PyLadies Kaohsiung 攤位領貼紙</span><span data-lang="en">Get 5 right and pick up a sticker at the PyLadies Kaohsiung booth</span></li>
+            <li><span>🏅</span><span data-lang="zh">繼續玩，收集成就徽章</span><span data-lang="en">Keep playing to collect badges</span></li>
+          </ul>
+          <button id="start" class="btn btn-primary btn-big" type="button" disabled>Start 開始</button>
+          <button class="btn btn-ghost open-badges" type="button">🏅 <span data-lang="zh">我的徽章</span><span data-lang="en">My Badges</span> <span class="badge-count"></span></button>
+          <p id="load-error" class="error" hidden>
+            <span data-lang="zh">題庫載入失敗，請重新整理頁面。</span><span data-lang="en">Couldn't load the questions. Please reload the page.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Play -->
+    <section data-screen="play" class="screen" hidden>
+      <div class="topbar">
+        <div id="progress" class="progress"></div>
+        <div class="topbar-actions">
+          <span id="question-no" class="question-no"></span>
+          <button id="finish" class="btn-text" type="button" hidden><span data-lang="zh">結束</span><span data-lang="en">Finish</span></button>
+          <button class="btn-text restart" type="button" aria-label="Restart 重新開始">↺</button>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <img id="logo" alt="">
+      </div>
+
+      <p class="prompt"><span data-lang="zh">這是哪一個 PyLadies Chapter？</span><span data-lang="en">Which PyLadies chapter is this?</span></p>
+      <div id="options" class="options"></div>
+
+      <div id="feedback" class="feedback" hidden aria-live="polite">
+        <p id="result" class="result"></p>
+        <p id="answer" class="answer"></p>
+        <div id="tip" class="tip" hidden>
+          <strong>💡 Did you notice?</strong>
+          <span id="tip-text"></span>
+        </div>
+        <button id="next" class="btn btn-primary btn-big" type="button"></button>
+      </div>
+    </section>
+
+    <!-- Challenge complete -->
+    <section data-screen="complete" class="screen screen-center" hidden>
+      <div class="confetti" aria-hidden="true">🎉</div>
+      <h2>Challenge Complete!</h2>
+      <p class="lead"><span data-lang="zh">你答對了 5 題！</span><span data-lang="en">You got 5 right!</span></p>
+      <div class="sticker-card">
+        <p data-lang="zh">🐍 來跟 <strong>PyLadies Kaohsiung</strong> 打聲招呼吧</p>
+        <p data-lang="en">🐍 Come say hi to <strong>PyLadies Kaohsiung</strong></p>
+        <p class="sticker-cta" data-lang="zh">請把這個畫面給攤位工作人員<br>領取社群貼紙 ✨</p>
+        <p class="sticker-cta" data-lang="en">Show this screen at our booth<br>to get your sticker ✨</p>
+      </div>
+      <button id="continue" class="btn btn-primary btn-big" type="button"><span data-lang="zh">繼續收集徽章 →</span><span data-lang="en">Keep collecting badges →</span></button>
+      <button class="btn btn-ghost open-badges" type="button">🏅 <span data-lang="zh">我的徽章</span><span data-lang="en">My Badges</span> <span class="badge-count"></span></button>
+      <button class="btn-text restart" type="button"><span data-lang="zh">重新開始</span><span data-lang="en">Start over</span></button>
+    </section>
+
+    <!-- Badges -->
+    <section data-screen="badges" class="screen" hidden>
+      <h2 class="badges-title">🏅 <span data-lang="zh">我的徽章</span><span data-lang="en">My Badges</span> <span class="badge-count"></span></h2>
+      <ul id="badge-grid" class="badge-grid"></ul>
+      <div class="badges-actions">
+        <button class="btn btn-primary back" type="button"><span data-lang="zh">返回</span><span data-lang="en">Back</span></button>
+        <button class="btn btn-ghost restart" type="button"><span data-lang="zh">再玩一局</span><span data-lang="en">Play again</span></button>
+      </div>
+      <button id="clear-badges" class="btn-text btn-clear" type="button"><span data-lang="zh">清除這台裝置的徽章</span><span data-lang="en">Clear badges on this device</span></button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden role="status"></div>
+
+</body>
+
+</html>
