@@ -16,7 +16,10 @@
   "register_links": [
     "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202608"
   ],
-  "recap_links": [],
+  "recap_links": [
+    { "type": "fb", "url": "https://www.facebook.com/pyladies.kaohsiung/posts/pfbid02iGe3A2peRgMqs1Mv78SKCQyVna5kDXtu38V84spBGgUg9uH3g3t1z7o3uHjPePodl", "label": "活動回顧貼文" },
+    { "type": "slides", "label": "工作坊講義" , "url": "https://python-practical-workshop.github.io/discord_bot/"}
+  ],
   "topic_id": "python-workshop",
   "target_audiences": ["初學者", "進階者", "有實務經驗者"]
 }
