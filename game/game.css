@@ -576,6 +576,63 @@ h1 { font-size: clamp(34px, 9vw, 50px); font-weight: 900; }
   .feedback { grid-area: feedback; }
 }
 
+/* ---------- QR code (desktop only) ---------- */
+
+.qr { display: none; }
+
+@media (min-width: 900px) and (hover: hover) {
+  .qr {
+    display: block;
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+  }
+
+  .qr-card {
+    position: relative;
+    width: 172px;
+    padding: 16px 16px 12px;
+    text-align: center;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .qr-card img { display: block; width: 140px; height: 140px; image-rendering: pixelated; }
+  .qr-card p { margin: 8px 0 0; font: 800 14px/1.3 var(--heading-font); color: var(--navy); }
+
+  .qr-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 28px;
+    height: 28px;
+    font: 800 16px/1 var(--heading-font);
+    color: var(--muted);
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .qr-close:hover, .qr-pill:hover { color: var(--navy); }
+
+  .qr-pill {
+    padding: 8px 14px;
+    font: 800 14px var(--heading-font);
+    color: var(--muted);
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+  }
+
+  .qr:not(.is-collapsed) .qr-pill,
+  .qr.is-collapsed .qr-card { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
