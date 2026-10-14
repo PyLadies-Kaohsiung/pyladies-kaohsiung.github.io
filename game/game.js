@@ -48,6 +48,7 @@ const TIPS = {
 
 const $ = (sel) => document.querySelector(sel);
 const LANG_KEY = "pyladies-game:lang";
+const QR_KEY = "pyladies-game:qr-hidden";
 
 const badges = createBadgeStore();
 
@@ -319,7 +320,24 @@ function setLang(lang) {
   }
 }
 
+function setQrHidden(hidden) {
+  $("#qr").classList.toggle("is-collapsed", hidden);
+  try {
+    localStorage.setItem(QR_KEY, hidden ? "1" : "0");
+  } catch {
+    // Storage blocked: the choice lasts for this page load only.
+  }
+}
+
 function bind() {
+  try {
+    $("#qr").classList.toggle("is-collapsed", localStorage.getItem(QR_KEY) === "1");
+  } catch {
+    // Storage blocked: show the QR code by default.
+  }
+  $("#qr-hide").addEventListener("click", () => setQrHidden(true));
+  $("#qr-show").addEventListener("click", () => setQrHidden(false));
+
   document.querySelectorAll("[data-set-lang]").forEach((b) =>
     b.addEventListener("click", () => setLang(b.dataset.setLang)));
   document.querySelectorAll("[data-set-lang]").forEach((b) => {
