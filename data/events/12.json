@@ -31,7 +31,7 @@
     { "timeslot": 3, "speaker": "MarsW" },
     { "timeslot": 4, "speaker": "MarsW" }
   ],
-  "register_links": [],
+  "register_links": ["https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202611"],
   "recap_links": [
     { "type": "slides", "url": "https://python-tutorial-workshop.github.io/#curriculum", "label": "工作坊講義" }
   ],
