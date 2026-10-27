@@ -81,7 +81,9 @@
         }
       }
     ],
-    "register_links": [],
+    "register_links": [
+      "https://pyladies-kaohsiung.kktix.cc/events/pyladieskh202611"
+    ],
     "recap_links": [
       {
         "type": "slides",
