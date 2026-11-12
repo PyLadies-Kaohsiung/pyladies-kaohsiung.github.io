@@ -1,0 +1,238 @@
+/* Python Mini Challenge — loaded after ../pyladies/game.css */
+
+/* Python blue + yellow, matching python-tutorial-workshop.github.io;
+   overrides the warm PyLadies palette from game.css */
+:root {
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Noto Sans TC", monospace;
+  --heading-font: "Space Grotesk", "Noto Sans TC", sans-serif;
+  --code-bg: #1B2B40;
+  --code-text: #E9F0F8;
+
+  --py-blue: #3776AB;
+  --py-yellow: #FFD343;
+  --py-gold: #E0B936;
+
+  --bg: #F5F7FA;
+  --navy: #1E3A5F;
+  --warm: var(--py-blue);
+  --warm-dark: #285A85;
+  --warm-soft: #FFF6D1;
+  --accent: var(--py-blue);
+  --accent-soft: #E7F1FF;
+  --line: #D5DEEA;
+  --shadow: 0 10px 30px rgba(30, 58, 95, 0.10);
+}
+
+body {
+  background:
+    linear-gradient(rgba(55, 118, 171, 0.07) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(55, 118, 171, 0.07) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%) fixed;
+}
+
+/* No mascot band behind the start screen */
+body[data-active="start"]::before { content: none; }
+
+.btn-primary:hover { background: #4183BC; }
+
+.eyebrow { font-family: var(--mono); font-weight: 700; letter-spacing: 0.02em; }
+.eyebrow { color: var(--py-blue); }
+.eyebrow::before { content: "> "; color: var(--py-gold); }
+
+h1 { letter-spacing: -0.02em; }
+h1 .accent { color: var(--py-blue); }
+
+.start-card, .feedback { border: 1px solid var(--line); }
+
+.sticker-card { border-style: dashed; border-color: var(--py-gold); }
+.sticker-cta { color: var(--navy) !important; }
+
+/* Blinking cursor on the title */
+.cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.9em;
+  margin-left: 4px;
+  vertical-align: -0.05em;
+  background: var(--py-yellow);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* No ligatures: beginners should see >= and ==, not ≥ */
+code, kbd, pre { font-family: var(--mono); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+
+:not(pre) > code, kbd {
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 0.92em;
+  background: var(--accent-soft);
+  color: var(--navy);
+}
+
+kbd { border: 1px solid #C9D5EE; border-bottom-width: 2px; }
+
+mark {
+  padding: 0 2px;
+  border-radius: 4px;
+  color: inherit;
+  background: #FFE16B;
+}
+
+.code-card mark { color: #1A1A1A; }
+
+/* ---------- question header ---------- */
+
+.stage { max-width: 720px; margin: 0 auto; }
+
+.progress .dot.is-on { background: var(--py-blue); border-color: var(--py-blue); }
+
+.stage-title { font-size: clamp(24px, 6vw, 30px); font-weight: 900; margin: 4px 0 8px; }
+
+.stage-lead { margin: 0 0 8px; font-size: 16px; line-height: 1.6; }
+
+/* ---------- code ---------- */
+
+.code-card, .terminal {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  white-space: pre;
+  text-align: left;
+}
+
+.code-card {
+  color: var(--code-text);
+  background: var(--code-bg);
+  box-shadow: var(--shadow);
+}
+
+.tok-keyword { color: #FF9D7A; font-weight: 700; }
+.tok-string { color: #A5E3B5; }
+.tok-number { color: #FFD479; }
+.tok-comment { color: #8A97B5; font-style: italic; }
+.tok-decorator { color: #C9A7FF; }
+
+
+.terminal {
+  color: #D7F5DD;
+  background: #111827;
+  font-size: 15px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.terminal::before {
+  content: ">>> output";
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #6B7280;
+}
+
+.terminal-goal::before { content: "🎯 target output"; }
+
+.term-error { color: #FF8A8A; }
+.term-muted { color: #9CA3AF; }
+
+/* ---------- quiz ---------- */
+
+.stage-title small {
+  display: block;
+  margin-top: 2px;
+  font: 700 15px var(--font);
+  color: var(--muted);
+}
+
+.terminal-goal { margin-bottom: 4px; }
+.code-card + .terminal-goal { margin-top: 10px; }
+
+/* Line numbers for "fix line N" questions */
+.code-card.is-numbered { counter-reset: ln; }
+.code-card.is-numbered .ln { display: block; padding-left: 2.2em; text-indent: -2.2em; }
+.code-card.is-numbered .ln::before {
+  counter-increment: ln;
+  content: counter(ln);
+  display: inline-block;
+  width: 1.4em;
+  margin-right: 0.8em;
+  text-align: right;
+  text-indent: 0;
+  color: #6B7F99;
+}
+
+
+.term-label { margin: 12px 0 -4px; font-size: 14px; font-weight: 700; color: var(--muted); text-align: left; }
+
+.option-text { font-size: 17px; font-weight: 500; line-height: 1.45; color: var(--text); }
+
+.feedback .terminal { margin-top: 12px; }
+.feedback .tip { margin-top: 12px; }
+.feedback .tip strong { margin-bottom: 2px; }
+.feedback .tip a { font-weight: 700; }
+.tip-text strong { display: inline; }
+.question-no { white-space: nowrap; }
+
+@media (max-width: 420px) {
+  .progress .dot { width: 14px; height: 14px; }
+}
+
+/* Message shown after any answer (e.g. who can join PyLadies Kaohsiung events) */
+.note {
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-align: left;
+  background: var(--warm-soft);
+  border-left: 4px solid var(--py-gold);
+}
+
+.note p { margin: 0; }
+.note-head { font: 700 15px var(--heading-font); color: var(--navy); }
+.note-text { margin-top: 4px !important; font-size: 15px; line-height: 1.7; }
+.note-text strong { color: var(--navy); }
+
+/* Screenshot shown with the answer */
+.shot { margin: 12px 0 0; }
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- complete ---------- */
+
+.summary {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 17px;
+}
+
+.summary strong { font-family: var(--heading-font); color: var(--navy); }
+
+.screen-center .about-links { justify-content: center; }
+
+.closing { margin: 0; font-size: 17px; line-height: 1.7; font-weight: 500; color: var(--navy); }
+
+/* Phones: wrap long lines so the clue words stay visible */
+@media (max-width: 600px) {
+  .code-card { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; padding: 14px; }
+  .code-card.is-numbered { font-size: 12px; padding: 14px 10px; }
+}
+
+/* ---------- wide screens ---------- */
+
+@media (min-width: 900px) {
+  .code-card { font-size: 15px; }
+}

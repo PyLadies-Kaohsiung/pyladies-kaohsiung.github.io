@@ -138,6 +138,27 @@ uv run scripts/game_logos.py 原圖資料夾 --only manila-philippines  # 單一
 
 ---
 
+## Python 小挑戰（`/game/python/`）
+
+給不會寫程式的人玩的 5 題攤位遊戲，以 Logo 遊戲的樣式（`../pyladies/game.css`）為基礎，
+配色沿用 [python-tutorial-workshop.github.io](https://python-tutorial-workshop.github.io/) 的 Python 藍黃。
+
+```
+game/python/
+├── index.html / game.js
+├── python.css           配色覆寫、程式碼區塊等額外樣式
+├── questions.js         題庫（5 題，固定順序）
+├── streamlit-stock.png  股價網頁題答案下方的截圖
+└── qr.svg               指向 /game/python/（產生方式同上，換網址和路徑）
+```
+
+- `guess` 題：看程式猜用途，答完後把線索字標黃；可以加 `image` 在答案下方放截圖。
+- `fix` 題：一段有錯的程式（有行號），選「要怎麼修正」。每個選項都是一份完整程式，
+  會丟給 `game.js` 裡的小直譯器實際跑一次，答錯時顯示只改那裡會印出什麼。
+  直譯器只認得 assign / if / elif / else / for / print 這幾種行（條件可用 `and` 串接）。
+
+---
+
 ## 開發環境設定（一次性）
 
 依賴用 [uv](https://docs.astral.sh/uv/) 管理，自動驗證用 [pre-commit](https://pre-commit.com/)：
