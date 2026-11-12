@@ -53,7 +53,7 @@ body[data-active="start"]::before {
   inset: 0 0 auto;
   z-index: -1;
   height: 320px;
-  background: url("../assets/img/pyladies-global.jpeg") center top / auto 300px repeat-x;
+  background: url("../../assets/img/pyladies-global.jpeg") center top / auto 300px repeat-x;
   opacity: 0.08;
   mix-blend-mode: multiply;
   -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 85%);
