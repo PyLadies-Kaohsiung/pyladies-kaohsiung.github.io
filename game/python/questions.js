@@ -12,6 +12,7 @@
 //       or if / elif { conds: [{ name, op, value }, ...] }  (conditions joined with "and")
 //     else      for { name, list }      print { text }  ({name} in text is replaced by that variable)
 //   Options keep their order (the last one is "both of the above").
+//   note: optional message shown after any answer, right or wrong.
 export const QUESTIONS = [
   {
     id: "images",
@@ -25,8 +26,8 @@ export const QUESTIONS = [
     answer: "download",
     clues: ["img", "photo", ".jpg", "write"],
     explain: {
-      zh: "這題來自 PyLadies Kaohsiung 的 <strong>Python 入門工作坊</strong>：<code>requests</code> 去拿網頁，<code>BeautifulSoup</code> 找出所有圖片，一張張存成檔案，不用再一直按右鍵另存新檔！同樣的，金融數據工作坊也會用到 <code>requests</code> 抓取股價資訊。",
-      en: "This one comes from PyLadies Kaohsiung's <strong>Python fundamental workshop</strong>: <code>requests</code> fetches the page, <code>BeautifulSoup</code> finds every image, and each one is saved to a file — no more right-click → Save As! Our finance data workshop uses <code>requests</code> to fetch stock data too.",
+      zh: "這題來自我們的 <strong>Python 入門工作坊</strong>：<code>requests</code> 去拿網頁，<code>BeautifulSoup</code> 找出所有圖片，一張張存成檔案，不用再一直按右鍵另存新檔！同樣的，金融數據工作坊也會用到 <code>requests</code> 抓取股價資訊。",
+      en: "This one comes from our <strong>Python fundamental workshop</strong>: <code>requests</code> fetches the page, <code>BeautifulSoup</code> finds every image, and each one is saved to a file — no more right-click → Save As! Our finance data workshop uses <code>requests</code> to fetch stock data too.",
     },
   },
   {
@@ -42,7 +43,7 @@ export const QUESTIONS = [
     answer: "web",
     clues: ["download", "selectbox", "line_chart"],
     explain: {
-      zh: "這題來自<strong>金融數據工作坊</strong>：<code>yfinance</code> 下載股價，<code>streamlit</code> 做出下拉選單和折線圖，不用刻 HTML、不用撰寫後端 API，就能做出一個互動式網頁。",
+      zh: "這題來自我們的<strong>金融數據工作坊</strong>：<code>yfinance</code> 下載股價，<code>streamlit</code> 做出下拉選單和折線圖，不用刻 HTML、不用撰寫後端 API，就能做出一個互動式網頁。",
       en: "This one comes from our <strong>finance data workshop</strong>: <code>yfinance</code> downloads prices and <code>streamlit</code> builds the dropdown and line chart — no hand-written HTML, no backend API, and you get an interactive web page.",
     },
   },
@@ -110,8 +111,13 @@ export const QUESTIONS = [
     ],
     answer: "both",
     tip: {
-      zh: "兩個地方都要改！PyLadies Kaohsiung 的活動<strong>不是一律只限女性</strong>，要看活動形式：目前實體活動雖然僅限女性，但只要有<strong>高雄社群護照章</strong>，任何人都能參加<strong>線上活動</strong> 💻",
-      en: "Both need fixing! PyLadies Kaohsiung events <strong>aren't all women-only</strong> — it depends on the format: in-person events are currently women-only, but anyone with a <strong>Kaohsiung community passport stamp</strong> can join <strong>online events</strong> 💻",
+      zh: "兩個地方都要改！縮排讓第 7 行屬於 <code>elif</code>，<code>True</code> 讓條件成立。",
+      en: "Both need fixing! Indenting line 7 puts it inside the <code>elif</code>, and <code>True</code> makes the condition pass.",
+    },
+    // Shown after any answer, right or wrong.
+    note: {
+      zh: "PyLadies Kaohsiung 的活動<strong>不是一律只限女性</strong>，要看活動形式：目前實體活動雖然僅限女性，但只要有<strong>高雄社群護照章</strong>，任何人都能參加<strong>線上活動</strong> 💻",
+      en: "PyLadies Kaohsiung events <strong>aren't all women-only</strong> — it depends on the format: in-person events are currently women-only, but anyone with a <strong>Kaohsiung community passport stamp</strong> can join <strong>online events</strong> 💻",
     },
   },
   {

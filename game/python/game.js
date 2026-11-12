@@ -296,6 +296,9 @@ function answer(id) {
     $(".tip-text", fb).innerHTML = L(q.explain);
   }
 
+  $(".note", fb).hidden = !q.note;
+  $(".note-text", fb).innerHTML = q.note ? L(q.note) : "";
+
   const shot = $(".shot", fb);
   shot.hidden = !q.image;
   if (q.image) {
