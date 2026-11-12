@@ -95,6 +95,7 @@ section {
 }
 
 .section-warm .support-cta,
+.milestone-cta .support-cta,
 .section-warm .event-card-action.is-primary {
   color: var(--contrast-color);
   background: linear-gradient(135deg, var(--warm-color), var(--warm-color-dark));
@@ -103,6 +104,7 @@ section {
 }
 
 .section-warm .support-cta:hover,
+.milestone-cta .support-cta:hover,
 .section-warm .event-card-action.is-primary:hover {
   color: var(--contrast-color);
   background: linear-gradient(135deg, color-mix(in srgb, var(--warm-color), transparent 12%), color-mix(in srgb, var(--warm-color-dark), transparent 12%));
@@ -994,7 +996,6 @@ section {
   width: 100%;
   max-width: 240px;
   height: auto;
-  mix-blend-mode: multiply; /* blend the jpg's white background into the card */
 }
 
 .volunteer-join-card .volunteer-eyebrow,
@@ -1664,4 +1665,1819 @@ button.event-card-action:disabled {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
+}
+
+/* ===================================================================
+   Site header (shared by home, about, join, support, review)
+   =================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 0;
+  background: color-mix(in srgb, var(--background-color), transparent 6%);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-header-brand img {
+  display: block;
+  height: 34px;
+  width: auto;
+}
+
+.site-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-left: auto;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.site-header-nav a {
+  color: var(--default-color);
+  white-space: nowrap;
+  padding: 4px 0;
+}
+
+.site-header-nav a:hover,
+.site-header-nav a.is-active {
+  color: var(--accent-color);
+}
+
+.site-header-nav a.is-active {
+  box-shadow: inset 0 -2px 0 var(--accent-color);
+}
+
+.site-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 50px;
+  white-space: nowrap;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--contrast-color);
+  background: var(--warm-color);
+}
+
+.site-header-cta:hover {
+  color: var(--contrast-color);
+  background: var(--warm-color-dark);
+}
+
+/* Menu button: phones only. */
+.site-header-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  font-size: 26px;
+  color: var(--heading-color);
+  background: transparent;
+}
+
+.site-header-toggle:hover,
+.site-header-toggle:focus-visible {
+  background: color-mix(in srgb, var(--accent-color), transparent 88%);
+}
+
+@media (max-width: 767.98px) {
+  .site-header {
+    padding: 8px 0;
+  }
+
+  .site-header .container {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .site-header-brand img {
+    height: 28px;
+  }
+
+  .site-header-cta {
+    margin-left: auto;
+    padding: 6px 13px;
+    font-size: 14px;
+  }
+
+  .site-header-toggle {
+    display: inline-flex;
+  }
+
+  /* Collapsed by default; the menu button opens it as a full-width list. */
+  .site-header-nav {
+    display: none;
+    order: 3;
+    width: 100%;
+    margin: 0;
+    padding: 4px 0 6px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    font-size: 16px;
+  }
+
+  .site-header.is-open .site-header-nav {
+    display: flex;
+  }
+
+  .site-header-nav a {
+    padding: 12px 4px;
+    border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+  }
+
+  .site-header-nav a.is-active {
+    box-shadow: inset 3px 0 0 var(--accent-color);
+    padding-left: 12px;
+  }
+}
+
+/* ===================================================================
+   Home: hero, path cards, review teaser
+   =================================================================== */
+/* Soft band so the first screen reads as its own block, and the plain
+   white Upcoming section below starts clearly after it. */
+.hero {
+  padding: 56px 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-color), transparent 93%), color-mix(in srgb, var(--accent-color), transparent 96%));
+}
+
+.hero + section {
+  padding-top: 64px;
+}
+
+.hero-text {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.95;
+  color: var(--default-color);
+}
+
+.intro-cta-group.hero-cta-group {
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.hero-cta-group .intro-cta i.bi-arrow-down {
+  margin-left: 6px;
+}
+
+@media (max-width: 991.98px) {
+  .hero {
+    padding: 28px 0 32px;
+  }
+
+  .hero + section {
+    padding-top: 48px;
+  }
+
+  .hero-text {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+}
+
+.review-teaser {
+  padding-top: 0;
+}
+
+.review-teaser-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 40px;
+  border-radius: 20px;
+  color: var(--contrast-color);
+  /* Red-orange gradient like the logo red, toned down so it doesn't glare. */
+  background: linear-gradient(135deg, #C4492E, #DB6744 55%, #E8875C);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.review-teaser-card:hover {
+  color: var(--contrast-color);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(196, 73, 46, 0.25);
+}
+
+.review-teaser-eyebrow {
+  margin: 0 0 4px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+}
+
+.review-teaser h2 {
+  margin: 0 0 16px;
+  color: var(--contrast-color);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.review-teaser-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.review-teaser-stats strong {
+  display: block;
+  font-family: var(--heading-font);
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.review-teaser-more {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.review-teaser-more i {
+  margin-left: 6px;
+}
+
+@media (max-width: 575.98px) {
+  .review-teaser-card {
+    padding: 24px;
+  }
+}
+
+/* Category filter + community connection cards */
+.event-category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: -8px 0 24px;
+}
+
+/* Community connections are other people's events: same colour as our own
+   topics, lighter weight so they read as secondary. */
+.event-card-topic.is-community {
+  font-weight: 400;
+}
+
+.event-card-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event-card-roles li {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 50px;
+  font-size: 12px;
+  color: var(--heading-color);
+  border: 1px solid color-mix(in srgb, var(--heading-color), transparent 75%);
+}
+
+.event-card-roles i {
+  font-size: 12px;
+}
+
+.event-dialog-meta .event-card-roles {
+  display: inline-flex;
+}
+
+.event-dialog-talks,
+.event-dialog-mentions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event-dialog-talk + .event-dialog-talk {
+  margin-top: 16px;
+}
+
+.event-dialog-talk > strong {
+  display: block;
+  color: var(--heading-color);
+}
+
+.event-dialog-talk-meta {
+  margin: 2px 0 10px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.event-dialog-talk .event-card-actions {
+  margin-top: 10px;
+}
+
+.event-dialog-mentions li + li {
+  margin-top: 10px;
+}
+
+.event-dialog-mentions a {
+  font-weight: 500;
+}
+
+.event-dialog-mentions a i {
+  margin-left: 4px;
+  font-size: 12px;
+}
+
+.event-dialog-mentions span {
+  display: block;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+/* ===================================================================
+   Join page
+   =================================================================== */
+.join-note {
+  display: flex;
+  gap: 14px;
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: var(--surface-color);
+  border-left: 4px solid var(--warm-color);
+}
+
+.join-note > i {
+  font-size: 20px;
+  color: var(--warm-color);
+}
+
+.join-note p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.join-note p + p {
+  margin-top: 8px;
+}
+
+.join-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
+  margin-top: 28px;
+}
+
+.join-cta-row .support-cta i {
+  margin-right: 8px;
+}
+
+.join-cta-secondary {
+  font-weight: 600;
+  color: var(--warm-color-dark);
+}
+
+.join-cta-secondary:hover {
+  color: var(--warm-color);
+}
+
+.join-cta-secondary i {
+  margin-left: 4px;
+}
+
+.join-way {
+  height: 100%;
+  padding: 28px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent-color), transparent 94%);
+}
+
+.join-way > i {
+  font-size: 28px;
+  color: var(--accent-color);
+}
+
+.join-way h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.join-way-status {
+  padding: 2px 10px;
+  border-radius: 50px;
+  font-family: var(--default-font);
+  font-size: 12px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.join-way p {
+  margin: 0 0 16px;
+}
+
+.join-way-cta {
+  font-weight: 600;
+}
+
+.join-way-cta i {
+  margin-left: 6px;
+  font-size: 13px;
+}
+
+/* ===================================================================
+   Annual review page
+   =================================================================== */
+.section-soft {
+  background: color-mix(in srgb, var(--accent-color), transparent 95%);
+}
+
+.review-hero {
+  padding: 64px 0;
+}
+
+.review-code {
+  margin: 0 0 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 15px;
+  color: var(--warm-color);
+}
+
+.review-eyebrow {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--accent-color);
+}
+
+.review-title {
+  margin: 0 0 12px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.review-lead {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--heading-color);
+}
+
+.review-since {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+.review-hero p:not([class]) {
+  line-height: 1.9;
+}
+
+@media (max-width: 575.98px) {
+  .review-title {
+    font-size: 30px;
+  }
+}
+
+.review-figure {
+  margin: 0;
+}
+
+.review-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+.review-figure figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.review-figure figcaption b {
+  color: var(--heading-color);
+  margin-right: 4px;
+}
+
+.review-figure.is-screen img {
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.review-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.review-stats li {
+  padding: 24px 12px;
+  border-radius: 16px;
+  background: var(--surface-color);
+}
+
+.review-stats strong {
+  display: block;
+  font-family: var(--heading-font);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--warm-color);
+}
+
+.review-stats small {
+  font-size: 0.6em;
+}
+
+.review-stats span {
+  font-size: 14px;
+  color: var(--heading-color);
+}
+
+@media (max-width: 767.98px) {
+  .review-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-stats strong {
+    font-size: 36px;
+  }
+}
+
+.review-period {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.review-subtitle {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.review-places {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.review-places li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--warm-color), transparent 80%);
+}
+
+.review-places strong {
+  color: var(--heading-color);
+  font-size: 17px;
+}
+
+.review-places b {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  color: var(--warm-color);
+}
+
+.review-places span {
+  width: 100%;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+}
+
+.review-kind {
+  height: 100%;
+  padding: 24px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent-color), transparent 94%);
+}
+
+.review-kind h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.review-kind p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.review-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.review-timeline li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding: 10px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--default-color), transparent 85%);
+  font-size: 15px;
+}
+
+.review-timeline time {
+  width: 64px;
+  flex-shrink: 0;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.review-timeline span {
+  flex: 1 1 200px;
+  color: var(--heading-color);
+}
+
+.review-timeline em {
+  padding: 1px 8px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-style: normal;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  background: color-mix(in srgb, var(--default-color), transparent 94%);
+}
+
+.review-timeline em.is-cx {
+  color: var(--heading-color);
+  background: color-mix(in srgb, var(--heading-color), transparent 92%);
+}
+
+.review-rate {
+  padding: 28px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--warm-color), transparent 93%);
+}
+
+.review-rate-num {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--warm-color);
+}
+
+.review-rate-num small {
+  font-size: 0.5em;
+}
+
+.review-rate-label {
+  margin: 4px 0 8px;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.review-rate-split,
+.review-rate-period {
+  margin: 0;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.review-rate h4 {
+  margin: 20px 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.review-rate p:not([class]) {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.review-rate ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.review-voices {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.review-voices blockquote {
+  margin: 0 0 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--surface-color);
+  line-height: 1.8;
+}
+
+.review-voices cite {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-style: normal;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+.review-voices cite::before {
+  content: "— ";
+}
+
+.review-build-lead {
+  margin: -24px 0 32px;
+  text-align: center;
+}
+
+.review-tool {
+  height: 100%;
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+.review-tool-kind {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 2px 10px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+}
+
+.review-tool h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.review-tool h3 small {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.review-tool h4 {
+  margin: 16px 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.review-tool p,
+.review-tool ul:not(.review-stack) {
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.review-tool ul:not(.review-stack) {
+  padding-left: 18px;
+}
+
+.review-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.review-stack li {
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--heading-color);
+  background: color-mix(in srgb, var(--heading-color), transparent 93%);
+}
+
+.review-passport {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-passport .review-figure {
+  flex: 1;
+}
+
+.review-passport > i {
+  font-size: 22px;
+  color: var(--accent-color);
+}
+
+.review-thanks {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, var(--warm-color), transparent 80%);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.review-thanks strong {
+  margin-right: 12px;
+  color: var(--heading-color);
+}
+
+/* Home: compact "參與者這樣說" -- quotes only, three columns. */
+.review-voices.is-compact {
+  flex-direction: row;
+  gap: 0;
+}
+
+.review-voices.is-compact .review-subtitle {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.review-voices.is-compact blockquote {
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Home: event photos under the quotes. Same 4:3 frame for every photo so the
+   row lines up even though the originals have different shapes. */
+.voices-photos {
+  margin-top: 24px;
+}
+
+.voices-photos .review-figure img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Small hint line under a section title (e.g. what's inside past events). */
+.block-heading p.block-heading-note {
+  margin-top: 8px;
+  font-family: var(--default-font);
+  font-size: 15px;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.register-dialog .join-note {
+  padding: 16px 18px;
+  font-size: 14px;
+  background: color-mix(in srgb, var(--default-color), transparent 96%);
+}
+
+/* Link below the note: the FAQ, for everyone (not only the men's note). */
+.register-faq {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-faq a {
+  font-weight: 600;
+}
+
+.register-faq i {
+  margin-right: 6px;
+}
+
+@media (max-width: 575.98px) {
+  .register-dialog .event-dialog-body {
+    padding: 24px 18px;
+  }
+
+}
+
+
+/* Support: partner names (logos can replace these later). */
+.partner-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.partner-list li {
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: var(--heading-color);
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+}
+
+/* About: code of conduct. */
+.coc-card {
+  padding: 32px 36px;
+  border-radius: 16px;
+  background: var(--surface-color);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  line-height: 1.85;
+}
+
+.coc-card h3 {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.coc-card h3:not(:first-child) {
+  margin-top: 28px;
+}
+
+.coc-card p {
+  margin: 0 0 8px;
+}
+
+.coc-card ul {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+}
+
+.coc-card li + li {
+  margin-top: 6px;
+}
+
+@media (max-width: 575.98px) {
+  .coc-card {
+    padding: 24px 20px;
+  }
+}
+
+/* Register gate: agree-to-CoC line above the FAQ link. (The photo consent
+   lives on each KKTIX event page.) */
+.register-coc {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-coc + .register-faq {
+  margin-top: 6px;
+}
+
+/* Two-line nav: English (yearbook voice) on top, Chinese below. */
+.site-header-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.site-header-nav .nav-en {
+  font-size: 15px;
+}
+
+.site-header-nav .nav-zh {
+  margin-top: 2px;
+  font-family: var(--default-font);
+  font-size: 12px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.site-header-nav a:hover .nav-zh,
+.site-header-nav a.is-active .nav-zh {
+  color: inherit;
+}
+
+@media (max-width: 767.98px) {
+  /* Phone menu: one row per item, English then Chinese. */
+  .site-header-nav a {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .site-header-nav .nav-en {
+    font-size: 16px;
+  }
+
+  .site-header-nav .nav-zh {
+    margin-top: 0;
+    font-size: 14px;
+  }
+}
+
+/* About: our own logo leads the page (the image beside the intro is the
+   global PyLadies chapters, not us). */
+.about-brand {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.about-brand img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+}
+
+@media (max-width: 575.98px) {
+  .about-brand {
+    margin-bottom: 24px;
+  }
+
+  .about-brand img {
+    max-width: 300px;
+  }
+}
+
+/* Home: breathing room when the review card follows the soft quotes band. */
+.section-soft + .review-teaser {
+  padding-top: 56px;
+}
+
+/* ===================================================================
+   Projects page (社群作品): one section per project, alternating sides
+   =================================================================== */
+.projects-intro {
+  padding: 72px 0 56px;
+  text-align: center;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-color), transparent 93%), color-mix(in srgb, var(--accent-color), transparent 97%));
+}
+
+.projects-eyebrow {
+  margin: 0 0 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 15px;
+  color: var(--accent-color);
+}
+
+.projects-title {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+}
+
+.projects-lead {
+  max-width: 640px;
+  margin: 16px auto 0;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.projects-index {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.projects-index a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--heading-color);
+  background: var(--surface-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.projects-index a:hover {
+  color: var(--accent-color);
+}
+
+.projects-index span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--accent-color);
+}
+
+.project {
+  padding: 88px 0;
+}
+
+.project.is-alt {
+  background: color-mix(in srgb, var(--accent-color), transparent 95%);
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 24px 56px rgba(1, 41, 112, 0.14);
+}
+
+.project-media.is-passport {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.project-media.is-passport figure {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+}
+
+.project-media.is-passport figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.project-media.is-passport > i {
+  font-size: 26px;
+  color: var(--accent-color);
+}
+
+.project-no {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  color: color-mix(in srgb, var(--accent-color), transparent 70%);
+}
+
+.project-kind {
+  margin: 14px 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--accent-color);
+}
+
+.project-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.project-status {
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-family: var(--default-font);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--warm-color-dark);
+  background: color-mix(in srgb, var(--warm-color), transparent 88%);
+}
+
+.project-body h3 {
+  margin: 20px 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.project-body p {
+  line-height: 1.85;
+}
+
+.project-results {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-results li {
+  position: relative;
+  padding-left: 28px;
+  line-height: 1.8;
+}
+
+.project-results li + li {
+  margin-top: 6px;
+}
+
+.project-results li::before {
+  content: "\F26A"; /* bi-check-circle-fill */
+  position: absolute;
+  top: 1px;
+  left: 0;
+  font-family: "bootstrap-icons";
+  color: var(--accent-color);
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 24px 0 0;
+  padding: 18px 0 0;
+  list-style: none;
+  border-top: 1px dashed color-mix(in srgb, var(--heading-color), transparent 80%);
+}
+
+.project-stack li {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--heading-color);
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--heading-color), transparent 85%);
+}
+
+@media (max-width: 991.98px) {
+  .project {
+    padding: 56px 0;
+  }
+
+  .project-no {
+    font-size: 44px;
+  }
+
+  .project-name {
+    font-size: 26px;
+  }
+}
+
+/* Home hero: logo, then three photos in a row, then the intro centered. */
+.hero-brand {
+  margin-bottom: 28px;
+}
+
+.hero-brand img {
+  max-width: 360px;
+}
+
+.hero-photos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.hero-photos figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  aspect-ratio: 3 / 2;
+}
+
+.hero-photos img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero .hero-text {
+  max-width: 680px;
+  margin: 28px auto 0;
+  text-align: center;
+}
+
+.hero .hero-text + .hero-text {
+  margin-top: 12px;
+}
+
+@media (max-width: 575.98px) {
+  .hero-brand img {
+    max-width: 260px;
+  }
+
+  /* Phones: keep the three in one row (square thumbnails) so the
+     加入社群 button still fits on the first screen. */
+  .hero-photos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  /* Phones keep three photos so the CTA stays on the first screen. */
+  .hero-photos .hero-photo-extra {
+    display: none;
+  }
+
+  .hero-photos figure {
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+  }
+
+  .hero .hero-text {
+    text-align: left;
+  }
+}
+
+/* "我要報名" gate: the six steps as a stepper (dot + line), roomier than
+   boxes. Phones get the same thing vertically. */
+/* Two phases: steps 1–3 happen once (first time), 4–6 for every event. */
+.reg-flow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 4px 0 24px;
+}
+
+.reg-phase {
+  padding: 12px 6px 16px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--warm-color), transparent 95%);
+}
+
+.reg-phase.is-once {
+  background: transparent;
+  border: 1.5px dashed color-mix(in srgb, var(--warm-color), transparent 65%);
+}
+
+.reg-phase-label {
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--warm-color-dark);
+}
+
+.reg-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reg-steps li {
+  position: relative;
+  text-align: center;
+}
+
+.reg-steps li > a {
+  display: block;
+  color: inherit;
+}
+
+/* connector line from this dot to the next */
+.reg-steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: calc(50% + 30px);
+  right: calc(-50% + 30px);
+  height: 2px;
+  background: color-mix(in srgb, var(--warm-color), transparent 70%);
+}
+
+.reg-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--warm-color);
+  background: color-mix(in srgb, var(--warm-color), transparent 90%);
+}
+
+.reg-text {
+  display: block;
+  margin-top: 10px;
+  padding: 0 4px;
+}
+
+.reg-no {
+  display: block;
+  font-family: var(--heading-font);
+  font-size: 12px;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--warm-color), transparent 35%);
+}
+
+.reg-text strong {
+  font-family: var(--heading-font);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--heading-color);
+}
+
+.reg-text strong i {
+  margin-left: 4px;
+  font-size: 11px;
+}
+
+.reg-steps li.is-link .reg-dot {
+  color: var(--contrast-color);
+  background: linear-gradient(135deg, var(--warm-color), var(--warm-color-dark));
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--warm-color), transparent 65%);
+  transition: transform 0.2s;
+}
+
+.reg-steps li.is-link strong {
+  color: var(--warm-color-dark);
+}
+
+.reg-steps li.is-link a:hover .reg-dot {
+  transform: scale(1.08);
+}
+
+.reg-steps li.is-link a:hover strong {
+  text-decoration: underline;
+}
+
+@media (max-width: 575.98px) {
+  .reg-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .reg-phase {
+    padding: 12px 14px 14px;
+  }
+
+  .reg-phase-label {
+    text-align: left;
+  }
+
+  .reg-steps {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+  }
+
+  .reg-steps li,
+  .reg-steps li > a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+  }
+
+  .reg-steps li:not(:last-child)::after {
+    top: 44px;
+    bottom: -14px;
+    left: 19px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .reg-dot {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+  }
+
+  .reg-text {
+    margin: 0;
+    padding: 0;
+  }
+
+  .reg-no {
+    display: inline;
+    margin-right: 6px;
+  }
+}
+
+/* About: milestones timeline. */
+.milestone-year {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent-color);
+}
+
+.milestone-list + .milestone-year {
+  margin-top: 36px;
+}
+
+.milestone-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 4px;
+}
+
+.milestone-list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  padding: 0 0 18px 24px;
+  border-left: 2px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  line-height: 1.6;
+}
+
+.milestone-list li:last-child {
+  padding-bottom: 4px;
+}
+
+.milestone-list li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surface-color);
+  border: 2px solid var(--accent-color);
+}
+
+.milestone-list time {
+  font-weight: 700;
+  color: var(--heading-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.milestone-cta {
+  margin-top: 32px;
+  text-align: center;
+}
+
+@media (max-width: 575.98px) {
+  .milestone-list li {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-bottom: 14px;
+  }
+}
+
+/* Volunteer: recruitment closed state. */
+.volunteer-status {
+  display: inline-block;
+  margin: 4px 0 16px;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.volunteer-join-closed {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+  cursor: default;
+}
+
+/* Projects: related links under the stack tags. */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* Review: photo rows keep one height (4:3 crop). */
+.review-photo-row .review-figure img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Review: closing photo beside the thank-you lists. */
+.review-thanks.is-solo {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.review-thanks.is-solo p + p {
+  margin-top: 12px;
+}
+
+.review-together .review-thanks {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.review-together .review-thanks p + p {
+  margin-top: 16px;
+}
+
+.review-photo-row.is-wide .review-figure img {
+  aspect-ratio: 3 / 2;
+}
+
+/* Secondary (outlined) variant of the CTA button. */
+.support-cta.is-secondary {
+  color: var(--accent-color);
+  background: transparent;
+  border: 1.5px solid var(--accent-color);
+  box-shadow: none;
+}
+
+.support-cta.is-secondary:hover {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+}
+
+.volunteer-actions .support-cta.is-secondary:hover i {
+  transform: translateX(3px);
+}
+
+/* Projects: nested result lists. */
+.project-results ul {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-results ul li {
+  padding-left: 18px;
+}
+
+.project-results ul li::before {
+  content: "–";
+  font-family: inherit;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+}
+
+/* About: values -- photos beside value cards; each card is backed by
+   participant quotes or a "我們怎麼做" note. */
+.value-card {
+  margin: 0;
+  padding: 18px 0;
+  line-height: 1.8;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-color), transparent 82%);
+}
+
+.value-card:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.value-card h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.value-card h4 i {
+  font-size: 20px;
+  color: var(--accent-color);
+}
+
+.value-card p {
+  margin: 0;
+}
+
+.value-card .value-proof {
+  margin-top: 12px;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--default-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 88%);
+  border-radius: 8px;
+}
+
+.value-proof b {
+  margin-right: 6px;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.review-voices .value-quote {
+  margin: 12px 0 0;
+  padding: 4px 0 4px 14px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--heading-color);
+  background: none;
+  border-radius: 0;
+  border-left: 3px solid var(--accent-color);
+}
+
+.review-voices .value-quote + .value-quote {
+  margin-top: 10px;
+}
+
+.value-quote cite {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-style: normal;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+.value-quote cite::before {
+  content: "— ";
+}
+
+.value-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#values .review-subtitle {
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+#values .review-figure img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+#values .review-figure img[src*="volunteers.jpg"] {
+  object-position: 50% 35%;
+}
+
+#values #growth .value-photos img {
+  aspect-ratio: auto;
+  height: auto;
+}
+
+@media (min-width: 992px) {
+  #values .value-photos img {
+    width: 100%;
+    max-height: 250px;
+  }
+
+  #values .value-photos img[src*="volunteers.jpg"] {
+    max-height: 340px;
+  }
+
+  /* 成長與傳承: the two photos share the text column's height. */
+  #values #growth {
+    align-items: stretch !important;
+  }
+
+  #values #growth .value-photos figure {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  #values #growth .value-photos img {
+    flex: 1 1 0;
+    min-height: 0;
+    height: 0;
+    max-height: none;
+    object-fit: cover;
+  }
+}
+
+/* About: link to the logo game under the PyLadies world image. */
+.global-game-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+.global-game-link i {
+  transition: transform 0.2s;
+}
+
+.global-game-link:hover i {
+  transform: translateX(3px);
 }

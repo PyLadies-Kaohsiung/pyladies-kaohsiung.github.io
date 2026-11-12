@@ -28,16 +28,16 @@ GA_MEASUREMENT_ID = "G-NBDVQK5QPE"
 WEEKDAYS = ["一", "二", "三", "四", "五", "六", "日"]
 
 # Static pages and homepage sections, kept in the sitemap alongside generated event pages.
+# Bump when main.css / register-gate.js change so event pages skip stale caches.
+ASSET_VERSION = "20261113r"
+
 STATIC_SITEMAP_ENTRIES = [
     ("/", "weekly", "1.0"),
+    ("/about/", "monthly", "0.8"),
+    ("/projects/", "monthly", "0.7"),
+    ("/support/", "monthly", "0.7"),
     ("/volunteer/", "monthly", "0.8"),
-    ("/#about", "monthly", "0.8"),
-    ("/#values", "monthly", "0.6"),
-    ("/#growth", "monthly", "0.6"),
-    ("/#support", "monthly", "0.6"),
-    ("/#faq", "monthly", "0.7"),
-    ("/#upcoming", "weekly", "0.9"),
-    ("/#past", "monthly", "0.7"),
+    ("/recap/2026/", "yearly", "0.7"),
 ]
 
 RECAP_ICONS = {
@@ -295,9 +295,11 @@ def render_event_page(ev: dict) -> str:
     # not when it was built, so the links are marked and hidden client-side
     # once the event is over (mirrors the homepage behaviour).
     last_end = max(slot["datetime_end"] for slot in ev["datetimes"])
+    # data-register-gate: register-gate.js shows the sign-up steps first.
+    has_online = "1" if any(l.get("is_online") for l in ev["locations"]) else "0"
     register_actions = "".join(
         f'<a class="event-card-action is-primary" href="{e(url_)}" '
-        f'target="_blank" rel="noopener">'
+        f'target="_blank" rel="noopener" data-register-gate data-has-online="{has_online}">'
         f'<i class="bi bi-ticket-perforated"></i>我要報名</a>'
         for url_ in ev.get("register_links") or []
     )
@@ -371,7 +373,7 @@ def render_event_page(ev: dict) -> str:
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-  <link href="/assets/css/main.css" rel="stylesheet">
+  <link href="/assets/css/main.css?v={ASSET_VERSION}" rel="stylesheet">
 
   <script type="application/ld+json">
 {jsonld}
@@ -427,13 +429,16 @@ def render_event_page(ev: dict) -> str:
     <div class="container site-footer-bottom text-center mt-4">
       <div class="social-links">
         <a href="https://www.facebook.com/pyladies.kaohsiung" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/pyladies.kaohsiung/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.threads.com/@pyladies.kaohsiung" target="_blank" rel="noopener" aria-label="Threads"><i class="bi bi-threads"></i></a>
+        <a href="https://www.linkedin.com/company/pyladies-kaohsiung" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
         <a href="mailto:kaohsiung@pyladies.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
-        <a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&amp;id=93" target="_blank" rel="noopener" aria-label="支持我們"><i class="bi bi-heart-fill"></i></a>
       </div>
       <p>© <span>Copyright</span> <strong class="px-1 sitename">{SITE_NAME}</strong> <span>All Rights Reserved</span></p>
     </div>
   </footer>
 
+  <script src="/assets/js/register-gate.js?v={ASSET_VERSION}"></script>
   <script>
     // Show the registration links only while the event is still ahead.
     (function () {{

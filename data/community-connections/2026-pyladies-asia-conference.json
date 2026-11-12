@@ -1,0 +1,15 @@
+{
+  "slug": "2026-pyladies-asia-conference",
+  "title": "PyLadies Asia Conference 2026",
+  "organizer": "PyLadies Seoul",
+  "date_start": "2026-11-29",
+  "city": "首爾",
+  "url": "https://www.meetup.com/seoul-pyladies-meetup/events/317021466/",
+  "roles": ["talk"],
+  "talks": [
+    {
+      "title": "Beyond the Chatroom: How PyLadies Kaohsiung Built a Discord Bot for Community Operations",
+      "speaker": "MarsW"
+    }
+  ]
+}

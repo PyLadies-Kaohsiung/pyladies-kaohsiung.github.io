@@ -3,9 +3,9 @@
 # dependencies = ["pillow>=10"]
 # ///
 """
-Resize chapter logos for the logo game into game/logos/{id}.webp.
+Resize chapter logos for the logo game into game/pyladies/logos/{id}.webp.
 
-Source files are named after the chapter `name` in game/chapters.json
+Source files are named after the chapter `name` in game/pyladies/chapters.json
 (e.g. "Kaohsiung, Taiwan.png"), as downloaded from pyladies/pyladies.
 
 Usage:
@@ -21,7 +21,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
-GAME = ROOT / "game"
+GAME = ROOT / "game" / "pyladies"
 MAX_SIZE = 480
 QUALITY = 82
 
@@ -63,7 +63,7 @@ def main() -> None:
         convert(src, GAME / ch["logo"])
 
     total = sum(p.stat().st_size for p in (GAME / "logos").glob("*.webp"))
-    print(f"game/logos: {total / 1024 / 1024:.1f} MB")
+    print(f"game/pyladies/logos: {total / 1024 / 1024:.1f} MB")
     if missing:
         raise SystemExit("missing source logos:\n  " + "\n  ".join(missing))
 

@@ -6,6 +6,9 @@
 #     PORT=9000 ./scripts/serve.sh        # custom port
 #     PAGE=events.html ./scripts/serve.sh # open a specific page in the browser
 #
+# Responses are sent with no-cache headers, so a normal reload always shows
+# the latest HTML / CSS / JS -- no need to switch ports after an edit.
+#
 # Press Ctrl-C to stop. Re-running while another server holds the port
 # will exit with an "Address already in use" error -- kill the old one
 # first (lsof -i :PORT).
@@ -30,4 +33,4 @@ if command -v open >/dev/null 2>&1; then
   ( sleep 1 && open "$URL" ) &
 fi
 
-exec python3 -m http.server "$PORT" --bind "$HOST"
+exec python3 "$ROOT/scripts/dev_server.py" "$PORT" "$HOST"

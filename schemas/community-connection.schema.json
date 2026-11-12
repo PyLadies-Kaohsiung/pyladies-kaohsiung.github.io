@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pyladies-kaohsiung.github.io/schemas/community-connection.schema.json",
+  "title": "Community connection",
+  "description": "An event hosted by another community where PyLadies Kaohsiung took part (booth, talk, partner listing, publication). Not numbered: identified by slug, which must equal the filename.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "title",
+    "date_start",
+    "city",
+    "roles"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "maxLength": 60,
+      "description": "URL-friendly id, e.g. 2026-pycontw. Must equal filename (without .json)."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "organizer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who hosted the event."
+    },
+    "date_start": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "date_end": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Omit for one-day events."
+    },
+    "city": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City shown on the card, e.g. 高雄, 台北, 首爾."
+    },
+    "venue": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The event's official page."
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "booth",
+          "talk",
+          "partner",
+          "publication"
+        ]
+      },
+      "description": "How we took part: booth = 擺攤, talk = 講者, partner = 社群夥伴, publication = 刊物."
+    },
+    "talks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "speaker"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "speaker": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Speaker handle (must match data/speakers/{handle}.json)."
+          },
+          "datetime_start": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$"
+          },
+          "datetime_end": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$"
+          },
+          "language": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "The talk's page on the host's schedule."
+          },
+          "slides": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "recap_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "url"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "fb",
+              "slides",
+              "video",
+              "blog",
+              "other"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Our own posts about the event."
+    },
+    "mentions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "source",
+          "url"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "author": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Publishing community or site, e.g. PyLadies Seoul."
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}(-[0-9]{2})?$"
+          },
+          "lang": {
+            "type": "string",
+            "enum": [
+              "zh",
+              "en",
+              "ko",
+              "ja",
+              "other"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "description": "Articles or posts by others that mention us at this event."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "roles": {
+            "contains": {
+              "const": "talk"
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "talks"
+        ]
+      }
+    }
+  ]
+}

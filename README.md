@@ -33,10 +33,13 @@ PAGE=events.html ./scripts/serve.sh     # 預先開特定頁
 ```
 data/
 ├── events/{1,2,3,...}.json   一場活動一檔，檔名 = event_id（流水號）
+├── community-connections/{slug}.json
+│                              社群交流（其他社群的活動：擺攤、講者等），不編號，檔名 = slug
 ├── speakers/{handle}.json     一位講者一檔，檔名 = speaker handle（限英數、- 和 _）
 ├── topics.json                主題總表（人為維護）
 ├── locations.json             地點總表（人為維護）
 ├── events.json                自動產出，不要手動改
+├── community-connections.json 自動產出，不要手動改
 └── speakers.json              自動產出，不要手動改
 
 events/{en_abbr}/index.html    自動產出，不要手動改
@@ -84,16 +87,44 @@ uv run scripts/build.py
 
 ---
 
-## Logo 猜謎遊戲（`/game/`）
+## 共用文字（`data/site-copy.json`）
+
+好幾頁都會出現的同一段文字（例如社群介紹），只寫在 `data/site-copy.json` 一個地方，
+`build.py` 會把它填進頁面上標記好的位置：
+
+```html
+<!-- site-copy:intro class="hero-text" -->
+  ...這裡的內容每次 build 都會被覆蓋...
+<!-- /site-copy:intro -->
+```
+
+- 每個 key 是一個段落陣列（可以寫 HTML 連結），輸出成 `<p>`；`class="..."` 可省略。
+- 目前 `intro` 用在首頁第一屏和關於我們的 Who We Are。
+- 要改文字：改 JSON → `uv run scripts/build.py`。**不要直接改頁面**，`--check` 會失敗、
+  下次 build 也會被蓋掉。
+- 年度回顧（`recap/2026/`）要跟年刊一致，刻意不用共用文字。
+
+---
+
+## Logo 猜謎遊戲（`/game/pyladies/`）
 
 PyCon TW 攤位用的「Guess the PyLadies Chapter」，獨立於上面的 build 流程：
 
 ```
 game/
-├── index.html / game.css / game.js
-├── badges.js          徽章進度（存在 localStorage）
-├── chapters.json      題庫：英文 / 中文顯示名稱、國家、大洲、經緯度
-└── logos/{id}.webp    由 scripts/game_logos.py 產生，不要手動改
+├── index.html             轉址到 pyladies/（舊的攤位 QR code 指向 /game/）
+└── pyladies/
+    ├── index.html / game.css / game.js
+    ├── badges.js          徽章進度（存在 localStorage）
+    ├── chapters.json      題庫：英文 / 中文顯示名稱、國家、大洲、經緯度
+    ├── qr.svg             桌機版顯示的 QR code，指向 /game/pyladies/
+    └── logos/{id}.webp    由 scripts/game_logos.py 產生，不要手動改
+```
+
+重新產生 QR code（網址改了才需要）：
+
+```bash
+uv run --with segno python -c "import segno; segno.make('https://kaohsiung.pyladies.com/game/pyladies/', micro=False).save('game/pyladies/qr.svg', kind='svg', border=0, dark='#012970', xmldecl=False, omitsize=True, nl=False)"
 ```
 
 Logo 原圖取自 [pyladies/pyladies](https://github.com/pyladies/pyladies) 的
@@ -125,3 +156,21 @@ pre-commit install
 - 重建 `data/events.json`、`data/speakers.json`、`events/{en_abbr}/index.html` 與 `sitemap.xml`，並 stage 進這次 commit
 
 CI 也會在 PR 時跑 `uv run scripts/build.py --check` 把關。
+
+### 新增一筆社群交流
+
+社群交流是「我們去參加別人辦的活動」（擺攤、演講等），和主辦活動分開存放、**不編號**，
+所以不會影響主辦活動 `#1, #2, ...` 的流水號。首頁會和主辦活動排在同一條時間軸，
+以「社群交流」標籤顯示，可用類型篩選。
+
+1. 在 `data/community-connections/` 建一個新檔，檔名 = `slug`（如 `2026-pycontw.json`）
+2. 必填欄位：`slug`、`title`、`date_start`（`YYYY-MM-DD`）、`city`、`roles`
+3. `roles` 可複選：`booth`（擺攤）、`talk`（講者）、`partner`（社群夥伴）、`publication`（刊物）
+4. 有 `talk` 時必須填 `talks[]`，`talks[].speaker` 必須在 `data/speakers/` 內
+5. 其他社群寫到我們的文章放 `mentions[]`，會顯示在活動彈窗的「他們怎麼說」
+6. 跑 build：`uv run scripts/build.py`
+
+### 活動類型
+
+`data/topics.json` 每個主題都有 `category`，決定首頁篩選分到哪一類：
+`workshop`（Python 工作坊）、`talk`（技術與職涯經驗分享）、`community`（社群交流）。

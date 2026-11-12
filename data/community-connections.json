@@ -1,0 +1,135 @@
+[
+  {
+    "slug": "2026-pyladies-asia-conference",
+    "title": "PyLadies Asia Conference 2026",
+    "organizer": "PyLadies Seoul",
+    "date_start": "2026-11-29",
+    "city": "首爾",
+    "url": "https://www.meetup.com/seoul-pyladies-meetup/events/317021466/",
+    "roles": [
+      "talk"
+    ],
+    "talks": [
+      {
+        "title": "Beyond the Chatroom: How PyLadies Kaohsiung Built a Discord Bot for Community Operations",
+        "speaker": "MarsW",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ]
+  },
+  {
+    "slug": "2026-devfest-kaohsiung",
+    "title": "DevFest 2026 高雄場",
+    "organizer": "GDG Kaohsiung",
+    "date_start": "2026-11-14",
+    "city": "高雄",
+    "url": "https://gdgkh.cc/2026/",
+    "roles": [
+      "booth"
+    ]
+  },
+  {
+    "slug": "2026-mopcon",
+    "title": "MOPCON 2026",
+    "organizer": "MOPCON",
+    "date_start": "2026-10-31",
+    "city": "高雄",
+    "url": "https://mopcon.org/2026/",
+    "roles": [
+      "booth"
+    ]
+  },
+  {
+    "slug": "2026-pycontw",
+    "title": "PyCon TW 2026",
+    "organizer": "PyCon Taiwan",
+    "date_start": "2026-10-17",
+    "date_end": "2026-10-18",
+    "city": "台北",
+    "url": "https://tw.pycon.org/2026/",
+    "roles": [
+      "booth",
+      "talk"
+    ],
+    "talks": [
+      {
+        "title": "Discord 不只是聊天室：PyLadies Kaohsiung 的 Bot 實踐與社群實驗",
+        "speaker": "MarsW",
+        "datetime_start": "2026-10-18 10:50:00",
+        "datetime_end": "2026-10-18 11:35:00",
+        "language": "中文",
+        "url": "https://tw.pycon.org/2026/zh-hant/conference/talk/381",
+        "info": {
+          "name": "Mars Weng (MarsW)",
+          "intro": "在電商領域多年的資料工程師，目前專注於資料平台與後端系統開發。技術領域涵蓋 Data Pipeline（PySpark、Airflow、Web Crawling）、資料基礎架構設計（Data Infrastructure Design），也有帶領團隊的經驗。相信技術的價值不只在於解決問題，更在於幫助他人成長。除了開發工作之外，也長期投入技術教育與社群推廣，致力於降低學習門檻，讓更多人能夠透過程式設計解決實際問題。目前擔任 PyLadies Kaohsiung Organizer 與講師，負責 Python 入門工作坊設計與教學，並持續分享網路爬蟲、資料工程及資料相關技術知識，協助更多學習者建立實務能力。也曾擔任 PyLadies Taiwan Organizer、講師組組長與講師，參與社群經營、講師培育及工作坊設計。",
+          "social_links": {
+            "linkedin": "",
+            "email": ""
+          },
+          "photo": ""
+        }
+      }
+    ],
+    "mentions": [
+      {
+        "title": "PyCon Taiwan 2026 Recap",
+        "author": "Yeonwoo Choi",
+        "source": "pyladies.kr",
+        "date": "2026-11-09",
+        "lang": "en",
+        "url": "https://pyladies.kr/en/stories/20261109-pycon-tw-2026-recap-cyw/"
+      },
+      {
+        "title": "PyCon Taiwan 2026 Recap",
+        "author": "Jiho Park",
+        "source": "pyladies.kr",
+        "date": "2026-11-09",
+        "lang": "en",
+        "url": "https://pyladies.kr/en/stories/20261109-pycon-tw-2026-recap-pjh/"
+      },
+      {
+        "title": "타이베이에서 소개한 PyLadies Seoul의 참여와 기여",
+        "author": "Soojin Yoon",
+        "source": "pyladies.kr",
+        "date": "2026-11-10",
+        "lang": "ko",
+        "url": "https://pyladies.kr/en/stories/20261110-pycontw-2026-review-luna/"
+      },
+      {
+        "title": "We were delighted to have PyLadies Kaohsiung join us at PyCon TW 2026",
+        "author": "PyCon Taiwan",
+        "source": "LinkedIn",
+        "lang": "en",
+        "url": "https://www.linkedin.com/posts/we-were-delighted-to-have-pyladies-kaohsiung-ugcPost-7519061581222207489-Qkw0/"
+      }
+    ]
+  },
+  {
+    "slug": "2026-security-carnival",
+    "title": "資安社群嘉年華",
+    "date_start": "2026-10-03",
+    "city": "台南",
+    "url": "https://infosec-fiesta.vlab.tw/",
+    "roles": [
+      "booth"
+    ]
+  },
+  {
+    "slug": "2025-devfest-kaohsiung",
+    "title": "DevFest 高雄場 X 南臺灣技術社群大聚",
+    "date_start": "2025-11-22",
+    "date_end": "2025-11-23",
+    "city": "高雄",
+    "roles": [
+      "booth"
+    ]
+  }
+]

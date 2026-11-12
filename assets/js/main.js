@@ -8,6 +8,26 @@
     });
   });
 
+  // Phone menu: the button opens / closes the header nav.
+  const header = document.querySelector(".site-header");
+  const toggle = header && header.querySelector(".site-header-toggle");
+  if (toggle) {
+    const setOpen = (open) => {
+      header.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "關閉選單" : "開啟選單");
+      toggle.querySelector("i").className = open ? "bi bi-x-lg" : "bi bi-list";
+    };
+    toggle.addEventListener("click", () => setOpen(!header.classList.contains("is-open")));
+    // Close after picking a link (also covers same-page anchors like #upcoming).
+    header.querySelectorAll(".site-header-nav a").forEach((a) => {
+      a.addEventListener("click", () => setOpen(false));
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
+
   // Back-to-top button: appears after scrolling, smooth-scrolls to top on click.
   const backToTopBtn = document.querySelector(".back-to-top");
   if (backToTopBtn) {
