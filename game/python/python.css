@@ -182,6 +182,21 @@ mark {
   .progress .dot { width: 14px; height: 14px; }
 }
 
+/* Message shown after any answer (e.g. who can join PyLadies Kaohsiung events) */
+.note {
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-align: left;
+  background: var(--warm-soft);
+  border-left: 4px solid var(--py-gold);
+}
+
+.note p { margin: 0; }
+.note-head { font: 700 15px var(--heading-font); color: var(--navy); }
+.note-text { margin-top: 4px !important; font-size: 15px; line-height: 1.7; }
+.note-text strong { color: var(--navy); }
+
 /* Screenshot shown with the answer */
 .shot { margin: 12px 0 0; }
 .shot img {
