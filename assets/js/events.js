@@ -2,20 +2,51 @@
   "use strict";
 
   const EVENT_HASH_PREFIX = "#event-";
+  const CONNECTION_HASH_PREFIX = "#connection-";
+
+  // Homepage filter groups; topics carry one of these as topic.category.
+  const CATEGORIES = [
+    { id: "workshop", label: "Python 工作坊" },
+    { id: "talk", label: "技術與職涯經驗分享" },
+    { id: "community", label: "社群交流" },
+  ];
+  const ROLE_ICONS = {
+    booth: "bi-shop",
+    talk: "bi-mic",
+    partner: "bi-people",
+    publication: "bi-book",
+  };
+  const ROLE_LABELS = {
+    booth: "擺攤",
+    talk: "講者",
+    partner: "社群夥伴",
+    publication: "刊物",
+  };
+  const LANG_LABELS = { zh: "中文", en: "English", ko: "한국어", ja: "日本語" };
 
   const dialogEl = document.getElementById("event-dialog");
   const dialogBodyEl = document.getElementById("event-dialog-body");
   let allEvents = [];
-  let pastEvents = [];
+  let allConnections = [];
+  let pastItems = [];
   let currentYear = "all";
+  let currentCategory = "all";
   let currentSearch = "";
 
-  fetch("data/events.json")
-    .then((r) => {
+  function fetchJson(url) {
+    return fetch(url).then((r) => {
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
-    })
-    .then(init)
+    });
+  }
+
+  Promise.all([
+    fetchJson("data/events.json"),
+    // Community connections are optional: the hosted events still render if
+    // this file is missing or broken.
+    fetchJson("data/community-connections.json").catch(() => []),
+  ])
+    .then(([events, connections]) => init(events, connections))
     .catch((err) => {
       const target = document.getElementById("upcoming-list");
       if (target) {
@@ -26,29 +57,34 @@
       }
     });
 
-  function init(events) {
+  function init(events, connections) {
     allEvents = events;
+    allConnections = connections;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    const items = [
+      ...events.map((e) => ({ kind: "event", data: e })),
+      ...connections.map((c) => ({ kind: "connection", data: c })),
+    ];
     const upcoming = [];
     const past = [];
-    events.forEach((e) => {
-      const earliest = parseLocalDateTime(e.datetimes[0].datetime_start);
-      (earliest >= today ? upcoming : past).push(e);
+    items.forEach((it) => {
+      (itemStart(it) >= today ? upcoming : past).push(it);
     });
-    upcoming.sort((a, b) => firstStart(a) - firstStart(b));
-    past.sort((a, b) => firstStart(b) - firstStart(a));
-    pastEvents = past;
+    upcoming.sort((a, b) => itemStart(a) - itemStart(b));
+    past.sort((a, b) => itemStart(b) - itemStart(a));
+    pastItems = past;
 
     document.getElementById("upcoming-list").innerHTML = upcoming.length
-      ? upcoming.map(upcomingItem).join("")
+      ? upcoming.map((it) => cardFor(it, true)).join("")
       : `<li class="event-empty">目前沒有即將舉辦的活動，歡迎追蹤<a href='https://www.facebook.com/pyladies.kaohsiung' target='_blank'>粉絲專頁</a>獲得最新消息</li>`;
 
-    const years = Array.from(new Set(past.map(eventYear))).sort((a, b) => b - a);
+    const years = Array.from(new Set(past.map(itemYear))).sort((a, b) => b - a);
     if (years.length > 0) currentYear = String(years[0]);
 
     renderYearFilter();
+    renderCategoryFilter();
     renderPastList();
     bindDelegatedEvents();
     injectEventJsonLd(events);
@@ -164,6 +200,100 @@
     return parseLocalDateTime(e.datetimes[0].datetime_start).getFullYear();
   }
 
+  // --- Items: a hosted event or a community connection, side by side ---
+
+  function itemStart(it) {
+    return it.kind === "event"
+      ? firstStart(it.data)
+      : parseLocalDateTime(it.data.date_start).getTime();
+  }
+
+  function itemYear(it) {
+    return new Date(itemStart(it)).getFullYear();
+  }
+
+  function itemCategory(it) {
+    if (it.kind === "connection") return "community";
+    return (it.data.topic && it.data.topic.category) || "";
+  }
+
+  // The value carried by data-event-detail and the share hash.
+  function itemKey(it) {
+    return it.kind === "event"
+      ? String(it.data.event_id)
+      : "connection-" + it.data.slug;
+  }
+
+  function itemHash(it) {
+    return it.kind === "event"
+      ? EVENT_HASH_PREFIX + it.data.event_id
+      : CONNECTION_HASH_PREFIX + it.data.slug;
+  }
+
+  function findItem(key) {
+    key = String(key);
+    if (key.startsWith("connection-")) {
+      const slug = key.slice("connection-".length);
+      const c = allConnections.find((x) => x.slug === slug);
+      return c ? { kind: "connection", data: c } : null;
+    }
+    const e = allEvents.find((x) => String(x.event_id) === key);
+    return e ? { kind: "event", data: e } : null;
+  }
+
+  function cardFor(it, isUpcoming) {
+    if (it.kind === "connection") return connectionItem(it.data, isUpcoming);
+    return isUpcoming ? upcomingItem(it.data) : listItem(it.data);
+  }
+
+  function connectionItem(c, isUpcoming) {
+    const where = [c.city, c.venue].filter(Boolean).join("・");
+    const roles = roleTags(c.roles);
+    const talks = (c.talks || []).map((t) => t.title);
+    const actions =
+      isUpcoming && c.url
+        ? [actionLink(c.url, "bi-box-arrow-up-right", "活動官網")]
+        : [];
+    const key = "connection-" + c.slug;
+    return `
+      <li class="event-card event-card-list is-connection" data-year="${new Date(
+        parseLocalDateTime(c.date_start)
+      ).getFullYear()}"
+          data-event-detail="${escapeHtml(key)}"
+          tabindex="0" role="button"
+          aria-label="查看「${escapeHtml(c.title)}」詳細資訊">
+        <header class="event-card-header">
+          <span class="event-card-topic is-community">社群交流</span>
+          <ul class="event-card-roles">${roles}</ul>
+        </header>
+        <h3 class="event-card-title">${escapeHtml(c.title)}</h3>
+        <ul class="event-card-meta">
+          <li><i class="bi bi-calendar-event"></i><span>${escapeHtml(
+            formatDayRange(c.date_start, c.date_end)
+          )}</span></li>
+          <li><i class="bi bi-geo-alt"></i><span>${escapeHtml(where)}</span></li>
+          ${
+            talks.length
+              ? `<li><i class="bi bi-mic"></i><span>${escapeHtml(
+                  talks.join("、")
+                )}</span></li>`
+              : c.organizer
+              ? `<li><i class="bi bi-people"></i><span>${escapeHtml(
+                  c.organizer
+                )}</span></li>`
+              : ""
+          }
+        </ul>
+        ${
+          actions.length
+            ? `<div class="event-card-actions">${actions.join("")}</div>`
+            : ""
+        }
+        <i class="bi bi-chevron-right event-card-list-arrow" aria-hidden="true"></i>
+      </li>
+    `;
+  }
+
   function upcomingItem(e) {
     const dateStr = formatDateRange(e.datetimes);
     const locationStr = e.locations.map((l) => l.name).join("、");
@@ -176,7 +306,7 @@
       .join("");
 
     const actions = (e.register_links || []).map((url) =>
-      actionLink(url, "bi-ticket-perforated", "我要報名", "is-primary")
+      registerLink(url, e)
     );
 
     return `
@@ -249,11 +379,11 @@
   }
 
   function renderYearFilter() {
-    const years = Array.from(new Set(pastEvents.map(eventYear))).sort(
+    const years = Array.from(new Set(pastItems.map(itemYear))).sort(
       (a, b) => b - a
     );
     const filterEl = document.getElementById("past-year-filter");
-    if (!pastEvents.length) {
+    if (!pastItems.length) {
       filterEl.innerHTML = "";
       return;
     }
@@ -266,43 +396,78 @@
     filterEl.innerHTML = buttons.join("");
   }
 
-  function filterButton(value, label, active) {
+  function filterButton(value, label, active, attr = "year") {
     return `<button type="button" class="event-year-btn${
       active ? " is-active" : ""
-    }" role="tab" aria-selected="${active}" data-year="${escapeHtml(
+    }" role="tab" aria-selected="${active}" data-${attr}="${escapeHtml(
       value
     )}">${escapeHtml(label)}</button>`;
   }
 
+  function renderCategoryFilter() {
+    const filterEl = document.getElementById("past-category-filter");
+    if (!filterEl) return;
+    if (!pastItems.length) {
+      filterEl.innerHTML = "";
+      return;
+    }
+    const present = new Set(pastItems.map(itemCategory));
+    filterEl.innerHTML = [
+      filterButton("all", "全部類型", currentCategory === "all", "category"),
+      // Everything we organised ourselves, i.e. not a community connection.
+      ...(pastItems.some((it) => it.kind === "event")
+        ? [filterButton("hosted", "主辦活動", currentCategory === "hosted", "category")]
+        : []),
+      ...CATEGORIES.filter((c) => present.has(c.id)).map((c) =>
+        filterButton(c.id, c.label, currentCategory === c.id, "category")
+      ),
+    ].join("");
+  }
+
   function renderPastList() {
     const pastListEl = document.getElementById("past-list");
-    const filtered = pastEvents.filter(
-      (e) => matchesYear(e) && matchesSearch(e)
+    const filtered = pastItems.filter(
+      (it) => matchesYear(it) && matchesCategory(it) && matchesSearch(it)
     );
     if (!filtered.length) {
-      const msg = !pastEvents.length
+      const msg = !pastItems.length
         ? "尚無過往活動紀錄"
         : currentSearch
         ? `沒有符合「${currentSearch}」的活動`
+        : currentCategory !== "all"
+        ? "這個類型在本年度沒有活動紀錄"
         : "本年度沒有活動紀錄";
       pastListEl.innerHTML = `<li class="event-empty">${escapeHtml(msg)}</li>`;
       return;
     }
-    pastListEl.innerHTML = filtered.map(listItem).join("");
+    pastListEl.innerHTML = filtered.map((it) => cardFor(it, false)).join("");
   }
 
-  function matchesYear(e) {
-    return currentYear === "all" || String(eventYear(e)) === currentYear;
+  function matchesYear(it) {
+    return currentYear === "all" || String(itemYear(it)) === currentYear;
   }
 
-  function matchesSearch(e) {
+  function matchesCategory(it) {
+    if (currentCategory === "hosted") return it.kind === "event";
+    return currentCategory === "all" || itemCategory(it) === currentCategory;
+  }
+
+  function matchesSearch(it) {
     if (!currentSearch) return true;
     const q = currentSearch.toLowerCase();
-    if (e.title.toLowerCase().includes(q)) return true;
-    if ((e.topic.name || "").toLowerCase().includes(q)) return true;
-    return e.speakers.some((s) =>
-      (s.info.name || "").toLowerCase().includes(q)
-    );
+    const has = (s) => String(s || "").toLowerCase().includes(q);
+    if (it.kind === "connection") {
+      const c = it.data;
+      return (
+        [c.title, c.organizer, c.city, c.venue, "社群交流"].some(has) ||
+        c.roles.some((r) => has(ROLE_LABELS[r])) ||
+        (c.talks || []).some((t) => has(t.title) || has(t.info && t.info.name))
+      );
+    }
+    const e = it.data;
+    if (has(e.title)) return true;
+    if (has(e.topic.name)) return true;
+    return e.speakers.some((s) => has(s.info.name));
   }
 
   function bindDelegatedEvents() {
@@ -316,6 +481,17 @@
         renderPastList();
       });
 
+    const categoryEl = document.getElementById("past-category-filter");
+    if (categoryEl) {
+      categoryEl.addEventListener("click", (ev) => {
+        const btn = ev.target.closest("[data-category]");
+        if (!btn) return;
+        currentCategory = btn.dataset.category;
+        renderCategoryFilter();
+        renderPastList();
+      });
+    }
+
     const searchEl = document.getElementById("past-search");
     if (searchEl) {
       searchEl.addEventListener("input", (ev) => {
@@ -325,6 +501,8 @@
     }
 
     document.body.addEventListener("click", (ev) => {
+      // "我要報名" is handled by assets/js/register-gate.js.
+      if (ev.target.closest("[data-register-gate]")) return;
       const trigger = ev.target.closest("[data-event-detail]");
       if (trigger) {
         const inner = ev.target.closest("a, button");
@@ -351,7 +529,9 @@
     // Esc dismisses a modal dialog natively; catch it so the hash is cleared
     // too. Paired with the "close" listener below for engines that do fire it.
     document.addEventListener("keydown", (ev) => {
-      if (ev.key === "Escape" && dialogEl.open) closeDialog();
+      if (ev.key !== "Escape") return;
+      if (document.querySelector(".register-dialog[open]")) return; // native Esc closes the gate only
+      if (dialogEl.open) closeDialog();
     });
     dialogEl.addEventListener("close", onDialogClosed);
 
@@ -375,16 +555,17 @@
     return "/events/" + e.en_abbr + "/";
   }
 
-  function openDialog(eventId, options) {
-    const e = allEvents.find((x) => String(x.event_id) === String(eventId));
-    if (!e) return;
+  function openDialog(key, options) {
+    const it = findItem(key);
+    if (!it) return;
     const pushHash = !options || options.pushHash !== false;
 
-    dialogBodyEl.innerHTML = dialogContent(e);
-    dialogEl.dataset.eventId = String(e.event_id);
+    dialogBodyEl.innerHTML =
+      it.kind === "event" ? dialogContent(it.data) : connectionDialog(it.data);
+    dialogEl.dataset.eventId = itemKey(it);
 
     if (pushHash) {
-      const hash = EVENT_HASH_PREFIX + e.event_id;
+      const hash = itemHash(it);
       if (window.location.hash !== hash) {
         history.pushState(null, "", hash);
       }
@@ -424,11 +605,15 @@
   }
 
   // Share the event's own page, not the #event-N hash: only a real URL gets a
-  // proper preview card on Facebook / LINE / Threads.
-  function eventLinkFor(eventId) {
-    const e = allEvents.find((x) => String(x.event_id) === String(eventId));
-    if (!e) return window.location.href;
-    return window.location.origin + eventPagePath(e);
+  // proper preview card on Facebook / LINE / Threads. Community connections
+  // have no page of their own yet, so they share the homepage hash.
+  function eventLinkFor(key) {
+    const it = findItem(key);
+    if (!it) return window.location.href;
+    if (it.kind === "connection") {
+      return window.location.origin + window.location.pathname + itemHash(it);
+    }
+    return window.location.origin + eventPagePath(it.data);
   }
 
   function copyEventLink(btn) {
@@ -475,9 +660,13 @@
     return ok;
   }
 
+  // Returns the item key (see itemKey) the hash points at, or null.
   function eventIdFromHash() {
-    const m = /^#event-([1-9][0-9]*)$/.exec(window.location.hash);
-    return m ? m[1] : null;
+    const hash = window.location.hash;
+    let m = /^#event-([1-9][0-9]*)$/.exec(hash);
+    if (m) return m[1];
+    m = /^#connection-([a-z0-9-]+)$/.exec(hash);
+    return m ? "connection-" + m[1] : null;
   }
 
   // Single source of truth: whatever the hash says, the dialog follows.
@@ -489,7 +678,7 @@
     }
     // Mistyped or retired id: fall back to the plain page instead of leaving
     // whatever was on screen behind an address that no longer describes it.
-    if (!allEvents.some((x) => String(x.event_id) === eventId)) {
+    if (!findItem(eventId)) {
       if (dialogEl.open) closeDialog();
       else onDialogClosed();
       return;
@@ -502,21 +691,24 @@
   // A shared link may point at an event the current filters hide, so widen
   // them until its card is on the page, then bring it into view.
   function revealEventCard(eventId) {
-    const e = allEvents.find((x) => String(x.event_id) === String(eventId));
-    if (!e) return;
+    const it = findItem(eventId);
+    if (!it) return;
 
-    const isPast = pastEvents.some(
-      (p) => String(p.event_id) === String(eventId)
-    );
+    const isPast = pastItems.some((p) => itemKey(p) === itemKey(it));
     if (isPast) {
       let needsRerender = false;
-      if (currentSearch && !matchesSearch(e)) {
+      if (currentSearch && !matchesSearch(it)) {
         currentSearch = "";
         const searchEl = document.getElementById("past-search");
         if (searchEl) searchEl.value = "";
         needsRerender = true;
       }
-      const year = String(eventYear(e));
+      if (!matchesCategory(it)) {
+        currentCategory = "all";
+        renderCategoryFilter();
+        needsRerender = true;
+      }
+      const year = String(itemYear(it));
       if (currentYear !== "all" && currentYear !== year) {
         currentYear = year;
         renderYearFilter();
@@ -574,7 +766,7 @@
     if (isUpcoming) {
       (e.register_links || []).forEach((url) => {
         actions.push(
-          actionLink(url, "bi-ticket-perforated", "我要報名", "is-primary")
+          registerLink(url, e)
         );
       });
     }
@@ -635,6 +827,121 @@
     `;
   }
 
+  // How we took part (擺攤 / 講者 ...): outlined with an icon so it never
+  // reads like the grey target-audience tags on hosted events.
+  function roleTags(roles) {
+    return roles
+      .map(
+        (r) =>
+          `<li><i class="bi ${ROLE_ICONS[r] || "bi-dot"}"></i>${escapeHtml(
+            ROLE_LABELS[r] || r
+          )}</li>`
+      )
+      .join("");
+  }
+
+  function connectionDialog(c) {
+    const where = [c.city, c.venue].filter(Boolean).join("・");
+    const roles = roleTags(c.roles);
+
+    const talkItems = (c.talks || [])
+      .map((t) => {
+        const when =
+          t.datetime_start && t.datetime_end
+            ? formatDateRange([
+                { datetime_start: t.datetime_start, datetime_end: t.datetime_end },
+              ])
+            : "";
+        const meta = [when, t.language].filter(Boolean).join("・");
+        const links = [
+          t.url ? actionLink(t.url, "bi-easel", "議程頁面") : "",
+          t.slides ? actionLink(t.slides, "bi-file-earmark-slides", "講義") : "",
+        ].join("");
+        return `
+          <li class="event-dialog-talk">
+            <strong>${escapeHtml(t.title)}</strong>
+            ${meta ? `<p class="event-dialog-talk-meta">${escapeHtml(meta)}</p>` : ""}
+            <ul class="event-dialog-speakers">${speakerBlock(t)}</ul>
+            ${links ? `<div class="event-card-actions">${links}</div>` : ""}
+          </li>`;
+      })
+      .join("");
+
+    const mentionItems = (c.mentions || [])
+      .map((m) => {
+        const meta = [
+          m.author,
+          m.source,
+          m.date ? m.date.replace(/-/g, "/") : "",
+          LANG_LABELS[m.lang] || "",
+        ]
+          .filter(Boolean)
+          .join("・");
+        return `<li><a href="${escapeHtml(
+          m.url
+        )}" target="_blank" rel="noopener">${escapeHtml(
+          m.title
+        )}<i class="bi bi-box-arrow-up-right"></i></a><span>${escapeHtml(
+          meta
+        )}</span></li>`;
+      })
+      .join("");
+
+    const actions = [];
+    if (c.url) actions.push(actionLink(c.url, "bi-box-arrow-up-right", "活動官網"));
+    (c.recap_links || []).forEach((rl) => {
+      actions.push(actionLink(rl.url, recapIcon(rl.type), recapLabel(rl)));
+    });
+    actions.push(
+      `<button type="button" class="event-card-action" data-event-share="${escapeHtml(
+        "connection-" + c.slug
+      )}"><i class="bi bi-link-45deg"></i>複製連結</button>`
+    );
+
+    return `
+      <header class="event-dialog-header">
+        <div class="event-dialog-meta">
+          <span class="event-card-topic is-community">社群交流</span>
+          <ul class="event-card-roles">${roles}</ul>
+        </div>
+        <h3 class="event-dialog-title" id="event-dialog-title">${escapeHtml(
+          c.title
+        )}</h3>
+      </header>
+
+      <dl class="event-dialog-info">
+        <dt><i class="bi bi-calendar-event"></i>時間</dt>
+        <dd>${escapeHtml(formatDayRange(c.date_start, c.date_end))}</dd>
+
+        <dt><i class="bi bi-geo-alt"></i>地點</dt>
+        <dd>${escapeHtml(where)}</dd>
+
+        ${
+          c.organizer
+            ? `<dt><i class="bi bi-people"></i>主辦</dt>
+               <dd>${escapeHtml(c.organizer)}</dd>`
+            : ""
+        }
+
+        ${
+          talkItems
+            ? `<dt><i class="bi bi-mic"></i>演講</dt>
+               <dd><ul class="event-dialog-talks">${talkItems}</ul></dd>`
+            : ""
+        }
+
+        ${
+          mentionItems
+            ? `<dt><i class="bi bi-chat-quote"></i>他們怎麼說</dt>
+               <dd><ul class="event-dialog-mentions">${mentionItems}</ul></dd>`
+            : ""
+        }
+      </dl>
+
+      <div class="event-card-actions event-dialog-actions">${actions.join("")}</div>
+    `;
+  }
+
   function speakerBlock(s) {
     const name = s.info.name || "";
     const intro = s.info.intro || "";
@@ -684,6 +991,15 @@
         </div>
       </li>
     `;
+  }
+
+  function registerLink(url, e) {
+    // Men can join online sessions only, so the gate's note depends on whether
+    // this event has an online location.
+    const hasOnline = (e.locations || []).some((l) => l.is_online);
+    return `<a class="event-card-action is-primary" href="${escapeHtml(
+      url
+    )}" target="_blank" rel="noopener" data-register-gate data-has-online="${hasOnline ? "1" : "0"}"><i class="bi bi-ticket-perforated"></i>我要報名</a>`;
   }
 
   function actionLink(href, icon, label, cls = "") {
@@ -761,6 +1077,19 @@
     return `${fmtDate(first)} ${fmtTime(first)} – ${fmtDate(last)} ${fmtTime(
       last
     )}`;
+  }
+
+  // For date-only items (community connections): "2026/10/17 (週六) – 10/18 (週日)".
+  function formatDayRange(start, end) {
+    const wd = ["日", "一", "二", "三", "四", "五", "六"];
+    const s = parseLocalDateTime(start);
+    const fmt = (d, withYear) =>
+      `${withYear ? d.getFullYear() + "/" : ""}${pad(d.getMonth() + 1)}/${pad(
+        d.getDate()
+      )} (週${wd[d.getDay()]})`;
+    if (!end || end === start) return fmt(s, true);
+    const e = parseLocalDateTime(end);
+    return `${fmt(s, true)} – ${fmt(e, e.getFullYear() !== s.getFullYear())}`;
   }
 
   function pad(n) {

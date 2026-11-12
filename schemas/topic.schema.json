@@ -7,7 +7,7 @@
   "items": {
     "type": "object",
     "additionalProperties": false,
-    "required": ["id", "name"],
+    "required": ["id", "name", "category"],
     "properties": {
       "id": {
         "type": "string",
@@ -15,7 +15,12 @@
         "description": "Stable lowercase-hyphen id, referenced by event.topic_id."
       },
       "name": { "type": "string", "minLength": 1 },
-      "description": { "type": "string" }
+      "description": { "type": "string" },
+      "category": {
+        "type": "string",
+        "enum": ["workshop", "talk", "community"],
+        "description": "Homepage filter group: workshop = Python 工作坊, talk = 技術與職涯經驗分享, community = 社群交流."
+      }
     }
   }
 }

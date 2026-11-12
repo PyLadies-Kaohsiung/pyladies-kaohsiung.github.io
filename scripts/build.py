@@ -20,6 +20,12 @@ Layered validation:
         - speakers[].speaker refers to a known speaker file
         - recap_links[].speaker refers to a known speaker
         - speakers[].timeslot exists in datetimes[]
+        - community connections: slug matches filename, talks[].speaker
+          refers to a known speaker, date_end is not before date_start
+
+Shared page copy (data/site-copy.json) is also written into every page that
+marks it with <!-- site-copy:KEY --> ... <!-- /site-copy:KEY -->; --check
+fails if a page's copy was edited by hand instead. See scripts/site_copy.py.
 """
 
 from __future__ import annotations
@@ -33,6 +39,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from render_pages import build_pages  # noqa: E402
+from site_copy import build_site_copy  # noqa: E402
 
 try:
     from jsonschema import Draft202012Validator
@@ -54,9 +61,11 @@ EVENTS_DIR = DATA / "events"
 SPEAKERS_DIR = DATA / "speakers"
 TOPICS_FILE = DATA / "topics.json"
 LOCATIONS_FILE = DATA / "locations.json"
+CONNECTIONS_DIR = DATA / "community-connections"
 
 OUT_EVENTS = DATA / "events.json"
 OUT_SPEAKERS = DATA / "speakers.json"
+OUT_CONNECTIONS = DATA / "community-connections.json"
 
 # Generated per-event pages live here; the whole directory is owned by this
 # script, so anything in it that no event claims gets removed.
@@ -120,6 +129,7 @@ def main() -> int:
     speaker_v = load_schema("speaker.schema.json")
     topic_v = load_schema("topic.schema.json")
     location_v = load_schema("location.schema.json")
+    connection_v = load_schema("community-connection.schema.json")
 
     # Load + validate master tables
     topics = load_json(TOPICS_FILE)
@@ -220,14 +230,41 @@ def main() -> int:
 
         events.append(doc)
 
+    # Load + validate community connections (events hosted by others)
+    connections: list[dict] = []
+    for path in sorted(CONNECTIONS_DIR.glob("*.json")):
+        where = f"community-connections/{path.name}"
+        doc = load_json(path)
+        if not validate_with_schema(errors, where, connection_v, doc):
+            continue
+        if doc["slug"] != path.stem:
+            errors.add(where, f"slug '{doc['slug']}' must equal filename '{path.stem}'")
+        if doc.get("date_end") and doc["date_end"] < doc["date_start"]:
+            errors.add(where, "date_end must not be before date_start")
+        for talk in doc.get("talks", []):
+            if talk["speaker"] not in speakers:
+                errors.add(
+                    where,
+                    f"talks[].speaker '{talk['speaker']}' not found in data/speakers/",
+                )
+        connections.append(doc)
+
     errors.raise_if_any()
 
     # Build denormalized output
     aggregates = build_aggregates(events, speakers, topics, locations)
+    aggregates[OUT_CONNECTIONS] = build_connections(connections, speakers)
 
     # Static pages are rendered from the enriched events, so a page can never
     # drift from data/events.json.
     pages = {ROOT / rel: text for rel, text in build_pages(aggregates[OUT_EVENTS]).items()}
+
+    # Shared copy (e.g. the intro) is written into hand-written pages too.
+    copy_pages, copy_errors = build_site_copy()
+    for e in copy_errors:
+        errors.add("site-copy", e)
+    errors.raise_if_any()
+    pages.update(copy_pages)
     stale = stale_page_dirs(aggregates[OUT_EVENTS])
 
     if args.check:
@@ -245,7 +282,9 @@ def main() -> int:
             sys.stderr.write(
                 "\nGenerated files are out of date. Run:\n"
                 "    uv run scripts/build.py\n"
-                "and commit the result. Out-of-date files:\n"
+                "and commit the result. (Shared copy between <!-- site-copy -->\n"
+                "markers is overwritten from data/site-copy.json; edit it there.)\n"
+                "Out-of-date files:\n"
             )
             for d in diffs:
                 sys.stderr.write(f"  - {d}\n")
@@ -267,7 +306,8 @@ def main() -> int:
         print(f"wrote {path.relative_to(ROOT)}")
 
     print(
-        f"OK: {len(events)} event(s), {len(speakers)} speaker(s), "
+        f"OK: {len(events)} event(s), {len(connections)} community connection(s), "
+        f"{len(speakers)} speaker(s), "
         f"{len(topics)} topic(s), {len(locations)} location(s), "
         f"{len(pages)} generated page(s)."
     )
@@ -324,6 +364,20 @@ def build_aggregates(events, speakers, topics, locations):
         OUT_EVENTS: enriched_events,
         OUT_SPEAKERS: enriched_speakers,
     }
+
+
+def build_connections(connections, speakers):
+    """Attach speaker info to talks; newest first, like data/events.json."""
+    out = []
+    for c in connections:
+        enriched = {**c}
+        if "talks" in c:
+            enriched["talks"] = [
+                {**t, "info": speakers[t["speaker"]]} for t in c["talks"]
+            ]
+        out.append(enriched)
+    out.sort(key=lambda c: c["date_start"], reverse=True)
+    return out
 
 
 def write_json(path: Path, data) -> None:

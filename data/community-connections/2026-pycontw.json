@@ -1,0 +1,53 @@
+{
+  "slug": "2026-pycontw",
+  "title": "PyCon TW 2026",
+  "organizer": "PyCon Taiwan",
+  "date_start": "2026-10-17",
+  "date_end": "2026-10-18",
+  "city": "台北",
+  "url": "https://tw.pycon.org/2026/",
+  "roles": ["booth", "talk"],
+  "talks": [
+    {
+      "title": "Discord 不只是聊天室：PyLadies Kaohsiung 的 Bot 實踐與社群實驗",
+      "speaker": "MarsW",
+      "datetime_start": "2026-10-18 10:50:00",
+      "datetime_end": "2026-10-18 11:35:00",
+      "language": "中文",
+      "url": "https://tw.pycon.org/2026/zh-hant/conference/talk/381"
+    }
+  ],
+  "mentions": [
+    {
+      "title": "PyCon Taiwan 2026 Recap",
+      "author": "Yeonwoo Choi",
+      "source": "pyladies.kr",
+      "date": "2026-11-09",
+      "lang": "en",
+      "url": "https://pyladies.kr/en/stories/20261109-pycon-tw-2026-recap-cyw/"
+    },
+    {
+      "title": "PyCon Taiwan 2026 Recap",
+      "author": "Jiho Park",
+      "source": "pyladies.kr",
+      "date": "2026-11-09",
+      "lang": "en",
+      "url": "https://pyladies.kr/en/stories/20261109-pycon-tw-2026-recap-pjh/"
+    },
+    {
+      "title": "타이베이에서 소개한 PyLadies Seoul의 참여와 기여",
+      "author": "Soojin Yoon",
+      "source": "pyladies.kr",
+      "date": "2026-11-10",
+      "lang": "ko",
+      "url": "https://pyladies.kr/en/stories/20261110-pycontw-2026-review-luna/"
+    },
+    {
+      "title": "We were delighted to have PyLadies Kaohsiung join us at PyCon TW 2026",
+      "author": "PyCon Taiwan",
+      "source": "LinkedIn",
+      "lang": "en",
+      "url": "https://www.linkedin.com/posts/we-were-delighted-to-have-pyladies-kaohsiung-ugcPost-7519061581222207489-Qkw0/"
+    }
+  ]
+}

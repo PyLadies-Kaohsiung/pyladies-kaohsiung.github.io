@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBDVQK5QPE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NBDVQK5QPE');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>社群作品｜PyLadies Kaohsiung 高雄</title>
+  <meta name="description" content="PyLadies Kaohsiung 以免伺服器費用、精簡化架構為原則，自己開發社群工具：Discord Bot、高雄社群護照。">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://kaohsiung.pyladies.com/projects/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PyLadies Kaohsiung">
+  <meta property="og:title" content="社群作品｜PyLadies Kaohsiung 高雄">
+  <meta property="og:description" content="技術社群，也自己開發工具：Discord Bot、高雄社群護照。">
+  <meta property="og:url" content="https://kaohsiung.pyladies.com/projects/">
+  <meta property="og:image" content="https://kaohsiung.pyladies.com/assets/img/logo_horizontal.png">
+  <meta property="og:image:alt" content="PyLadies Kaohsiung Logo">
+  <meta property="og:locale" content="zh_TW">
+
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Nunito:wght@300;400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="../assets/css/main.css?v=20261113r" rel="stylesheet">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-header-brand" href="../" aria-label="回到 PyLadies Kaohsiung 首頁">
+        <img src="../assets/img/logo_horizontal.png" alt="PyLadies Kaohsiung 高雄">
+      </a>
+      <nav class="site-header-nav" id="site-header-nav" aria-label="主選單">
+        <a href="../about/"><span class="nav-en">Who we are</span><span class="nav-zh">關於我們</span></a>
+        <a href="../#upcoming"><span class="nav-en">We Share</span><span class="nav-zh">活動</span></a>
+        <a href="../projects/" class="is-active" aria-current="page"><span class="nav-en">We Build</span><span class="nav-zh">社群作品</span></a>
+        <a href="../support/"><span class="nav-en">Support Us</span><span class="nav-zh">支持我們</span></a>
+      </nav>
+      <a href="https://discord.gg/8Xp9vJh4Bb" class="site-header-cta" target="_blank" rel="noopener"><i class="bi bi-people-fill"></i>加入社群</a>
+      <button type="button" class="site-header-toggle" aria-controls="site-header-nav" aria-expanded="false" aria-label="開啟選單"><i class="bi bi-list"></i></button>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="visually-hidden">社群作品</h1>
+
+    <section class="projects-intro">
+      <div class="container" data-aos="fade-up">
+        <p class="projects-eyebrow"># we build</p>
+        <h2 class="projects-title">技術社群，也自己開發工具</h2>
+        <p class="projects-lead">以<strong>免伺服器費用、精簡化架構</strong>為原則，讓社群可以長期、低成本地運作。</p>
+        <nav class="projects-index" aria-label="作品列表">
+          <a href="#discord-bot"><span>01</span>Discord Bot</a>
+          <a href="#community-passport"><span>02</span>高雄社群護照</a>
+          <a href="#booth-games"><span>03</span>攤位互動遊戲</a>
+        </nav>
+      </div>
+    </section>
+
+    <section id="discord-bot" class="project">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7" data-aos="fade-up">
+            <div class="project-media">
+              <img src="../assets/img/recap/2026/review1-channel.png" alt="Discord 審核頻道畫面" loading="lazy">
+            </div>
+          </div>
+          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="50">
+            <div class="project-body">
+              <p class="project-no">01</p>
+              <p class="project-kind">PyLadies Kaohsiung 自用</p>
+              <h2 class="project-name">Discord Bot</h2>
+              <h3>為什麼要做</h3>
+              <p>審核制在 KKTIX＋Google Meet 上很難執行：審核結果不會通知報名者、志工要人工比對簽到名單放行線上活動參與。</p>
+              <h3>成果</h3>
+              <ul class="project-results">
+                <li><strong>收斂至單一平台：</strong>報名、審核、簽到、線上活動都在 Discord 完成。</li>
+                <li><strong>自動化審核：</strong>自動檢查、自定義範本與即時通知，減少跨平台操作。</li>
+                <li><strong>一鍵活動簽到：</strong>自動加入線上活動，減輕志工負擔。</li>
+              </ul>
+              <ul class="project-stack"><li>Python</li><li>GCE e2-micro</li><li>SQLite</li><li>Google Sheet</li><li>Cloudflare Worker</li><li>healthchecks.io</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community-passport" class="project is-alt">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7 order-lg-2" data-aos="fade-up">
+            <div class="project-media is-passport">
+              <figure><img src="../assets/img/recap/2026/community-kh-card.jpg" alt="2026 實體名牌卡" loading="lazy"><figcaption>2026 實體卡</figcaption></figure>
+              <i class="bi bi-arrow-right" aria-hidden="true"></i>
+              <figure><img src="../assets/img/recap/2026/community-kh-passport.jpg" alt="2027 線上社群護照" loading="lazy"><figcaption>2027 線上護照</figcaption></figure>
+            </div>
+          </div>
+          <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="50">
+            <div class="project-body">
+              <p class="project-no">02</p>
+              <p class="project-kind">高雄社群共用</p>
+              <h2 class="project-name">高雄社群護照<span class="project-status">2027 年元旦正式全面啟航</span></h2>
+              <p>高雄社群名牌卡從實體名牌卡更改成線上護照：參加高雄社群活動，掃描 QR Code 就能集章！支援實體與線上活動，讓每一次社群參與都能留下紀錄。</p>
+              <h3>為什麼要做</h3>
+              <p>在 2025、2026 兩年的實體名牌卡推行過程中，高雄社群的組織者們也累積了一些使用經驗，例如實體卡印製與發放不易、人工蓋章與核對較繁瑣，以及容易與各自社群的名牌卡混淆等問題。</p>
+              <p>PyLadies Kaohsiung 希望鼓勵更多人參與高雄在地社群活動，也希望讓其他社群的參與者有機會加入我們開放的線上活動。因此，我們需要一個能證明「參與過高雄社群活動」的工具，同時我們也不希望各社群為此額外架設服務，增加伺服器成本與資安風險。</p>
+              <h3>成果</h3>
+              <ul class="project-results">
+                <li><strong>免伺服器、免註冊：</strong>純靜態網頁，社群無須額外維護服務。</li>
+                <li><strong>QR Code 數位集章：</strong>透過社群金鑰簽章驗證，降低偽造風險。</li>
+                <li><strong>支援實體與線上活動：</strong>不同形式使用不同印章，同場活動只保留一個章。</li>
+                <li><strong>主辦方工具：</strong>提供金鑰管理、QR Code 簽發與活動補簽。</li>
+                <li><strong>參與紀錄備份與分享：</strong>可透過備份連結分享參與證明，並由主辦方驗證。</li>
+              </ul>
+              <ul class="project-stack"><li>HTML / JavaScript</li><li>GitHub Pages</li><li>Web Crypto（ECDSA 簽章）</li><li>localStorage</li></ul>
+              <ul class="project-links">
+                <li><a href="https://community-card.org/" target="_blank" rel="noopener"><i class="bi bi-globe2"></i>高雄社群護照官網</a></li>
+                <li><a href="https://github.com/gdg-kh/CommunityCardOrg/pull/51" target="_blank" rel="noopener"><i class="bi bi-github"></i>新增數位簽到護照（#51）</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="booth-games" class="project">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7" data-aos="fade-up">
+            <div class="project-media">
+              <img src="../assets/img/projects/game-pyladies.jpg" alt="Guess the PyLadies Chapter 遊戲首頁畫面" loading="lazy">
+            </div>
+          </div>
+          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="50">
+            <div class="project-body">
+              <p class="project-no">03</p>
+              <p class="project-kind">PyLadies Kaohsiung 自用</p>
+              <h2 class="project-name">攤位互動遊戲</h2>
+              <h3>為什麼要做</h3>
+              <p>參與技術活動擺攤時，希望讓更多人認識 PyLadies。除了傳統的社群介紹，也希望透過簡單有趣的互動遊戲，讓訪客在遊戲中認識 PyLadies 的社群特色。透過遊戲傳遞社群資訊，也能減輕志工重複介紹的負擔，讓現場交流有更多延伸的空間。</p>
+              <h3>成果</h3>
+              <ul class="project-results">
+                <li><strong>線上互動遊戲：</strong>
+                  <ul>
+                    <li>Python 社群交流：<a href="../game/pyladies/">Guess the PyLadies Chapter</a></li>
+                    <!-- 技術社群交流：開發中，完成後再打開
+                    <li>技術社群交流：</li>
+                    -->
+                  </ul>
+                </li>
+                <li><strong>QR Code 快速進入：</strong>掃描即可遊玩，不需要額外安裝或註冊。</li>
+                <li><strong>降低志工負擔：</strong>透過遊戲傳遞社群資訊，減少重複介紹。</li>
+                <li><strong>免印製、易更新：</strong>遊戲內容線上維護，減少實體印刷與準備成本。</li>
+                <li><strong>跨活動重複使用：</strong>同一套遊戲可應用於不同活動與社群攤位。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer-bottom text-center mt-4">
+      <div class="social-links">
+        <a href="https://www.facebook.com/pyladies.kaohsiung" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/pyladies.kaohsiung/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.threads.com/@pyladies.kaohsiung" target="_blank" rel="noopener" aria-label="Threads"><i class="bi bi-threads"></i></a>
+        <a href="https://www.linkedin.com/company/pyladies-kaohsiung" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:kaohsiung@pyladies.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      </div>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">PyLadies Kaohsiung</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="回到頂端"><i class="bi bi-arrow-up-short"></i></a>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/main.js?v=20261112b"></script>
+</body>
+
+</html>
