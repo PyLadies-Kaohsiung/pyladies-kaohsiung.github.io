@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-ui="zh">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBDVQK5QPE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NBDVQK5QPE');
+  </script>
+  <script>
+    // Pick the UI language before first paint: saved choice, else browser language.
+    // Shares the key with /game/pyladies/ so the choice carries over.
+    (function () {
+      var lang;
+      try { lang = localStorage.getItem('pyladies-game:lang'); } catch (e) {}
+      if (lang !== 'zh' && lang !== 'en') lang = /^zh/i.test(navigator.language || '') ? 'zh' : 'en';
+      document.documentElement.dataset.ui = lang;
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+    })();
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="theme-color" content="#F5F7FA">
+  <title>Python 小挑戰｜PyLadies Kaohsiung 高雄</title>
+  <meta name="description" content="看程式猜用途、幫程式除錯：5 題小挑戰，不會寫程式也能玩！">
+  <link rel="canonical" href="https://kaohsiung.pyladies.com/game/python/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PyLadies Kaohsiung">
+  <meta property="og:title" content="Python 小挑戰 Python Mini Challenge">
+  <meta property="og:description" content="看程式猜用途、幫程式除錯：5 題小挑戰，不會寫程式也能玩！">
+  <meta property="og:url" content="https://kaohsiung.pyladies.com/game/python/">
+  <meta property="og:image" content="https://kaohsiung.pyladies.com/assets/img/logo_horizontal.png">
+  <meta property="og:locale" content="zh_TW">
+
+  <link rel="icon" href="../../assets/img/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Shares the look of the logo game; python.css adds the code-specific pieces. -->
+  <link href="../pyladies/game.css?v=20261014a" rel="stylesheet">
+  <link href="python.css?v=20261113l" rel="stylesheet">
+  <script type="module" src="game.js?v=20261113l"></script>
+</head>
+
+<body data-active="start">
+  <header class="game-nav">
+    <a class="nav-logo" href="../../" aria-label="PyLadies Kaohsiung">
+      <img src="../pyladies/pyladies-kaohsiung.png" alt="PyLadies Kaohsiung 高雄">
+    </a>
+    <div class="lang-toggle" role="group" aria-label="Language 語言">
+      <button type="button" data-set-lang="zh">中</button>
+      <button type="button" data-set-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="game">
+    <!-- Start -->
+    <section data-screen="start" class="screen start">
+      <div class="start-intro">
+        <a class="hero-logo" href="../../" aria-label="PyLadies Kaohsiung">
+          <img src="../pyladies/pyladies-kaohsiung.png" alt="PyLadies Kaohsiung 高雄">
+        </a>
+        <div class="about">
+          <p data-lang="zh"><strong>Python</strong> 是一種程式語言，寫起來很像英文，是公認對新手最友善的語言之一。</p>
+          <p data-lang="en"><strong>Python</strong> is a programming language that reads a lot like English — one of the friendliest languages for beginners.</p>
+          <p data-lang="zh">從聊天機器人、下載網頁圖片、做股價網頁，到控制無人機，都能用 Python 做到。<strong>不會寫程式也沒關係</strong>，來玩玩看就知道！</p>
+          <p data-lang="en">From chatbots, downloading images from the web and building stock-chart pages to flying drones — Python does it all. <strong>Never coded before? No problem</strong> — just play!</p>
+          <div class="about-links">
+            <a href="../../#upcoming">
+              <span data-lang="zh">看看 PyLadies Kaohsiung 舉辦了哪些 Python 活動&nbsp;→</span><span data-lang="en">See the Python events PyLadies Kaohsiung runs&nbsp;→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="start-play">
+        <p class="eyebrow"><span data-lang="zh">Ready? 來挑戰看看！</span><span data-lang="en">Ready? Let's play!</span></p>
+        <h1><span class="accent">Python</span><br>Mini Challenge<span class="cursor" aria-hidden="true"></span></h1>
+        <p class="lead"><span data-lang="zh">5 題小挑戰，不會寫程式也能玩</span><span data-lang="en">5 quick questions — no coding needed</span></p>
+        <div class="start-card">
+          <ul class="rules">
+            <li><span>✅</span><span data-lang="zh">完成挑戰就能到 PyLadies Kaohsiung 攤位 參加大會活動</span><span data-lang="en">Finish the challenge, then join the conference activity at the PyLadies Kaohsiung booth</span></li>
+          </ul>
+          <button id="start" class="btn btn-primary btn-big" type="button">Start 開始</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Questions: multiple choice on a code snippet -->
+    <section data-screen="quiz" class="screen stage" hidden>
+      <div class="topbar">
+        <div id="progress" class="progress"></div>
+        <div class="topbar-actions">
+          <button class="btn-text restart" type="button" aria-label="Restart 重新開始">↺</button>
+        </div>
+      </div>
+
+      <h2 class="stage-title" id="quiz-title"></h2>
+      <pre id="quiz-code" class="code-card"></pre>
+      <pre id="quiz-goal" class="terminal terminal-goal" hidden></pre>
+      <p id="quiz-prompt" class="prompt"></p>
+      <div id="quiz-options" class="options"></div>
+
+      <div id="quiz-feedback" class="feedback" hidden aria-live="polite">
+        <p class="result"></p>
+        <p class="term-label" hidden></p>
+        <pre class="terminal" hidden></pre>
+        <p class="answer"></p>
+        <div class="tip"><strong class="tip-head"></strong><span class="tip-text"></span></div>
+        <figure class="shot" hidden><img alt=""></figure>
+        <button class="btn btn-primary btn-big next" type="button"></button>
+      </div>
+    </section>
+
+    <!-- Complete -->
+    <section data-screen="complete" class="screen screen-center" hidden>
+      <div class="confetti" aria-hidden="true">🐍</div>
+      <h2>Challenge Complete!</h2>
+      <ul id="summary" class="summary"></ul>
+      <div class="sticker-card">
+        <p data-lang="zh">🎉 你已經讀懂 5 段 Python 程式了！</p>
+        <p data-lang="en">🎉 You've just read 5 Python programs!</p>
+        <p class="sticker-cta" data-lang="zh">請把這個畫面給 PyLadies Kaohsiung 攤位工作人員<br>參加大會活動</p>
+        <p class="sticker-cta" data-lang="en">Show this screen to the PyLadies Kaohsiung booth staff<br>to join the conference activity</p>
+      </div>
+      <p class="closing" data-lang="zh">可以發現 Python 程式碼很平易近人，<br>從軟體到硬體都可以做應用～</p>
+      <p class="closing" data-lang="en">See? Python code is friendly and approachable,<br>from software all the way to hardware～</p>
+      <div class="about-links">
+        <a href="../../#upcoming">
+          <span data-lang="zh">想學更多？關注 PyLadies Kaohsiung 的活動&nbsp;→</span><span data-lang="en">Want more? Follow PyLadies Kaohsiung events&nbsp;→</span>
+        </a>
+      </div>
+      <button class="btn btn-ghost restart" type="button"><span data-lang="zh">再玩一次</span><span data-lang="en">Play again</span></button>
+    </section>
+  </main>
+
+  <!-- Desktop only: lets booth visitors scan and play on their own phone -->
+  <aside id="qr" class="qr" aria-label="QR code">
+    <div class="qr-card">
+      <button id="qr-hide" class="qr-close" type="button" aria-label="Hide QR code 隱藏 QR code">×</button>
+      <img src="qr.svg" alt="https://kaohsiung.pyladies.com/game/python/" width="140" height="140">
+      <p><span data-lang="zh">掃描用手機玩</span><span data-lang="en">Scan to play on your phone</span></p>
+    </div>
+    <button id="qr-show" class="qr-pill" type="button">📱 QR</button>
+  </aside>
+
+</body>
+
+</html>
