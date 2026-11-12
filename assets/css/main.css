@@ -2810,7 +2810,19 @@ button.event-card-action:disabled {
   text-align: center;
 }
 
-.project-media.is-passport figcaption {
+/* Several screenshots stacked, each with a caption */
+.project-media.is-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.project-media.is-stack figure {
+  margin: 0;
+  text-align: center;
+}
+
+.project-media.is-passport figcaption,
+.project-media.is-stack figcaption {
   margin-top: 10px;
   font-size: 13px;
   font-weight: 600;
