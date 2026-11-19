@@ -63,6 +63,7 @@
           <a href="#discord-bot"><span>01</span>Discord Bot</a>
           <a href="#community-passport"><span>02</span>高雄社群護照</a>
           <a href="#booth-games"><span>03</span>攤位互動遊戲</a>
+          <a href="#pyladies-locations"><span>04</span>PyLadies 全球分會地圖</a>
         </nav>
       </div>
     </section>
@@ -118,6 +119,7 @@
               <ul class="project-results">
                 <li><strong>免伺服器、免註冊：</strong>純靜態網頁，社群無須額外維護服務。</li>
                 <li><strong>QR Code 數位集章：</strong>透過社群金鑰簽章驗證，降低偽造風險。</li>
+                <li><strong>QR Code 輪播：</strong>避免 QR Code 容易被拍照替換。</li>
                 <li><strong>支援實體與線上活動：</strong>不同形式使用不同印章，同場活動只保留一個章。</li>
                 <li><strong>主辦方工具：</strong>提供金鑰管理、QR Code 簽發與活動補簽。</li>
                 <li><strong>參與紀錄備份與分享：</strong>可透過備份連結分享參與證明，並由主辦方驗證。</li>
@@ -167,6 +169,40 @@
                 <li><strong>降低志工負擔：</strong>透過遊戲傳遞社群資訊，減少重複介紹。</li>
                 <li><strong>免印製、易更新：</strong>遊戲內容線上維護，減少實體印刷與準備成本。</li>
                 <li><strong>跨活動重複使用：</strong>同一套遊戲可應用於不同活動與社群攤位。</li>
+                <li><strong>統計互動人次：</strong>網站有綁 GA，可以依此輕鬆掌握互動數據。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pyladies-locations" class="project is-alt">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7 order-lg-2" data-aos="fade-up">
+            <div class="project-media">
+              <img src="../assets/img/projects/pyladies-locations-map.jpg" alt="PyLadies 官網全球分會地圖，搜尋 Kaohsiung, Taiwan 顯示高雄分會資訊" loading="lazy">
+            </div>
+          </div>
+          <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="50">
+            <div class="project-body">
+              <p class="project-no">04</p>
+              <p class="project-kind">PyLadies 全球社群</p>
+              <h2 class="project-name">PyLadies 全球分會地圖</h2>
+              <h3>為什麼要做</h3>
+              <p>PyLadies 官網的分會地圖使用 Google 地圖，需要手動更新，已經至少 5 年沒有更新。地圖應該和分會列表一樣，由設定檔自動產生。</p>
+              <h3>成果</h3>
+              <ul class="project-results">
+                <li><strong>由設定檔自動產生：</strong>地圖直接讀取各分會的設定，不再需要手動更新。</li>
+                <li><strong>支援搜尋：</strong>輸入城市即可找到該地的分會。</li>
+                <li><strong>分會 logo 標記：</strong>地圖上每個點都是該分會的 logo。</li>
+                <li><strong>分會資訊面板：</strong>點選後顯示網站、Email 與各社群平台連結。</li>
+              </ul>
+              <ul class="project-stack"><li>Leaflet</li><li>OpenStreetMap</li><li>leaflet-search</li><li>Jinja</li></ul>
+              <ul class="project-links">
+                <li><a href="https://pyladies.com/locations/" target="_blank" rel="noopener"><i class="bi bi-globe2"></i>PyLadies Locations</a></li>
+                <li><a href="https://github.com/pyladies/pyladies/pull/702" target="_blank" rel="noopener"><i class="bi bi-github"></i>Replace Location map（#702）</a></li>
               </ul>
             </div>
           </div>
