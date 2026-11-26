@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../assets/img/favicon.png">
+<title>PyLadies Kaohsiung 活動回顧模板</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" crossorigin="anonymous">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#f4f2ee; display:flex; flex-direction:column; align-items:center; padding:40px 16px; font-family:'Noto Sans TC', sans-serif; }
+
+/* 浮動工具列（截圖卡片時不入鏡） */
+.toolbar { position:fixed; top:14px; right:14px; display:flex; gap:8px; z-index:50; flex-wrap:wrap; justify-content:flex-end; }
+.toolbar button { background:#FA3C0A; color:#fff; border:none; border-radius:8px; padding:8px 14px; font-size:13px; font-family:inherit; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.15); }
+.toolbar button:hover { background:#d43208; }
+.toolbar select { background:#fff; color:#2c2c2a; border:1px solid #e4e0d8; border-radius:8px; padding:8px 10px; font-size:13px; font-family:inherit; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.10); }
+.toolbar select:disabled { opacity:.5; cursor:not-allowed; }
+body.locked .ps, body.locked .col-resizer, body.locked .row-resizer { pointer-events:none; cursor:default; }
+body.locked .tools { display:none !important; }
+
+.card { background:#fff; width:680px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.10); }
+
+/* 照片排（flex；欄寬可調） */
+.pg-row { display:flex; align-items:stretch; background:#fff; }
+
+.ps { position:relative; overflow:hidden; flex:1 1 0; min-width:40px; background:#1a1a2e; background-repeat:no-repeat; cursor:grab; }
+.ps.empty { cursor:pointer; }
+.ps.dragging { cursor:grabbing; }
+.pc { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,0.5)); color:#fff; font-size:10px; padding:14px 8px 6px; line-height:1.4; z-index:2; }
+
+/* 空格佔位 */
+.placeholder { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:#2a2a3e; color:#9a9aae; pointer-events:none; z-index:1; }
+.placeholder svg { opacity:0.5; }
+.placeholder span { font-size:12px; }
+.ps:not(.empty) .placeholder { display:none; }
+
+/* 每格工具列（鎖定/下載時隱藏） */
+.tools { position:absolute; top:5px; right:5px; display:flex; gap:3px; z-index:3; opacity:0; transition:opacity .15s; }
+.ps:hover .tools { opacity:1; }
+.tbtn { background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:4px; font-size:11px; padding:3px 6px; cursor:pointer; font-family:inherit; line-height:1; }
+.tbtn:hover { background:#FA3C0A; }
+
+/* 分隔線兼拖曳把手 */
+.col-resizer { flex:0 0 2px; background:#fff; cursor:col-resize; align-self:stretch; }
+.col-resizer:hover { background:#FA3C0A; }
+.row-resizer { height:2px; background:#fff; cursor:row-resize; }
+.row-resizer:hover { background:#FA3C0A; }
+.row-resizer.edge { height:9px; background:transparent; }
+.row-resizer.edge:hover { background:#FA3C0A; }
+
+/* 回饋區 */
+.sec { padding:20px 28px; }
+.sec-lbl { font-size:10px; font-weight:700; letter-spacing:0.12em; color:#FA3C0A; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.sec-lbl::after { content:''; flex:1; height:0.5px; background:#f0ede8; }
+.ql { display:flex; flex-direction:column; gap:10px; }
+.qc { background:#fafaf8; border-left:3px solid #FA3C0A; border-radius:0 8px 8px 0; padding:10px 14px; }
+.qc:nth-child(even) { border-left-color:#6A8ED4; }
+.qt { font-size:13px; color:#444441; line-height:1.65; }
+
+[contenteditable] { outline:none; }
+[contenteditable]:focus { background:rgba(250,60,10,0.06); border-radius:3px; }
+/* 空欄位：編輯時顯示淡色提示字，鎖定 / 匯出時不顯示 */
+body:not(.locked) [contenteditable]:empty::before { content:attr(data-ph); color:#C6C2BA; }
+body.locked .qc:has(.qt:empty) { display:none; }
+
+/* 回社群工具頁 */
+.tool-back{position:fixed;top:14px;left:14px;z-index:50;background:#fff;color:#2c2c2a;border:1px solid #e4e0d8;border-radius:8px;padding:8px 12px;font-size:13px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.10)}
+.tool-back:hover{color:#FA3C0A}
+.toolbar button:disabled{opacity:.6;cursor:wait}
+.toolbar{max-width:calc(100vw - 150px)}
+body.shot .tool-back{display:none}
+</style>
+</head>
+<body>
+
+<a class="tool-back" href="../">← 社群工具</a>
+
+<div class="toolbar">
+  <select id="layoutSel" onchange="setLayout(this.value)" title="照片排列">
+    <option value="12">🖼 上 1 下 2（3 張）</option>
+    <option value="13">🖼 上 1 下 3（4 張）</option>
+    <option value="22">🖼 上 2 下 2（4 張）</option>
+    <option value="23">🖼 上 2 下 3（5 張）</option>
+    <option value="24" selected>🖼 上 2 下 4（6 張）</option>
+  </select>
+  <select id="fbSel" onchange="setFeedback(+this.value)" title="學員回饋則數">
+    <option value="1">💬 1 則回饋</option>
+    <option value="2">💬 2 則回饋</option>
+    <option value="3">💬 3 則回饋</option>
+    <option value="4" selected>💬 4 則回饋</option>
+    <option value="5">💬 5 則回饋</option>
+    <option value="6">💬 6 則回饋</option>
+  </select>
+  <button id="lockBtn" onclick="toggleLock()">🔒 鎖定</button>
+  <button onclick="downloadCardPng({button:this,filename:'活動回顧.png',lock:toggleLock})">⬇ 下載 PNG</button>
+  <button onclick="exportFixed()">⬇ 匯出固定版</button>
+</div>
+
+<div class="card" id="card">
+
+  <div id="photos"></div>
+
+  <div class="sec">
+    <div class="sec-lbl">學員回饋</div>
+    <div class="ql" id="fbList"></div>
+  </div>
+
+</div>
+
+<input type="file" id="fileInput" accept="image/*" style="display:none">
+
+<script>
+// 版型：key = 上排張數 + 下排張數；caps = 各格預設說明（依格子順序）
+const LAYOUTS={
+  12:{rows:[1,2], heights:[300,200], caps:['全體合照','講師教學中','實作練習']},
+  13:{rows:[1,3], heights:[260,200], caps:['全體合照','講師教學中','實作練習','講師示範中']},
+  22:{rows:[2,2], heights:[220,220], caps:['全體合照','講師教學中','實作練習','活動花絮']},
+  23:{rows:[2,3], heights:[230,200], caps:['全體合照','講師教學中','實作練習','講師示範中','活動花絮']},
+  24:{rows:[2,4], heights:[230,170], caps:['全體合照','講師教學中','實作練習','講師示範中','學員交流','活動花絮']},
+};
+const MAX_CELLS=6, MAX_FB=6;
+const SVG='<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
+
+const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
+
+function recompute(ps,keep){
+  if(!ps.dataset.natw||!ps.isConnected) return;
+  const fw=ps.clientWidth,fh=ps.clientHeight;
+  const nw=+ps.dataset.natw,nh=+ps.dataset.nath;
+  const s=Math.min(fw/nw,fh/nh);
+  ps._bw=nw*s; ps._bh=nh*s;
+  if(ps._z===undefined||!keep){ ps._z=ps._z||1; ps._cx=undefined; }
+  apply(ps);
+}
+function apply(ps){
+  const fw=ps.clientWidth,fh=ps.clientHeight;
+  const dw=ps._bw*ps._z,dh=ps._bh*ps._z;
+  if(ps._px===undefined||ps._cx){ ps._px=(fw-dw)/2; ps._py=(fh-dh)/2; ps._cx=false; }
+  ps._px= dw>=fw ? clamp(ps._px,fw-dw,0) : (fw-dw)/2;
+  ps._py= dh>=fh ? clamp(ps._py,fh-dh,0) : (fh-dh)/2;
+  ps.style.backgroundSize=dw+'px '+dh+'px';
+  ps.style.backgroundPosition=ps._px+'px '+ps._py+'px';
+}
+function zoomAt(ps,f){
+  if(!ps.dataset.natw) return;
+  const fw=ps.clientWidth,fh=ps.clientHeight;
+  const dw0=ps._bw*ps._z,dh0=ps._bh*ps._z;
+  const ix=(fw/2-ps._px)/dw0, iy=(fh/2-ps._py)/dh0;
+  ps._z=clamp(ps._z*f,0.3,6);
+  const dw1=ps._bw*ps._z,dh1=ps._bh*ps._z;
+  ps._px=fw/2-ix*dw1; ps._py=fh/2-iy*dh1; apply(ps);
+}
+
+let pickTarget=null;
+function pickImage(ps){ pickTarget=ps; document.getElementById('fileInput').click(); }
+
+// ── 照片格池：固定 6 格，切換版型時搬移，已上傳的照片與已改過的說明會保留 ──
+function makeCell(){
+  const ps=document.createElement('div');
+  ps.className='ps empty';
+  ps.innerHTML=`<div class="placeholder">${SVG}<span>點擊上傳照片</span></div>
+      <div class="tools editor-only">
+        <button class="tbtn" data-act="zin" title="放大">＋</button>
+        <button class="tbtn" data-act="zout" title="縮小">－</button>
+        <button class="tbtn" data-act="center" title="置中">置中</button>
+        <button class="tbtn" data-act="replace" title="換圖">換</button>
+      </div>
+      <div class="pc" contenteditable="true"></div>`;
+  let sx,sy,ox,oy,drag=false;
+  ps.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.tools')||e.target.closest('.pc')) return;
+    if(ps.classList.contains('empty')){ pickImage(ps); return; }
+    drag=true; ps.classList.add('dragging'); ps.setPointerCapture(e.pointerId);
+    sx=e.clientX; sy=e.clientY; ox=ps._px; oy=ps._py;
+  });
+  ps.addEventListener('pointermove',e=>{ if(!drag) return; ps._px=ox+(e.clientX-sx); ps._py=oy+(e.clientY-sy); apply(ps); });
+  const end=()=>{ drag=false; ps.classList.remove('dragging'); };
+  ps.addEventListener('pointerup',end); ps.addEventListener('pointercancel',end);
+  ps.addEventListener('wheel',e=>{ if(ps.classList.contains('empty')) return; e.preventDefault(); zoomAt(ps,e.deltaY<0?1.08:1/1.08); },{passive:false});
+  ps.querySelector('.tools').addEventListener('click',e=>{
+    const act=e.target.dataset.act; if(!act) return;
+    if(act==='replace'){ pickImage(ps); return; }
+    if(ps.classList.contains('empty')) return;
+    if(act==='zin') zoomAt(ps,1.15);
+    else if(act==='zout') zoomAt(ps,1/1.15);
+    else if(act==='center'){ ps._cx=true; apply(ps); }
+  });
+  ps.querySelector('.pc').addEventListener('input',e=>{ e.target.dataset.edited='1'; });
+  return ps;
+}
+const cells=Array.from({length:MAX_CELLS},makeCell);
+
+function colResizer(){
+  const rz=document.createElement('div'); rz.className='col-resizer';
+  rz.addEventListener('pointerdown',e=>{
+    e.preventDefault();
+    const prev=rz.previousElementSibling,next=rz.nextElementSibling,row=rz.parentElement;
+    const startX=e.clientX;
+    const gp=parseFloat(getComputedStyle(prev).flexGrow),gn=parseFloat(getComputedStyle(next).flexGrow);
+    const totalGrow=[...row.children].filter(c=>c.classList.contains('ps')).reduce((s,c)=>s+parseFloat(getComputedStyle(c).flexGrow),0);
+    const content=row.clientWidth-[...row.children].filter(c=>c.classList.contains('col-resizer')).length*2;
+    const perGrow=content/totalGrow;
+    const move=ev=>{ const d=(ev.clientX-startX)/perGrow; prev.style.flexGrow=Math.max(0.2,gp+d); next.style.flexGrow=Math.max(0.2,gn-d); recompute(prev,true); recompute(next,true); };
+    const up=()=>{ document.removeEventListener('pointermove',move); document.removeEventListener('pointerup',up); };
+    document.addEventListener('pointermove',move); document.addEventListener('pointerup',up);
+  });
+  return rz;
+}
+function rowResizer(edge,title){
+  const rz=document.createElement('div');
+  rz.className='row-resizer'+(edge?' edge editor-only':'');
+  if(title) rz.title=title;
+  rz.addEventListener('pointerdown',e=>{
+    e.preventDefault();
+    let row,sign;
+    if(rz.previousElementSibling&&rz.previousElementSibling.classList.contains('pg-row')){ row=rz.previousElementSibling; sign=1; }
+    else { row=rz.nextElementSibling; sign=-1; }
+    const startY=e.clientY,startH=row.clientHeight;
+    const move=ev=>{ row.style.height=Math.max(80,startH+sign*(ev.clientY-startY))+'px'; row.querySelectorAll('.ps').forEach(p=>recompute(p,true)); };
+    const up=()=>{ document.removeEventListener('pointermove',move); document.removeEventListener('pointerup',up); };
+    document.addEventListener('pointermove',move); document.addEventListener('pointerup',up);
+  });
+  return rz;
+}
+
+function setLayout(key){
+  const lo=LAYOUTS[key]||LAYOUTS[24];
+  const box=document.getElementById('photos');
+  box.replaceChildren();
+  box.appendChild(rowResizer(true,'調整上緣'));
+  let ci=0;
+  lo.rows.forEach((n,ri)=>{
+    if(ri>0) box.appendChild(rowResizer(false));
+    const row=document.createElement('div');
+    row.className='pg-row'; row.dataset.row=''; row.style.height=lo.heights[ri]+'px';
+    for(let j=0;j<n;j++){
+      if(j>0) row.appendChild(colResizer());
+      const ps=cells[ci];
+      ps.style.flexGrow=1;
+      const pc=ps.querySelector('.pc');
+      if(!pc.dataset.edited) pc.textContent=lo.caps[ci];
+      row.appendChild(ps); ci++;
+    }
+    box.appendChild(row);
+  });
+  box.appendChild(rowResizer(true,'調整下緣'));
+  document.getElementById('layoutSel').value=key;
+  requestAnimationFrame(()=>cells.forEach(p=>recompute(p)));
+}
+
+// ── 學員回饋：固定 6 則，依選單顯示前 n 則 ──
+const fbList=document.getElementById('fbList');
+for(let i=0;i<MAX_FB;i++){
+  const qc=document.createElement('div'); qc.className='qc';
+  qc.innerHTML=`<p class="qt" contenteditable="true" data-ph="在此輸入學員回饋 ${i+1}"></p>`;
+  fbList.appendChild(qc);
+}
+function setFeedback(n){
+  n=clamp(n,1,MAX_FB);
+  [...fbList.children].forEach((qc,i)=>{ qc.style.display = i<n ? '' : 'none'; });
+  document.getElementById('fbSel').value=n;
+}
+
+document.getElementById('fileInput').addEventListener('change',function(e){
+  const file=e.target.files[0]; if(!file||!pickTarget) return;
+  const target=pickTarget;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      target.style.backgroundImage="url('"+ev.target.result+"')";
+      target.dataset.natw=img.naturalWidth; target.dataset.nath=img.naturalHeight;
+      target.classList.remove('empty');
+      target._z=1; target._px=undefined; recompute(target);
+    };
+    img.src=ev.target.result;
+  };
+  reader.readAsDataURL(file); this.value='';
+});
+
+let locked=false;
+function toggleLock(){
+  locked=!locked;
+  document.body.classList.toggle('locked',locked);
+  [...cells.map(c=>c.querySelector('.pc')),...document.querySelectorAll('.qt')].forEach(el=>el.setAttribute('contenteditable',locked?'false':'true'));
+  document.getElementById('layoutSel').disabled=locked;
+  document.getElementById('fbSel').disabled=locked;
+  document.getElementById('lockBtn').textContent=locked?'🔓 解鎖':'🔒 鎖定';
+}
+
+function exportFixed(){
+  const card=document.getElementById('card').cloneNode(true);
+  const liveRows=document.querySelectorAll('#card .pg-row');
+  card.querySelectorAll('.pg-row').forEach((r,i)=>r.style.height=liveRows[i].clientHeight+'px');
+  card.querySelectorAll('.tools').forEach(e=>e.remove());
+  card.querySelectorAll('.row-resizer.edge').forEach(e=>e.remove());
+  card.querySelectorAll('.qc').forEach(e=>{ if(e.style.display==='none') e.remove(); });
+  card.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));
+  card.querySelectorAll('[data-natw]').forEach(e=>{e.removeAttribute('data-natw');e.removeAttribute('data-nath');});
+  card.querySelectorAll('[data-edited]').forEach(e=>e.removeAttribute('data-edited'));
+  const baseCss=document.querySelector('style').innerHTML;
+  const lockCss='.toolbar{display:none}.ps{cursor:default}.col-resizer,.row-resizer{cursor:default;pointer-events:none}[data-ph]:empty::before{content:none !important}';
+  const doc='<!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"><title>PyLadies Kaohsiung 活動回顧</title><style>'+baseCss+lockCss+'</style></head><body>'+card.outerHTML+'</body></html>';
+  const blob=new Blob([doc],{type:'text/html'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='活動回顧_fixed.html'; a.click(); URL.revokeObjectURL(a.href);
+}
+
+setLayout('24');
+setFeedback(4);
+window.addEventListener('load',()=>requestAnimationFrame(()=>cells.forEach(p=>recompute(p))));
+window.addEventListener('resize',()=>cells.forEach(p=>recompute(p,true)));
+</script>
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<script src="../../assets/js/tool-export.js"></script>
+</body>
+</html>
